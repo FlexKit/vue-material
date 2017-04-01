@@ -30,7 +30,11 @@ const createNewStyleElement = (style, name) => {
   if (!styleElement) {
     let newTag = document.createElement('style');
 
+    // if (name === 'default') {
+    //   style = style.replace(/.THEME_NAME/g, '');
+    // } else {
     style = style.replace(/THEME_NAME/g, styleId);
+    // }
 
     newTag.type = 'text/css';
     newTag.id = styleId;
@@ -63,16 +67,6 @@ const parseStyle = (style, theme, name) => {
       }
 
       if (colorType === 'COLOR') {
-        let isDefault = palette[theme[type]];
-
-        if (!colorVariant && !isDefault) {
-          if (type === 'accent') {
-            colorVariant = 'A200';
-          } else if (type === 'background') {
-            colorVariant = 50;
-          }
-        }
-
         if (type === 'primary') {
           registeredPrimaryColor[name] = color[colorVariant];
         }

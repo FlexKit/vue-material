@@ -1,193 +1,166 @@
 <template>
-  <div class="md-select" :class="[themeClass, classes]">
-    <md-menu :md-close-on-select="!multiple" @open="onOpen" @close="$emit('closed')">
-      <span class="md-select-value" md-menu-trigger ref="value">{{ selectedText || placeholder }}</span>
+  <md-input-container
+    :class="[themeClass]"
+    :hasValue="hasValue"
+    :hasPlaceholder="!!placeholder"
+    :isDisabled="!!disabled"
+    :isRequired="!!required"
+  >
+    <slot name="before"></slot>
 
-      <md-menu-content class="md-select-content" :class="[themeClass, contentClasses]">
-        <slot></slot>
-      </md-menu-content>
-    </md-menu>
+    <div class="md-select" :class="[themeClass, classes]">
+      <label v-if="label">{{label}}</label>
 
-    <select :name="name" :id="id" :required="required" :disabled="disabled" tabindex="-1">
-      <option selected="true" :value="selectedValue" v-if="!multiple">{{ selectedText }}</option>
-      <option selected="true" v-for="option in multipleOptions" v-if="option.value" :value="option.value">{{ option.text }}</option>
-    </select>
-  </div>
+      <md-menu
+        md-full-width
+        :md-close-on-select="!multiple"
+        @open="$emit('opened')"
+        @close="$emit('closed')"
+      >
+        <div class="md-field md-select-value" md-menu-trigger>
+          <template v-if="$scopedSlots.selection">
+            <slot
+              name="selection"
+              v-if="multiple"
+              v-for="(item, index) in value"
+              :item="item"
+              :text="selectedText[index]"
+            ></slot>
+
+            <slot v-if="!multiple" name="selection" :item="value" :text="selectedText"></slot>
+          </template>
+
+          <div v-else class="value">{{textValue || placeholder}}</div>
+        </div>
+
+        <md-menu-content v-if="items" :class="contentClasses">
+          <template>
+            <md-option
+              v-for="item in items"
+              :key="getValue(item)"
+              :value="getValue(item)"
+              :selectedText="selectedText"
+              :multiple="multiple"
+              :selected="checkSelected(item)"
+              @selected="changeValue"
+              @updateText="updateSelectedText"
+            >
+              <slot :item="item"></slot>
+            </md-option>
+          </template>
+        </md-menu-content>
+
+        <md-option-list v-else :class="contentClasses">
+          <slot></slot>
+        </md-option-list>
+      </md-menu>
+    </div>
+
+    <slot name="after"></slot>
+  </md-input-container>
 </template>
 
 <style lang="scss" src="./mdSelect.scss"></style>
 
 <script>
   import theme from '../../core/components/mdTheme/mixin';
-  import getClosestVueParent from '../../core/utils/getClosestVueParent';
-  import isArray from '../../core/utils/isArray';
+  import mdOptionList from './mdOptionList.vue';
 
   export default {
     name: 'md-select',
+    model: {
+      prop: 'value',
+      event: 'change'
+    },
     props: {
-      name: String,
-      id: String,
+      // global
       required: Boolean,
-      multiple: Boolean,
-      value: [String, Number, Array],
       disabled: Boolean,
+
+      // for container
+      label: [String, Number],
+
+      // for select
+      items: [Array, Object],
+      value: [String, Number, Array, Object],
+      valueKey: String,
+      multiple: Boolean,
       placeholder: String,
       mdMenuClass: String
     },
     mixins: [theme],
+    components: {
+      mdOptionList
+    },
     data() {
       return {
-        lastSelected: null,
-        selectedValue: null,
-        selectedText: null,
-        multipleOptions: {},
-        options: {},
-        optionsAmount: 0
+        selectedText: ''
       };
     },
     computed: {
+      hasValue() {
+        if (this.multiple) {
+          return !!(this.value && this.value.length);
+        }
+
+        return !!this.value;
+      },
       classes() {
         return {
           'md-disabled': this.disabled
         };
       },
       contentClasses() {
-        if (this.multiple) {
-          return 'md-multiple ' + this.mdMenuClass;
-        }
-
-        return this.mdMenuClass;
-      }
-    },
-    watch: {
-      value(value) {
-        this.setTextAndValue(value);
+        return ['md-select-content', this.themeClass, this.mdMenuClass, {
+          'md-multiple': this.multiple
+        }];
       },
-      disabled() {
-        this.setParentDisabled();
-      },
-      required() {
-        this.setParentRequired();
-      },
-      placeholder() {
-        this.setParentPlaceholder();
+      textValue() {
+        return this.multiple && this.selectedText ? this.selectedText.join(', ') : this.selectedText;
       }
     },
     methods: {
-      onOpen() {
-        if (this.lastSelected) {
-          this.lastSelected.scrollIntoViewIfNeeded(true);
+      getValue(item) {
+        return this.valueKey ? item[this.valueKey] : item;
+      },
+      checkSelected(item) {
+        const value = this.getValue(item);
+
+        if (this.multiple) {
+          return this.value.includes(value);
         }
 
-        this.$emit('opened');
+        return this.value === value;
       },
-      setParentDisabled() {
-        this.parentContainer.isDisabled = this.disabled;
-      },
-      setParentRequired() {
-        this.parentContainer.isRequired = this.required;
-      },
-      setParentPlaceholder() {
-        this.parentContainer.hasPlaceholder = !!this.placeholder;
-      },
-      getSingleValue(value) {
-        let output = {};
-
-        Object.keys(this.options).forEach((index) => {
-          const options = this.options[index];
-
-          if (options.value === value) {
-            output.value = value;
-            output.text = options.$refs.item.textContent,
-            output.el = options.$refs.item;
-          }
-        });
-
-        return output;
-      },
-      getMultipleValue(modelValue) {
-        if (isArray(this.value)) {
-          let outputText = [];
-
-          modelValue.forEach((value) => {
-            Object.keys(this.options).forEach((index) => {
-              const options = this.options[index];
-
-              if (options.value === value) {
-                let text = options.$refs.item.textContent;
-
-                this.multipleOptions[index] = {
-                  value,
-                  text
-                };
-                outputText.push(text);
-              }
-            });
-          });
-
-          return {
-            value: modelValue,
-            text: outputText.join(', ')
-          };
+      changeValue(value, isSelected) {
+        if (this.multiple && isSelected) {
+          value = this.value.filter((item) => item !== value);
         }
 
-        return {};
-      },
-      setTextAndValue(modelValue) {
-        const output = this.multiple ? this.getMultipleValue(modelValue) : this.getSingleValue(modelValue);
-
-        this.selectedValue = output.value;
-        this.selectedText = output.text;
-        this.lastSelected = output.el;
-
-        if (this.parentContainer) {
-          this.parentContainer.setValue(this.selectedText);
+        if (this.multiple && !isSelected) {
+          value = [...this.value, value];
         }
-      },
-      changeValue(value) {
-        this.$emit('input', value);
+
         this.$emit('change', value);
         this.$emit('selected', value);
       },
-      selectMultiple(index, value, text) {
-        let values = [];
-
-        this.multipleOptions[index] = {
-          value,
-          text
-        };
-
-        for (var key in this.multipleOptions) {
-          if (this.multipleOptions.hasOwnProperty(key) && this.multipleOptions[key].value) {
-            values.push(this.multipleOptions[key].value);
-          }
+      updateSelectedText(value, isSelected) {
+        if (this.multiple && !isSelected && this.selectedText) {
+          return this.selectedText = this.selectedText.filter((item) => item !== value);
         }
 
-        this.changeValue(values);
-      },
-      selectOption(value, text, el) {
-        this.lastSelected = el;
-        this.selectedText = text;
-        this.setTextAndValue(value);
-        this.changeValue(value);
+        if (this.multiple && isSelected) {
+          return this.selectedText = [ ...this.selectedText, value];
+        }
+
+        if (isSelected) {
+          return this.selectedText = value;
+        }
       }
     },
     mounted() {
-      this.parentContainer = getClosestVueParent(this.$parent, 'md-input-container');
-
-      if (this.parentContainer) {
-        this.setParentDisabled();
-        this.setParentRequired();
-        this.setParentPlaceholder();
-        this.parentContainer.hasSelect = true;
-      }
-
-      this.setTextAndValue(this.value);
-    },
-    beforeDestroy() {
-      if (this.parentContainer) {
-        this.parentContainer.setValue('');
-        this.parentContainer.hasSelect = false;
+      if (this.items && !this.$scopedSlots.default) {
+        throw new Error('Missing options template inside md-select');
       }
     }
   };

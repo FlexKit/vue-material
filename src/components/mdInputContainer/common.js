@@ -1,66 +1,70 @@
+import theme from '../../core/components/mdTheme/mixin';
+
 export default {
+  mixins: [theme],
+  data() {
+    return {
+      field: null,
+      focused: false,
+      currentValue: null
+    };
+  },
   props: {
+    // for container
+    mdClearable: Boolean,
+
+    // for field
+    label: [String, Number],
     value: [String, Number],
-    disabled: Boolean,
-    required: Boolean,
+    placeholder: String,
     maxlength: [Number, String],
-    placeholder: String
+    required: Boolean,
+    disabled: Boolean,
+    autofocus: Boolean
+  },
+  computed: {
+    inputLength() {
+      return this.currentValue ? this.currentValue.length : 0;
+    },
+    counterLength() {
+      return Number(this.maxlength, 10);
+    }
   },
   watch: {
-    value() {
-      this.updateValues();
-    },
-    disabled() {
-      this.setParentDisabled();
-    },
-    required() {
-      this.setParentRequired();
-    },
-    placeholder() {
-      this.setParentPlaceholder();
-    },
-    maxlength() {
-      this.handleMaxLength();
+    value(value) {
+      this.currentValue = value;
     }
   },
   methods: {
-    handleMaxLength() {
-      this.parentContainer.enableCounter = this.maxlength > 0;
-      this.parentContainer.counterLength = this.maxlength;
-    },
-    setParentValue(value) {
-      this.parentContainer.setValue(value || this.$el.value);
-    },
-    setParentDisabled() {
-      this.parentContainer.isDisabled = this.disabled;
-    },
-    setParentRequired() {
-      this.parentContainer.isRequired = this.required;
-    },
-    setParentPlaceholder() {
-      this.parentContainer.hasPlaceholder = !!this.placeholder;
-    },
-    updateValues() {
-      this.$nextTick(() => {
-        const newValue = this.$el.value || this.value;
-
-        this.setParentValue(newValue);
-        this.parentContainer.inputLength = newValue ? newValue.length : 0;
-      });
+    updateValue() {
+      this.currentValue = this.field.value || this.value;
     },
     onFocus() {
-      if (this.parentContainer) {
-        this.parentContainer.isFocused = true;
-      }
+      this.focused = true;
     },
     onBlur() {
-      this.parentContainer.isFocused = false;
-      this.setParentValue();
+      this.focused = false;
     },
     onInput() {
-      this.updateValues();
-      this.$emit('change', this.$el.value);
-      this.$emit('input', this.$el.value);
+      this.updateValue();
+      this.$emit('input', this.field.value);
+    },
+    onChange() {
+      this.updateValue();
+      this.$emit('change', this.field.value);
+    },
+    clearValue() {
+      this.field.value = null;
+
+      this.$nextTick(() => {
+        this.onInput();
+        this.onChange();
+      });
     }
+  },
+  mounted() {
+    this.field = this.$refs.field;
+    this.focused = this.autofocus;
+    this.currentValue = this.value;
   }
 };

@@ -1,35 +1,57 @@
 <template>
-  <div class="md-file" @click="openPicker">
-    <md-input
-      readonly
-      v-model="filename"
-      :required="required"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      ref="textInput">
-    </md-input>
+  <md-input-container
+    :class="['md-has-file', themeClass]"
+    :mdClearable="mdClearable"
 
-    <md-icon>attach_file</md-icon>
+    :isFocused="focused"
+    :isDisabled="disabled"
+    :isRequired="required"
 
-    <input
-      type="file"
-      :id="id"
-      :name="name"
-      :disabled="disabled"
-      :multiple="multiple"
-      :accept="accept"
-      @change="onFileSelected"
-      ref="fileInput">
-  </div>
+    :inputLength="inputLength"
+    :counterLength="counterLength"
+
+    :hasValue="!!currentValue"
+    :hasPlaceholder="!!placeholder"
+
+    @clear="clearValue"
+  >
+    <slot name="before"></slot>
+
+    <div class="md-file" @click="openPicker">
+      <md-input
+        readonly
+        v-model="filename"
+        :required="required"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        ref="textInput">
+      </md-input>
+
+      <md-icon>attach_file</md-icon>
+
+      <input
+        type="file"
+        :id="id"
+        :name="name"
+        :disabled="disabled"
+        :multiple="multiple"
+        :accept="accept"
+        @change="onFileSelected"
+        ref="fileInput">
+    </div>
+
+    <slot name="after"></slot>
+  </md-input-container>
 </template>
 
 <style lang="scss" src="./mdFile.scss"></style>
 
 <script>
-  import getClosestVueParent from '../../core/utils/getClosestVueParent';
+  import theme from '../../core/components/mdTheme/mixin';
 
   export default {
     name: 'md-file',
+    mixins: [theme],
     props: {
       value: String,
       id: String,
@@ -84,20 +106,6 @@
         this.$emit('selected', files || $event.target.value);
         this.$emit('input', this.filename);
       }
-    },
-    mounted() {
-      this.parentContainer = getClosestVueParent(this.$parent, 'md-input-container');
-
-      if (!this.parentContainer) {
-        this.$destroy();
-
-        throw new Error('You should wrap the md-file in a md-input-container');
-      }
-
-      this.parentContainer.hasFile = true;
-    },
-    beforeDestroy() {
-      this.parentContainer.hasFile = false;
     }
   };
 </script>

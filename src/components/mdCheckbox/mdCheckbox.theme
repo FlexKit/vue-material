@@ -1,38 +1,46 @@
 .THEME_NAME {
   &.md-checkbox {
+    .md-checkbox-container {
+      border-color: #{'BACKGROUND-CONTRAST-0.54'};
+
+      &:after {
+        border-color: #{'ACCENT-CONTRAST'};
+      }
+    }
+
     &.md-checked {
       .md-checkbox-container {
-        background-color: #{'ACCENT-COLOR'};
-        border-color: #{'ACCENT-COLOR'};
+        background-color: #{'PRIMARY-COLOR'};
+        border-color: #{'PRIMARY-COLOR'};
 
         &:after {
-          border-color: #{'ACCENT-CONTRAST'};
+          border-color: #{'PRIMARY-CONTRAST'};
         }
       }
     }
 
     .md-ink-ripple {
-      color: #{'ACCENT-COLOR'};
+      color: #{'PRIMARY-COLOR'};
     }
 
     .md-ripple {
       opacity: .26;
     }
 
-    &.md-primary {
+    &.md-accent {
       &.md-checked {
         .md-checkbox-container {
-          background-color: #{'PRIMARY-COLOR'};
-          border-color: #{'PRIMARY-COLOR'};
+          background-color: #{'ACCENT-COLOR'};
+          border-color: #{'ACCENT-COLOR'};
 
           &:after {
-            border-color: #{'PRIMARY-CONTRAST'};
+            border-color: #{'ACCENT-CONTRAST'};
           }
         }
       }
 
       .md-ink-ripple {
-        color: #{'PRIMARY-COLOR'};
+        color: #{'ACCENT-COLOR'};
       }
     }
 

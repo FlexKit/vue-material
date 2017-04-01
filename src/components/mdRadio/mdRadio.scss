@@ -19,8 +19,8 @@ $radio-ripple-size: 48px;
     transition: $swift-ease-out;
 
     &:before {
-      width: $checkbox-touch-size;
-      height: $checkbox-touch-size;
+      width: $radio-ripple-size;
+      height: $radio-ripple-size;
       position: absolute;
       top: 50%;
       left: 50%;

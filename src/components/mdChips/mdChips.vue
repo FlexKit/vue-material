@@ -2,7 +2,7 @@
   <div class="md-chips" :class="[themeClass, classes]">
     <md-input-container @click.native="applyInputFocus">
       <md-chip
-        v-for="chip in selectedChips"
+        v-for="chip in selectedChips" :key="chip"
         :md-deletable="!mdStatic"
         :md-editable="!mdStatic"
         :disabled="disabled"

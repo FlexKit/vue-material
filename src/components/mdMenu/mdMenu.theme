@@ -1,19 +1,21 @@
 .THEME_NAME {
-  &.md-menu-content .md-list {
-    background-color: #{'BACKGROUND-COLOR'};
-    color: #{'BACKGROUND-CONTRAST'};
+  &.md-menu-content{
+    .md-list {
+      background-color: #{'BACKGROUND-COLOR-0.9'};
+      color: #{'BACKGROUND-CONTRAST'};
 
-    .md-menu-item {
-      &:hover,
-      &:focus,
-      &.md-highlighted {
-        .md-button:not([disabled]) {
-          background-color: #{'BACKGROUND-CONTRAST-0.12'};
+      .md-menu-item {
+        &:hover,
+        &:focus,
+        &.md-highlighted {
+          .md-button:not([disabled]) {
+            background-color: #{'BACKGROUND-CONTRAST-0.04'};
+          }
         }
-      }
 
-      &[disabled] {
-        color: #{'BACKGROUND-CONTRAST-0.38'};
+        &[disabled] {
+          color: #{'BACKGROUND-CONTRAST-0.38'};
+        }
       }
     }
   }

@@ -1,7 +1,25 @@
 .THEME_NAME {
   &.md-input-container {
-    &.md-input-invalid {
+    .md-field {
       &:after {
+        background-color: #{'BACKGROUND-CONTRAST-0.12'};
+      }
+    }
+
+    label,
+    .md-icon {
+      color: #{'BACKGROUND-CONTRAST-0.54'};
+    }
+
+    input,
+    textarea {
+      &, &::-webkit-input-placeholder {
+        // color: #{'BACKGROUND-CONTRAST-0.54'};
+      }
+    }
+
+    &.md-input-invalid {
+      .md-field:after {
         background-color: #{'WARN-COLOR'};
       }
 
@@ -10,25 +28,19 @@
       textarea,
       .md-error,
       .md-count,
-      .md-icon:not(.md-icon-delete) {
+      .md-icon {
         color: #{'WARN-COLOR'};
       }
     }
 
     &.md-input-focused {
-      &.md-input-inline {
-        label {
-          color: rgba(#000, .54);
-        }
-      }
-
       &.md-input-required {
         label:after {
           color: #{'WARN-COLOR'};
         }
       }
 
-      &:after {
+      .md-field:after {
         height: 2px;
         background-color: #{'PRIMARY-COLOR'};
       }
@@ -41,25 +53,72 @@
       }
 
       label,
-      .md-icon:not(.md-icon-delete) {
+      .md-icon {
         color: #{'PRIMARY-COLOR'};
       }
     }
 
+    &.md-has-value {
+      input,
+      textarea,
+      .md-field {
+        // color: #{'BACKGROUND-CONTRAST-0.87'};
+      }
+    }
+
     &.md-input-disabled {
+      .md-field:after {
+        background-color: transparent;
+        background-image: linear-gradient(to right, #{'BACKGROUND-CONTRAST-0.38'} 0%, #{'BACKGROUND-CONTRAST-0.38'} 33%, transparent 0%);
+      }
+
       label,
       input,
       textarea,
       .md-error,
       .md-count,
-      .md-icon:not(.md-icon-delete),
+      .md-icon,
       ::-webkit-input-placeholder {
         color: #{'BACKGROUND-CONTRAST-0.38'};
       }
     }
 
-    .md-icon:not(.md-icon-delete):after {
-      background: #{'BACKGROUND-COLOR'};
+    &.md-has-password {
+      &.md-input-focused .md-toggle-password {
+        color: #{'BACKGROUND-CONTRAST-0.54'};
+      }
+
+      .md-toggle-password {
+        color: #{'BACKGROUND-CONTRAST-0.38'};
+
+        .md-ink-ripple {
+          color: #{'BACKGROUND-CONTRAST-0.87'};
+        }
+      }
+    }
+
+    &.md-clearable {
+      &.md-input-focused .md-clear-input {
+        color: #{'BACKGROUND-CONTRAST-0.54'};
+      }
+
+      .md-clear-input {
+        color: #{'BACKGROUND-CONTRAST-0.38'};
+
+        .md-ink-ripple {
+          color: #{'BACKGROUND-CONTRAST-0.87'};
+        }
+      }
+    }
+
+    &.md-has-select:hover {
+      .md-select:not(.md-disabled) {
+        color: #{'BACKGROUND-CONTRAST-0.54'};
+
+        .md-field:after {
+          color: #{'BACKGROUND-CONTRAST-0.87'};
+        }
+      }
     }
   }
 }

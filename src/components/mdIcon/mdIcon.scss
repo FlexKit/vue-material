@@ -18,21 +18,26 @@ $icon-size: 24px;
   fill: currentColor;
   text-rendering: optimizeLegibility;
   vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  min-width: 1em;
+  min-height: 1em;
+  font-size: $icon-size;
 
   &.md-size-2x {
-    @include icon-size($icon-size * 2);
+    font-size: $icon-size * 2;
   }
 
   &.md-size-3x {
-    @include icon-size($icon-size * 3);
+    font-size: $icon-size * 3;
   }
 
   &.md-size-4x {
-    @include icon-size($icon-size * 4);
+    font-size: $icon-size * 4;
   }
 
   &.md-size-5x {
-    @include icon-size($icon-size * 5);
+    font-size: $icon-size * 5;
   }
 
   svg {

@@ -6,7 +6,7 @@
       </div>
 
       <div slot="api">
-        <api-table name="md-input-container">
+        <api-table>
           <md-table slot="properties">
             <md-table-header>
               <md-table-row>
@@ -18,15 +18,45 @@
 
             <md-table-body>
               <md-table-row>
-                <md-table-cell>md-inline</md-table-cell>
-                <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Create inline field with a label or placeholder. Default <code>false</code></md-table-cell>
+                <md-table-cell>v-model</md-table-cell>
+                <md-table-cell><code>String</code></md-table-cell>
+                <md-table-cell>A required model object to bind the value.</md-table-cell>
               </md-table-row>
 
               <md-table-row>
-                <md-table-cell>md-has-password</md-table-cell>
+                <md-table-cell>label</md-table-cell>
+                <md-table-cell><code>String</code></md-table-cell>
+                <md-table-cell>Sets the label.</md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>required</md-table-cell>
                 <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Show a button to toggle the password visibility. Default <code>false</code></md-table-cell>
+                <md-table-cell>Apply the required rule to style the label with an "*". Default <code>false</code></md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>disabled</md-table-cell>
+                <md-table-cell><code>Boolean</code></md-table-cell>
+                <md-table-cell>Disable the input and prevent its actions. Default <code>false</code></md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>autofocus</md-table-cell>
+                <md-table-cell><code>Boolean</code></md-table-cell>
+                <md-table-cell>Autofocus the input. Default <code>false</code></md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>placeholder</md-table-cell>
+                <md-table-cell><code>String</code></md-table-cell>
+                <md-table-cell>Sets the placeholder.</md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>maxlength</md-table-cell>
+                <md-table-cell><code>Number</code></md-table-cell>
+                <md-table-cell>Sets the maxlength and enable the text counter.</md-table-cell>
               </md-table-row>
 
               <md-table-row>
@@ -52,6 +82,51 @@
               </md-table-row>
             </md-table-body>
           </md-table>
+
+          <md-table slot="events">
+            <md-table-header>
+              <md-table-row>
+                <md-table-head>Name</md-table-head>
+                <md-table-head>Value</md-table-head>
+                <md-table-head>Description</md-table-head>
+              </md-table-row>
+            </md-table-header>
+
+            <md-table-body>
+              <md-table-row>
+                <md-table-cell>input</md-table-cell>
+                <md-table-cell>Receives the value of the model</md-table-cell>
+                <md-table-cell>Triggered when the field value input.</md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>change</md-table-cell>
+                <md-table-cell>Receives the value</md-table-cell>
+                <md-table-cell>Triggered when the field value change.</md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+
+          <md-table slot="slots">
+            <md-table-header>
+              <md-table-row>
+                <md-table-head>Name</md-table-head>
+                <md-table-head>Description</md-table-head>
+              </md-table-row>
+            </md-table-header>
+
+            <md-table-body>
+              <md-table-row>
+                <md-table-cell>before</md-table-cell>
+                <md-table-cell>Adds the content before the text field. Optional.</md-table-cell>
+              </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>after</md-table-cell>
+                <md-table-cell>Adds the content after the text field. Optional.</md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
         </api-table>
 
         <api-table name="md-input">
@@ -66,83 +141,9 @@
 
             <md-table-body>
               <md-table-row>
-                <md-table-cell>v-model</md-table-cell>
-                <md-table-cell><code>String</code></md-table-cell>
-                <md-table-cell>A required model object to bind the value.</md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
                 <md-table-cell>type</md-table-cell>
                 <md-table-cell><code>String</code></md-table-cell>
                 <md-table-cell>Sets the type. Default <code>text</code></md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>disabled</md-table-cell>
-                <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Disable the input and prevent its actions. Default <code>false</code></md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>required</md-table-cell>
-                <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Apply the required rule to style the label with an "*". Default <code>false</code></md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>placeholder</md-table-cell>
-                <md-table-cell><code>String</code></md-table-cell>
-                <md-table-cell>Sets the placeholder.</md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>maxlength</md-table-cell>
-                <md-table-cell><code>Number</code></md-table-cell>
-                <md-table-cell>Sets the maxlength and enable the text counter.</md-table-cell>
-              </md-table-row>
-            </md-table-body>
-          </md-table>
-        </api-table>
-
-        <api-table name="md-textarea">
-          <md-table slot="properties">
-            <md-table-header>
-              <md-table-row>
-                <md-table-head>Name</md-table-head>
-                <md-table-head>Type</md-table-head>
-                <md-table-head>Description</md-table-head>
-              </md-table-row>
-            </md-table-header>
-
-            <md-table-body>
-              <md-table-row>
-                <md-table-cell>v-model</md-table-cell>
-                <md-table-cell><code>String</code></md-table-cell>
-                <md-table-cell>A required model object to bind the value.</md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>disabled</md-table-cell>
-                <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Disable the textarea and prevent its actions. Default <code>false</code></md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>required</md-table-cell>
-                <md-table-cell><code>Boolean</code></md-table-cell>
-                <md-table-cell>Apply the required rule to style the label with an "*". Default <code>false</code></md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>placeholder</md-table-cell>
-                <md-table-cell><code>String</code></md-table-cell>
-                <md-table-cell>Sets the placeholder.</md-table-cell>
-              </md-table-row>
-
-              <md-table-row>
-                <md-table-cell>maxlength</md-table-cell>
-                <md-table-cell><code>Number</code></md-table-cell>
-                <md-table-cell>Sets the maxlength and enable the text counter.</md-table-cell>
               </md-table-row>
             </md-table-body>
           </md-table>
@@ -153,40 +154,39 @@
         <example-box card-title="Regular fields">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container>
-                <label>Initial value</label>
-                <md-input v-model="initialValue"></md-input>
-              </md-input-container>
+              <md-input
+                label="Initial value"
+                v-model="initialValue"
+              />
 
-              <md-input-container>
-                <label>With label</label>
-                <md-input placeholder="My nice placeholder"></md-input>
-              </md-input-container>
+              <md-input
+                label="With label"
+                placeholder="My nice placeholder"
+              />
 
-              <md-input-container md-inline>
-                <label>Inline field</label>
-                <md-input></md-input>
-              </md-input-container>
+              <md-input
+                placeholder="Only placeholder"
+              />
 
-              <md-input-container>
-                <label>Number</label>
-                <md-input type="number"></md-input>
-              </md-input-container>
+              <md-input
+                label="Number"
+                type="number"
+              />
 
-              <md-input-container>
-                <label>Textarea</label>
-                <md-textarea></md-textarea>
-              </md-input-container>
+              <md-textarea
+                label="Textarea"
+              />
 
-              <md-input-container>
-                <label>Disabled</label>
-                <md-input disabled></md-input>
-              </md-input-container>
+              <md-input
+                disabled
+                label="Disabled"
+              />
 
-              <md-input-container md-clearable>
-                <label>Clearable</label>
-                <md-input v-model="initialValue"></md-input>
-              </md-input-container>
+              <md-input
+                md-clearable
+                label="Clearable"
+                v-model="initialValue"
+              />
             </form>
           </div>
 
@@ -245,15 +245,10 @@
         <example-box card-title="Passwords">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container>
-                <label>Regular Password</label>
-                <md-input type="password"></md-input>
-              </md-input-container>
-
-              <md-input-container md-has-password>
-                <label>Password Reveal</label>
-                <md-input type="password"></md-input>
-              </md-input-container>
+              <md-input
+                type="password"
+                label="Input Password"
+              />
             </form>
           </div>
 
@@ -277,27 +272,29 @@
         <example-box card-title="Icons">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container>
-                <md-icon class="md-warn">
+              <md-input
+                type="number"
+                label="Money"
+              >
+                <md-icon slot="before" class="md-warn">
                   warning
                   <md-tooltip>Be careful. You're almost broken!</md-tooltip>
                 </md-icon>
-                <label>Money</label>
-                <md-input type="number"></md-input>
-                <md-icon>attach_money</md-icon>
-              </md-input-container>
+                <md-icon slot="after">attach_money</md-icon>
+              </md-input>
 
-              <md-input-container>
-                <md-icon>phone</md-icon>
-                <label>Phone</label>
-                <md-input type="tel"></md-input>
-              </md-input-container>
+              <md-input
+                type="tel"
+                label="Phone"
+              >
+                <md-icon slot="before">phone</md-icon>
+              </md-input>
 
-              <md-input-container>
-                <md-icon>speaker_notes</md-icon>
-                <label>Notes</label>
-                <md-textarea></md-textarea>
-              </md-input-container>
+              <md-textarea
+                label="Notes"
+              >
+                <md-icon slot="before">speaker_notes</md-icon>
+              </md-textarea>
             </form>
           </div>
 
@@ -333,29 +330,32 @@
         <example-box card-title="Required and Errors">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container>
-                <label>Required</label>
-                <md-input required></md-input>
-              </md-input-container>
+              <md-input
+                required
+                label="Required"
+              />
 
-              <md-input-container class="md-input-invalid">
-                <label>Error</label>
-                <md-input required></md-input>
-              </md-input-container>
+              <md-input
+                required
+                label="Error"
+                class="md-input-invalid"
+              />
 
-              <md-input-container class="md-input-invalid">
-                <label>Error with message</label>
-                <md-input required></md-input>
-
+              <md-input
+                required
+                label="Error with message"
+                class="md-input-invalid"
+              >
                 <span class="md-error">Validation message</span>
-              </md-input-container>
+              </md-input>
 
-              <md-input-container class="md-input-invalid">
-                <label>Textarea with error</label>
-                <md-textarea></md-textarea>
-
+              <md-textarea
+                required
+                label="Textarea with message"
+                class="md-input-invalid"
+              >
                 <span class="md-error">Textarea validation message</span>
-              </md-input-container>
+              </md-textarea>
             </form>
           </div>
 
@@ -393,15 +393,15 @@
         <example-box card-title="Character counter">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container>
-                <label>Textarea</label>
-                <md-textarea maxlength="70"></md-textarea>
-              </md-input-container>
+              <md-textarea
+                label="Textarea"
+                maxlength="70"
+              />
 
-              <md-input-container>
-                <label>Input</label>
-                <md-input maxlength="20"></md-input>
-              </md-input-container>
+              <md-input
+                label="Input"
+                maxlength="20"
+              />
             </form>
           </div>
 
@@ -425,15 +425,15 @@
         <example-box card-title="Themes">
           <div slot="demo">
             <form novalidate @submit.stop.prevent="submit">
-              <md-input-container md-theme="green">
-                <label>Green - Input</label>
-                <md-input></md-input>
-              </md-input-container>
+              <md-input
+                label="Green - Input"
+                md-theme="green"
+              />
 
-              <md-input-container md-theme="red">
-                <label>Red - Textarea</label>
-                <md-textarea></md-textarea>
-              </md-input-container>
+              <md-textarea
+                label="Red - Textarea"
+                md-theme="red"
+              />
             </form>
           </div>
 

@@ -4,9 +4,8 @@
       <slot></slot>
 
       <md-icon class="md-list-expand-indicator">keyboard_arrow_down</md-icon>
+      <md-button type="button" class="md-button-ghost" @click.native="toggleExpandList" :disabled="disabled"></md-button>
     </div>
-
-    <md-button type="button" class="md-button-ghost" @click.native="toggleExpandList" :disabled="disabled"></md-button>
 
     <div class="md-list-expand" ref="expand" :class="expandClasses" :style="expandStyles">
       <slot name="expand"></slot>

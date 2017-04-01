@@ -5,7 +5,6 @@ $select-height: 32px;
 .md-select {
   width: 100%;
   min-width: 128px;
-  height: $select-height;
   position: relative;
 
   &:focus {
@@ -13,13 +12,18 @@ $select-height: 32px;
   }
 
   &:after {
-    margin-top: 2px;
+    content: "";
     position: absolute;
     top: 50%;
     right: 0;
-    transform: translateY(-50%) scaleY(0.45) scaleX(0.85);
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
     transition: $swift-linear;
-    content: "\25BC";
+    border-style: solid;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-width: 7px 6px 0;
   }
 
   &.md-active {
@@ -48,31 +52,28 @@ $select-height: 32px;
     user-drag: none;
   }
 
-  select {
-    position: absolute;
-    left: -999em;
-  }
-
   .md-menu {
-    width: 100%;
-    height: $select-height;
     display: block;
     position: relative;
   }
 
   .md-select-value {
     width: 100%;
-    height: $select-height;
-    padding-right: 24px;
-    display: block;
+    min-height: $select-height;
+    padding: 4px 24px 4px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     cursor: pointer;
-    overflow: hidden;
     position: relative;
     z-index: 2;
     font-size: 16px;
-    line-height: $select-height + 1px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    & > .value{
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
   .md-subheader {
@@ -88,6 +89,9 @@ $select-height: 32px;
 .md-select-content {
   width: auto;
   max-height: 256px;
+  margin-top: -16px !important;
+  padding: 0 16px;
+  box-sizing: initial;
 
   &.md-direction-bottom-right {
     margin-top: -15px;
@@ -108,5 +112,10 @@ $select-height: 32px;
       padding-left: 16px;
       cursor: pointer;
     }
+  }
+
+  .md-list {
+    margin: 0 -16px;
+    box-sizing: border-box;
   }
 }

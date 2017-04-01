@@ -24,6 +24,10 @@
       <md-tab class="api-tab" md-label="Slots" v-if="$slots.slots">
         <slot name="slots"></slot>
       </md-tab>
+
+      <md-tab class="api-tab" md-label="Scoped slots" v-if="$slots['scoped slots']">
+        <slot name="scoped slots"></slot>
+      </md-tab>
     </md-tabs>
   </div>
 </template>

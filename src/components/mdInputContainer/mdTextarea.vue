@@ -1,56 +1,69 @@
 <template>
-  <textarea
-    class="md-input"
-    :value="value"
-    :disabled="disabled"
-    :required="required"
-    :placeholder="placeholder"
-    :maxlength="maxlength"
-    @focus="onFocus"
-    @blur="onBlur"
-    @input="onInput"></textarea>
+  <md-input-container
+    :class="themeClass"
+    :mdClearable="mdClearable"
+
+    :isFocused="focused"
+    :isDisabled="disabled"
+    :isRequired="required"
+
+    :inputLength="inputLength"
+    :counterLength="counterLength"
+
+    :hasValue="!!currentValue"
+    :hasPlaceholder="!!placeholder"
+
+    @clear="clearValue"
+  >
+    <slot name="before"></slot>
+
+    <div class="md-field">
+      <label v-if="label">{{label}}</label>
+
+      <textarea
+        ref="field"
+        class="md-input"
+
+        :value="currentValue"
+        :disabled="disabled"
+        :required="required"
+        :autofocus="autofocus"
+        :maxlength="maxlength"
+        :placeholder="placeholder"
+
+        @blur="onBlur"
+        @focus="onFocus"
+        @input="onInput"
+        @change="onChange"
+      ></textarea>
+    </div>
+
+    <slot name="after"></slot>
+  </md-input-container>
 </template>
 
 <script>
   import autosize from 'autosize';
   import common from './common';
-  import getClosestVueParent from '../../core/utils/getClosestVueParent';
 
   export default {
     name: 'md-textarea',
     mixins: [common],
     watch: {
       value() {
-        this.$nextTick(() => autosize.update(this.$el));
+        autosize.update(this.field);
       }
     },
     mounted() {
-      this.$nextTick(() => {
-        this.parentContainer = getClosestVueParent(this.$parent, 'md-input-container');
+      if (!this.field.getAttribute('rows')) {
+        this.field.setAttribute('rows', '1');
+      }
 
-        if (!this.parentContainer) {
-          this.$destroy();
-
-          throw new Error('You should wrap the md-textarea in a md-input-container');
-        }
-
-        this.parentContainer.inputInstance = this;
-        this.setParentDisabled();
-        this.setParentRequired();
-        this.setParentPlaceholder();
-        this.handleMaxLength();
-        this.updateValues();
-
-        if (!this.$el.getAttribute('rows')) {
-          this.$el.setAttribute('rows', '1');
-        }
-
-        autosize(this.$el);
-        setTimeout(() => autosize.update(this.$el), 200);
-      });
+      autosize(this.field);
+      setTimeout(() => autosize.update(this.field), 200);
     },
     beforeDestroy() {
-      autosize.destroy(this.$el);
+      autosize.destroy(this.field);
     }
   };
 </script>

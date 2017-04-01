@@ -1,7 +1,7 @@
 <template>
   <div class="md-checkbox" :class="[themeClass, classes]">
     <div class="md-checkbox-container" @click.stop="toggleCheck" tabindex="0">
-      <input type="checkbox" :name="name" :id="id" :disabled="disabled" :value="value" :checked="checked" tabindex="-1">
+      <input type="checkbox" :name="name" :id="id" :disabled="disabled" :checked="checked" tabindex="-1">
       <md-ink-ripple :md-disabled="disabled" />
     </div>
 
@@ -18,18 +18,17 @@
 
   export default {
     name: 'md-checkbox',
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
     props: {
-      name: String,
-      value: [String, Boolean],
       id: String,
+      name: String,
+      checked: Boolean,
       disabled: Boolean
     },
     mixins: [theme],
-    data() {
-      return {
-        checked: this.value
-      };
-    },
     computed: {
       classes() {
         return {
@@ -38,17 +37,10 @@
         };
       }
     },
-    watch: {
-      value() {
-        this.checked = !!this.value;
-      }
-    },
     methods: {
       toggleCheck($event) {
         if (!this.disabled) {
-          this.checked = !this.checked;
-          this.$emit('change', this.checked, $event);
-          this.$emit('input', this.checked, $event);
+          this.$emit('change', !this.checked, $event);
         }
       }
     }

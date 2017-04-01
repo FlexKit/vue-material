@@ -38,6 +38,10 @@
       mdCloseOnSelect: {
         type: Boolean,
         default: true
+      },
+      mdFullWidth: {
+        type: Boolean,
+        default: false
       }
     },
     data: () => ({
@@ -123,6 +127,10 @@
         }
 
         position = getInViewPosition(this.menuContent, position);
+
+        if (this.mdFullWidth) {
+          this.menuContent.style.width = this.$el.offsetWidth + 'px';
+        }
 
         this.menuContent.style.top = position.top + window.pageYOffset + 'px';
         this.menuContent.style.left = position.left + window.pageXOffset + 'px';

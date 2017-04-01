@@ -1,108 +1,54 @@
 <template>
   <md-menu-item
-    class="md-option"
-    :class="classes"
-    @click.native="selectOption"
-    tabindex="-1">
-    <md-checkbox class="md-primary" v-model="check" v-if="parentSelect.multiple">
-      <span ref="item">
-        <slot></slot>
-      </span>
+    :class="['md-option', classes]"
+    :disabled="disabled"
+    @click.native="$emit('selected', value, selected, $el.innerText, $event)"
+    tabindex="-1"
+  >
+    <md-checkbox class="md-primary" v-if="multiple" :checked="selected">
+      <slot></slot>
     </md-checkbox>
 
-    <span ref="item" v-else>
-      <slot></slot>
-    </span>
+    <slot v-else></slot>
   </md-menu-item>
 </template>
 
 <script>
-  import getClosestVueParent from '../../core/utils/getClosestVueParent';
-
   export default {
     name: 'md-option',
     props: {
-      value: [String, Boolean, Number]
-    },
-    data: () => ({
-      parentSelect: {},
-      check: false,
-      index: 0
-    }),
-    computed: {
-      isSelected() {
-        if (this.value && this.parentSelect.value) {
-          let thisValue = this.value.toString();
-
-          if (this.parentSelect.multiple) {
-            return this.parentSelect.value.indexOf(thisValue) >= 0;
-          }
-
-          return this.value && this.parentSelect.value && thisValue === this.parentSelect.value.toString();
-        }
-
-        return false;
+      value: {
+        required: true
       },
+      multiple: Boolean,
+      selected: Boolean,
+      disabled: Boolean
+    },
+    computed: {
       classes() {
         return {
-          'md-selected': this.isSelected,
-          'md-checked': this.check
+          'md-selected': this.selected,
+          'md-checked': this.multiple && this.selected
         };
       }
     },
-    methods: {
-      isMultiple() {
-        return this.parentSelect.multiple;
-      },
-      setParentOption() {
-        if (!this.isMultiple()) {
-          this.parentSelect.selectOption(this.value, this.$refs.item.textContent, this.$el);
-        } else {
-          this.check = !this.check;
-        }
-      },
-      selectOption($event) {
-        this.setParentOption();
-        this.$emit('selected', $event);
+    watch: {
+      selected(isSelected) {
+        this.updateSelectedText(this.$el.innerText, isSelected);
       }
     },
-    watch: {
-      isSelected(selected) {
-        if (this.isMultiple()) {
-          this.check = selected;
-        }
+    methods: {
+      normalizeText(value) {
+        return value.trim().replace(/\n|\t/g, ' ').replace(/\s+/g, ' ');
       },
-      check(check) {
-        if (check) {
-          this.parentSelect.selectMultiple(this.index, this.value, this.$refs.item.textContent);
-        } else {
-          this.parentSelect.selectMultiple(this.index);
-        }
+      updateSelectedText(value, isSelected) {
+        const selectedText = this.normalizeText(value);
+
+        this.$emit('updateText', selectedText, isSelected);
       }
     },
     mounted() {
-      this.parentSelect = getClosestVueParent(this.$parent, 'md-select');
-      this.parentContent = getClosestVueParent(this.$parent, 'md-menu-content');
-
-      if (!this.parentSelect) {
-        throw new Error('You must wrap the md-option in a md-select');
-      }
-
-      this.parentSelect.optionsAmount++;
-      this.index = this.parentSelect.optionsAmount;
-
-      this.parentSelect.multipleOptions[this.index] = {};
-      this.parentSelect.options[this.index] = this;
-
-      if (this.isMultiple() && this.parentSelect.value.indexOf(this.value) >= 0 || this.parentSelect.value === this.value) {
-        this.setParentOption();
-      }
-    },
-    beforeDestroy() {
-      if (this.parentSelect) {
-        delete this.parentSelect.options[this.index];
-        delete this.parentSelect.multipleOptions[this.index];
-      }
+      this.updateSelectedText(this.$el.innerText, this.selected);
     }
   };
 </script>
