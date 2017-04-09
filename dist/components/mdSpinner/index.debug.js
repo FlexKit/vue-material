@@ -229,10 +229,17 @@ exports.default = {
     mdProgress: {
       type: Number,
       default: 0
+    },
+    mdProgressVisible: {
+      type: Boolean,
+      default: true
     }
   },
   mixins: [_mixin2.default],
   computed: {
+    radius: function radius() {
+      return 25 - this.mdStroke / 2;
+    },
     classes: function classes() {
       return {
         'md-indeterminate': this.mdIndeterminate
@@ -243,24 +250,35 @@ exports.default = {
 
       return {
         width: newSize,
+        height: newSize,
+        padding: this.mdSize / 50 * this.mdStroke + 'px'
+      };
+    },
+    contentStyles: function contentStyles() {
+      var newSize = this.mdSize - this.mdStroke * 2 + 'px';
+
+      return {
+        width: newSize,
         height: newSize
       };
     },
     dashProgress: function dashProgress() {
-      var progress = this.mdProgress * 125 / 100;
+      var progress = this.mdProgress * 150 / 100;
 
       if (this.mdIndeterminate) {
         return false;
       }
 
-      if (progress >= 125) {
-        progress = 130;
+      if (progress >= 150) {
+        progress = 151;
       }
 
       return progress + ', 200';
     }
   }
 }; //
+//
+//
 //
 //
 //
@@ -347,7 +365,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-spinner",
     class: [_vm.themeClass, _vm.classes],
     style: (_vm.styles)
-  }, [_c('svg', {
+  }, [_vm._t("default"), _vm._v(" "), (_vm.mdProgressVisible) ? _c('svg', {
     staticClass: "md-spinner-draw",
     attrs: {
       "viewBox": "25 25 50 50"
@@ -357,11 +375,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "cx": "50",
       "cy": "50",
-      "r": "20",
+      "r": _vm.radius,
       "stroke-width": _vm.mdStroke,
       "stroke-dasharray": _vm.dashProgress
     }
-  })])])])
+  })]) : _vm._e()], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
