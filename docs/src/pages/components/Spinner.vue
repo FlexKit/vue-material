@@ -45,6 +45,12 @@
                 <md-table-cell><code>Number</code></md-table-cell>
                 <md-table-cell>Define the current progress of the spinner. Default <code>0</code></md-table-cell>
               </md-table-row>
+
+              <md-table-row>
+                <md-table-cell>md-progress-visible</md-table-cell>
+                <md-table-cell><code>Boolean</code></md-table-cell>
+                <md-table-cell>Progress visible. Default <code>true</code></md-table-cell>
+              </md-table-row>
             </md-table-body>
           </md-table>
         </api-table>
@@ -110,45 +116,31 @@
 
         <example-box card-title="Complete Example">
           <div slot="demo">
-            <md-theme class="complete-example" md-name="orange">
-              <md-button class="md-fab" @click.native="restartProgress" :class="{ 'md-primary': done }">
-                <md-icon v-if="!done">cloud_upload</md-icon>
-                <md-icon v-if="done">done</md-icon>
-              </md-button>
-
-              <md-spinner :md-size="74" :md-stroke="2.2" :md-progress="progress" v-if="transition && progress < 115"></md-spinner>
+            <md-theme md-name="orange">
+              <md-spinner
+                :md-size="64"
+                :md-stroke="3"
+                :md-progress="progress"
+                :md-progress-visible="transition && progress < 115"
+              >
+                <md-button class="md-fab" @click.native="restartProgress" :class="{ 'md-primary': done }">
+                  <md-icon v-if="!done">cloud_upload</md-icon>
+                  <md-icon v-if="done">done</md-icon>
+                </md-button>
+              </md-spinner>
             </md-theme>
           </div>
 
           <div slot="code">
             <code-block lang="xml">
-              &lt;md-theme class=&quot;complete-example&quot; md-name=&quot;orange&quot;&gt;
-                &lt;md-button class=&quot;md-fab&quot; @click.native=&quot;restartProgress&quot; :class=&quot;{ &#039;md-primary&#039;: done }&quot;&gt;
-                  &lt;md-icon v-if=&quot;!done&quot;&gt;cloud_upload&lt;/md-icon&gt;
-                  &lt;md-icon v-if=&quot;done&quot;&gt;done&lt;/md-icon&gt;
-                &lt;/md-button&gt;
-
-                &lt;md-spinner :md-size=&quot;74&quot; :md-stroke=&quot;2.2&quot; :md-progress=&quot;progress&quot; v-if=&quot;transition &amp;&amp; progress &lt; 115&quot;&gt;&lt;/md-spinner&gt;
+              &lt;md-theme md-name=&quot;orange&quot;&gt;
+                &lt;md-spinner :md-size=&quot;64&quot; :md-stroke=&quot;2.2&quot; :md-progress=&quot;progress&quot; :md-progress-visible=&quot;transition &amp;&amp; progress &lt; 115&quot;&gt;
+                  &lt;md-button class=&quot;md-fab&quot; @click.native=&quot;restartProgress&quot; :class=&quot;{ &#039;md-primary&#039;: done }&quot;&gt;
+                    &lt;md-icon v-if=&quot;!done&quot;&gt;cloud_upload&lt;/md-icon&gt;
+                    &lt;md-icon v-if=&quot;done&quot;&gt;done&lt;/md-icon&gt;
+                  &lt;/md-button&gt;
+                &lt;/md-spinner&gt;
               &lt;/md-theme&gt;
-            </code-block>
-
-            <code-block lang="sass">
-              .complete-example {
-                width: 56px;
-                height: 56px;
-                position: relative;
-
-                .md-fab {
-                  margin: 0;
-                }
-
-                .md-spinner {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                }
-              }
             </code-block>
 
             <code-block lang="javascript">
@@ -197,23 +189,6 @@
 <style lang="sass" scoped>
   .spinner-demo {
     min-height: 55px;
-  }
-
-  .complete-example {
-    width: 56px;
-    height: 56px;
-    position: relative;
-
-    .md-fab {
-      margin: 0;
-    }
-
-    .md-spinner {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
 </style>
 

@@ -1,9 +1,11 @@
 <template>
   <transition name="md-spinner" appear>
     <div class="md-spinner" :class="[themeClass, classes]" :style="styles">
-      <svg class="md-spinner-draw" viewBox="25 25 50 50">
+      <slot></slot>
+
+      <svg v-if="mdProgressVisible" class="md-spinner-draw" viewBox="25 25 50 50">
         <circle
-          class="md-spinner-path" cx="50" cy="50" r="20"
+          class="md-spinner-path" cx="50" cy="50" :r="radius"
           :stroke-width="mdStroke"
           :stroke-dasharray="dashProgress"
         />
@@ -32,10 +34,17 @@
       mdProgress: {
         type: Number,
         default: 0
+      },
+      mdProgressVisible: {
+        type: Boolean,
+        default: true
       }
     },
     mixins: [theme],
     computed: {
+      radius() {
+        return 25 - this.mdStroke / 2;
+      },
       classes() {
         return {
           'md-indeterminate': this.mdIndeterminate
@@ -46,18 +55,27 @@
 
         return {
           width: newSize,
+          height: newSize,
+          padding: this.mdSize / 50 * this.mdStroke + 'px'
+        };
+      },
+      contentStyles() {
+        const newSize = this.mdSize - this.mdStroke * 2 + 'px';
+
+        return {
+          width: newSize,
           height: newSize
         };
       },
       dashProgress() {
-        let progress = this.mdProgress * 125 / 100;
+        let progress = this.mdProgress * 150 / 100;
 
         if (this.mdIndeterminate) {
           return false;
         }
 
-        if (progress >= 125) {
-          progress = 130;
+        if (progress >= 150) {
+          progress = 151;
         }
 
         return `${progress}, 200`;

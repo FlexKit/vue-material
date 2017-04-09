@@ -1,10 +1,15 @@
 @import '../../core/stylesheets/variables.scss';
 
 .md-spinner {
-  display: inline-block;
   position: relative;
-  pointer-events: none;
   will-change: transform, opacity;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .md-button {
+    margin: 0;
+  }
 
   &.md-indeterminate {
     .md-spinner-draw {
@@ -47,6 +52,7 @@
   transform: rotate(270deg) translateZ(0);
   transform-origin: center center;
   will-change: transform, opacity;
+  pointer-events: none;
 }
 
 .md-spinner-path {
@@ -90,6 +96,6 @@
 
   100% {
     stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
+    stroke-dashoffset: -150px;
   }
 }
