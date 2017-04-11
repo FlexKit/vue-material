@@ -1,6 +1,6 @@
 <template>
   <md-input-container
-    :class="[themeClass]"
+    :class="themeClass"
     :hasValue="hasValue"
     :hasPlaceholder="!!placeholder"
     :isDisabled="!!disabled"
@@ -8,7 +8,7 @@
   >
     <slot name="before"></slot>
 
-    <div class="md-select" :class="[themeClass, classes]">
+    <div class="md-select" :class="classes">
       <label v-if="label">{{label}}</label>
 
       <md-menu

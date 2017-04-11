@@ -1387,9 +1387,11 @@ exports.default = {
     },
     onFocus: function onFocus() {
       this.focused = true;
+      this.$emit('focus');
     },
     onBlur: function onBlur() {
       this.focused = false;
+      this.$emit('blur');
     },
     onInput: function onInput() {
       this.updateValue();
@@ -10331,7 +10333,7 @@ module.exports = ""
 /* 253 */
 /***/ (function(module, exports) {
 
-module.exports = ".THEME_NAME.md-input-container .md-field:after {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n\n.THEME_NAME.md-input-container label,\n.THEME_NAME.md-input-container .md-icon {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-input-invalid .md-field:after {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-invalid label,\n.THEME_NAME.md-input-container.md-input-invalid input,\n.THEME_NAME.md-input-container.md-input-invalid textarea,\n.THEME_NAME.md-input-container.md-input-invalid .md-error,\n.THEME_NAME.md-input-container.md-input-invalid .md-count,\n.THEME_NAME.md-input-container.md-input-invalid .md-icon {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused.md-input-required label:after {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused .md-field:after {\n  height: 2px;\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused input,\n.THEME_NAME.md-input-container.md-input-focused textarea {\n  color: PRIMARY-COLOR;\n  text-shadow: 0 0 0 BACKGROUND-CONTRAST;\n  -webkit-text-fill-color: transparent; }\n\n.THEME_NAME.md-input-container.md-input-focused label,\n.THEME_NAME.md-input-container.md-input-focused .md-icon {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-disabled .md-field:after {\n  background-color: transparent;\n  background-image: linear-gradient(to right, BACKGROUND-CONTRAST-0.38 0%, BACKGROUND-CONTRAST-0.38 33%, transparent 0%); }\n\n.THEME_NAME.md-input-container.md-input-disabled label,\n.THEME_NAME.md-input-container.md-input-disabled input,\n.THEME_NAME.md-input-container.md-input-disabled textarea,\n.THEME_NAME.md-input-container.md-input-disabled .md-error,\n.THEME_NAME.md-input-container.md-input-disabled .md-count,\n.THEME_NAME.md-input-container.md-input-disabled .md-icon,\n.THEME_NAME.md-input-container.md-input-disabled ::-webkit-input-placeholder {\n  color: BACKGROUND-CONTRAST-0.38; }\n\n.THEME_NAME.md-input-container.md-has-password.md-input-focused .md-toggle-password {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-has-password .md-toggle-password {\n  color: BACKGROUND-CONTRAST-0.38; }\n  .THEME_NAME.md-input-container.md-has-password .md-toggle-password .md-ink-ripple {\n    color: BACKGROUND-CONTRAST-0.87; }\n\n.THEME_NAME.md-input-container.md-clearable.md-input-focused .md-clear-input {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-clearable .md-clear-input {\n  color: BACKGROUND-CONTRAST-0.38; }\n  .THEME_NAME.md-input-container.md-clearable .md-clear-input .md-ink-ripple {\n    color: BACKGROUND-CONTRAST-0.87; }\n\n.THEME_NAME.md-input-container.md-has-select:hover .md-select:not(.md-disabled) {\n  color: BACKGROUND-CONTRAST-0.54; }\n  .THEME_NAME.md-input-container.md-has-select:hover .md-select:not(.md-disabled) .md-field:after {\n    color: BACKGROUND-CONTRAST-0.87; }\n"
+module.exports = ".THEME_NAME.md-input-container .md-field:after {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n\n.THEME_NAME.md-input-container label,\n.THEME_NAME.md-input-container .md-icon {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-input-invalid .md-field:after {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-invalid label,\n.THEME_NAME.md-input-container.md-input-invalid input,\n.THEME_NAME.md-input-container.md-input-invalid textarea,\n.THEME_NAME.md-input-container.md-input-invalid .md-error,\n.THEME_NAME.md-input-container.md-input-invalid .md-count,\n.THEME_NAME.md-input-container.md-input-invalid .md-icon {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused.md-input-required label:after {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused .md-field:before {\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-focused input,\n.THEME_NAME.md-input-container.md-input-focused textarea {\n  color: PRIMARY-COLOR;\n  text-shadow: 0 0 0 BACKGROUND-CONTRAST;\n  -webkit-text-fill-color: transparent; }\n\n.THEME_NAME.md-input-container.md-input-focused label,\n.THEME_NAME.md-input-container.md-input-focused .md-icon {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-input-container.md-input-disabled .md-field:after {\n  background-color: transparent;\n  background-image: linear-gradient(to right, BACKGROUND-CONTRAST-0.38 0%, BACKGROUND-CONTRAST-0.38 33%, transparent 0%); }\n\n.THEME_NAME.md-input-container.md-input-disabled label,\n.THEME_NAME.md-input-container.md-input-disabled input,\n.THEME_NAME.md-input-container.md-input-disabled textarea,\n.THEME_NAME.md-input-container.md-input-disabled .md-error,\n.THEME_NAME.md-input-container.md-input-disabled .md-count,\n.THEME_NAME.md-input-container.md-input-disabled .md-icon,\n.THEME_NAME.md-input-container.md-input-disabled ::-webkit-input-placeholder {\n  color: BACKGROUND-CONTRAST-0.38; }\n\n.THEME_NAME.md-input-container.md-has-password.md-input-focused .md-toggle-password {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-has-password .md-toggle-password {\n  color: BACKGROUND-CONTRAST-0.38; }\n  .THEME_NAME.md-input-container.md-has-password .md-toggle-password .md-ink-ripple {\n    color: BACKGROUND-CONTRAST-0.87; }\n\n.THEME_NAME.md-input-container.md-clearable.md-input-focused .md-clear-input {\n  color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-input-container.md-clearable .md-clear-input {\n  color: BACKGROUND-CONTRAST-0.38; }\n  .THEME_NAME.md-input-container.md-clearable .md-clear-input .md-ink-ripple {\n    color: BACKGROUND-CONTRAST-0.87; }\n\n.THEME_NAME.md-input-container.md-has-select:hover .md-select:not(.md-disabled) {\n  color: BACKGROUND-CONTRAST-0.54; }\n  .THEME_NAME.md-input-container.md-has-select:hover .md-select:not(.md-disabled) .md-field:after {\n    color: BACKGROUND-CONTRAST-0.87; }\n"
 
 /***/ }),
 /* 254 */
@@ -10361,7 +10363,7 @@ module.exports = ".THEME_NAME.md-radio .md-radio-container:after {\n  background
 /* 258 */
 /***/ (function(module, exports) {
 
-module.exports = ".THEME_NAME.md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
+module.exports = ".THEME_NAME > .md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
 
 /***/ }),
 /* 259 */
@@ -14759,7 +14761,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('md-input-container', {
-    class: [_vm.themeClass],
+    class: _vm.themeClass,
     attrs: {
       "hasValue": _vm.hasValue,
       "hasPlaceholder": !!_vm.placeholder,
@@ -14768,7 +14770,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._t("before"), _vm._v(" "), _c('div', {
     staticClass: "md-select",
-    class: [_vm.themeClass, _vm.classes]
+    class: _vm.classes
   }, [(_vm.label) ? _c('label', [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c('md-menu', {
     attrs: {
       "md-full-width": "",

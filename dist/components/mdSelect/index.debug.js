@@ -775,7 +775,7 @@ module.exports = function(it){
 /***/ 258:
 /***/ (function(module, exports) {
 
-module.exports = ".THEME_NAME.md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
+module.exports = ".THEME_NAME > .md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
 
 /***/ }),
 
@@ -1187,7 +1187,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('md-input-container', {
-    class: [_vm.themeClass],
+    class: _vm.themeClass,
     attrs: {
       "hasValue": _vm.hasValue,
       "hasPlaceholder": !!_vm.placeholder,
@@ -1196,7 +1196,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._t("before"), _vm._v(" "), _c('div', {
     staticClass: "md-select",
-    class: [_vm.themeClass, _vm.classes]
+    class: _vm.classes
   }, [(_vm.label) ? _c('label', [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c('md-menu', {
     attrs: {
       "md-full-width": "",

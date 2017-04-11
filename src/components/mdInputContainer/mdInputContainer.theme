@@ -40,8 +40,7 @@
         }
       }
 
-      .md-field:after {
-        height: 2px;
+      .md-field:before {
         background-color: #{'PRIMARY-COLOR'};
       }
 

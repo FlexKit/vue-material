@@ -1,5 +1,5 @@
 .THEME_NAME {
-  &.md-select {
+  > .md-select {
     &:after {
       border-color: #{'BACKGROUND-CONTRAST-0.54'};
     }

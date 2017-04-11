@@ -16,14 +16,20 @@ $input-size: 32px;
     position: relative;
     flex: 1;
 
-    &:after {
+    &:before, &:after {
+      content: " ";
       height: 1px;
-      position: absolute;
+      margin: 0 auto;
+      left: 0;
       right: 0;
       bottom: 0;
-      left: 0;
-      transition: $swift-ease-out;
-      content: " ";
+      position: absolute;
+    }
+
+    &:before {
+      width: 0;
+      height: 2px;
+      transition: width cubic-bezier(.4,0,.2,1) .2s;
     }
 
     + .md-icon {
@@ -114,6 +120,14 @@ $input-size: 32px;
     input,
     textarea {
       font-size: 16px;
+    }
+  }
+
+  &.md-input-focused {
+    .md-field{
+      &:before {
+        width: 100%;
+      }
     }
   }
 
