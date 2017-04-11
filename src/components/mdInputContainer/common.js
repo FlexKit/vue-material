@@ -60,6 +60,9 @@ export default {
         this.onInput();
         this.onChange();
       });
+    },
+    focus() {
+      this.field.focus();
     }
   },
   mounted() {

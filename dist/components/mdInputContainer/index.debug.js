@@ -1124,6 +1124,9 @@ exports.default = {
         _this.onInput();
         _this.onChange();
       }));
+    },
+    focus: function focus() {
+      this.field.focus();
     }
   },
   mounted: function mounted() {

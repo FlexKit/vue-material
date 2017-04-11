@@ -442,14 +442,7 @@ var renderChildren = function renderChildren(node, createElement, context) {
       selected: context.parent.checkSelected(propsData.value)
     }),
     on: (0, _extends3.default)({}, listeners, {
-      selected: function selected(value, isSelected, $event) {
-        if (listeners && listeners.selected) {
-          listeners.selected(value, isSelected);
-        }
-
-        context.parent.changeValue(value, isSelected, $event);
-      },
-
+      selected: context.parent.changeValue,
       updateText: context.parent.updateSelectedText
     })
   }), children);

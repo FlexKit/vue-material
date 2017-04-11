@@ -23,13 +23,7 @@
         },
         on: {
           ...listeners,
-          selected(value, isSelected, $event) {
-            if (listeners && listeners.selected) {
-              listeners.selected(value, isSelected);
-            }
-
-            context.parent.changeValue(value, isSelected, $event);
-          },
+          selected: context.parent.changeValue,
           updateText: context.parent.updateSelectedText
         }
       },
