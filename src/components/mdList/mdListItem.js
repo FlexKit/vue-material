@@ -27,16 +27,6 @@ export default {
         return MdListItemLink;
       }
 
-      if (nativeOn) {
-        let counter = interactionEvents.length;
-
-        while (counter--) {
-          if (nativeOn[interactionEvents[counter]]) {
-            return MdListItemButton;
-          }
-        }
-      }
-
       while (childrenCount--) {
         const options = children[childrenCount].componentOptions;
 
@@ -55,6 +45,16 @@ export default {
             children[childrenCount].data.staticClass = 'md-list-item-container md-button';
 
             return MdListItemRouter;
+          }
+        }
+      }
+
+      if (nativeOn) {
+        let counter = interactionEvents.length;
+
+        while (counter--) {
+          if (nativeOn[interactionEvents[counter]]) {
+            return MdListItemButton;
           }
         }
       }

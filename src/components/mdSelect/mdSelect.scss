@@ -87,16 +87,8 @@ $select-height: 32px;
 }
 
 .md-select-content {
-  width: auto;
   max-height: 256px;
   margin-top: -16px !important;
-  padding: 0 16px;
-  box-sizing: initial;
-
-  &.md-direction-bottom-right {
-    margin-top: -15px;
-    margin-left: -16px;
-  }
 
   .md-menu-item .md-list-item-holder {
     overflow: visible;
@@ -112,10 +104,5 @@ $select-height: 32px;
       padding-left: 16px;
       cursor: pointer;
     }
-  }
-
-  .md-list {
-    margin: 0 -16px;
-    box-sizing: border-box;
   }
 }

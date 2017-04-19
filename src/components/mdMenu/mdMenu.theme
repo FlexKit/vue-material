@@ -1,9 +1,9 @@
 .THEME_NAME {
   &.md-menu-content{
-    .md-list {
-      background-color: #{'BACKGROUND-COLOR-0.9'};
-      color: #{'BACKGROUND-CONTRAST'};
+    background-color: #{'BACKGROUND-COLOR'};
+    color: #{'BACKGROUND-CONTRAST'};
 
+    .md-list {
       .md-menu-item {
         &:hover,
         &:focus,

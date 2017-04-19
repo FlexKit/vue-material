@@ -2948,16 +2948,6 @@ exports.default = {
         return _mdListItemLink2.default;
       }
 
-      if (nativeOn) {
-        var counter = interactionEvents.length;
-
-        while (counter--) {
-          if (nativeOn[interactionEvents[counter]]) {
-            return _mdListItemButton2.default;
-          }
-        }
-      }
-
       while (childrenCount--) {
         var options = children[childrenCount].componentOptions;
 
@@ -2984,6 +2974,16 @@ exports.default = {
             children[childrenCount].data.staticClass = 'md-list-item-container md-button';
 
             return _mdListItemRouter2.default;
+          }
+        }
+      }
+
+      if (nativeOn) {
+        var counter = interactionEvents.length;
+
+        while (counter--) {
+          if (nativeOn[interactionEvents[counter]]) {
+            return _mdListItemButton2.default;
           }
         }
       }
@@ -3701,46 +3701,60 @@ Object.defineProperty(exports, "__esModule", {
 });
 var margin = 8;
 
-var isAboveOfViewport = function isAboveOfViewport(element, position) {
-  return position.top <= margin - parseInt(getComputedStyle(element).marginTop, 10);
-};
+var getInViewPosition = function getInViewPosition(element, position, directions) {
+  var top = position.top,
+      left = position.left,
+      right = position.right,
+      bottom = position.bottom,
+      width = position.width,
+      height = position.height;
 
-var isBelowOfViewport = function isBelowOfViewport(element, position) {
-  return position.top + element.offsetHeight + margin >= window.innerHeight - parseInt(getComputedStyle(element).marginTop, 10);
-};
-
-var isOnTheLeftOfViewport = function isOnTheLeftOfViewport(element, position) {
-  return position.left <= margin - parseInt(getComputedStyle(element).marginLeft, 10);
-};
-
-var isOnTheRightOfViewport = function isOnTheRightOfViewport(element, position) {
-  return position.left + element.offsetWidth + margin >= window.innerWidth - parseInt(getComputedStyle(element).marginLeft, 10);
-};
-
-var getInViewPosition = function getInViewPosition(element, position) {
   var computedStyle = getComputedStyle(element);
 
-  if (isAboveOfViewport(element, position)) {
-    position.top = margin - parseInt(computedStyle.marginTop, 10);
+  var topMargin = margin + Math.abs(parseInt(computedStyle.marginTop, 10));
+  var leftMargin = margin + Math.abs(parseInt(computedStyle.marginLeft, 10));
+  var rightMargin = margin + Math.abs(parseInt(computedStyle.marginRight, 10));
+  var bottomMargin = margin + Math.abs(parseInt(computedStyle.marginBottom, 10));
+
+  var topSpace = directions.includes('top') ? top + height - parseInt(computedStyle.height, 10) : top;
+  var leftSpace = directions.includes('left') ? left + width - parseInt(computedStyle.width, 10) : left;
+  var rightSpace = directions.includes('right') ? right + width - parseInt(computedStyle.width, 10) : right;
+  var bottomSpace = directions.includes('bottom') ? bottom + height - parseInt(computedStyle.height, 10) : bottom;
+
+  var newTopPos = position.top - Math.abs(bottomSpace) - topMargin;
+  var newLeftPos = position.left - Math.abs(rightSpace) - leftMargin;
+  var newRightPos = position.right - Math.abs(leftSpace) - rightMargin;
+  var newBottomPos = position.bottom - Math.abs(topSpace) - bottomMargin;
+
+  if (leftSpace < leftMargin) {
+    position.left = leftMargin;
+    position.right = position.right > rightMargin && position.right > Math.abs(leftSpace) ? newRightPos : rightMargin;
   }
 
-  if (isOnTheLeftOfViewport(element, position)) {
-    position.left = margin - parseInt(computedStyle.marginLeft, 10);
+  if (rightSpace < rightMargin) {
+    position.right = rightMargin;
+    position.left = position.left > leftMargin && position.left > Math.abs(rightSpace) ? newLeftPos : leftMargin;
   }
 
-  if (isOnTheRightOfViewport(element, position)) {
-    position.left = window.innerWidth - margin - element.offsetWidth - parseInt(computedStyle.marginLeft, 10);
+  if (topSpace < topMargin) {
+    position.top = topMargin;
+    position.bottom = position.bottom > bottomMargin && position.bottom > Math.abs(topSpace) ? newBottomPos : bottomMargin;
   }
 
-  if (isBelowOfViewport(element, position)) {
-    position.top = window.innerHeight - margin - element.offsetHeight - parseInt(computedStyle.marginTop, 10);
+  if (bottomSpace < bottomMargin) {
+    position.bottom = bottomMargin;
+    position.top = position.top > topMargin && position.top > Math.abs(bottomSpace) ? newTopPos : topMargin;
+  }
+
+  if (window.innerWidth >= position.width + leftMargin + rightMargin) {
+    position.width = 0;
   }
 
   return position;
 };
 
 exports.default = getInViewPosition;
-module.exports = exports["default"];
+module.exports = exports['default'];
 
 /***/ }),
 /* 115 */
@@ -5151,7 +5165,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
 exports.default = {
   name: 'md-dialog-prompt',
@@ -6384,6 +6397,7 @@ exports.default = {
   },
   data: function data() {
     return {
+      margin: 8,
       active: false
     };
   },
@@ -6433,43 +6447,52 @@ exports.default = {
         this.menuContent.classList.add('md-align-trigger');
       }
     },
-    getPosition: function getPosition(vertical, horizontal) {
+    getPosition: function getPosition(vertical) {
       var menuTriggerRect = this.menuTrigger.getBoundingClientRect();
 
-      var top = vertical === 'top' ? menuTriggerRect.top + menuTriggerRect.height - this.menuContent.offsetHeight : menuTriggerRect.top;
-
-      var left = horizontal === 'left' ? menuTriggerRect.left - this.menuContent.offsetWidth + menuTriggerRect.width : menuTriggerRect.left;
+      var top = menuTriggerRect.top;
+      var left = menuTriggerRect.left;
+      var right = window.innerWidth - menuTriggerRect.right;
+      var bottom = window.innerHeight - menuTriggerRect.bottom;
 
       top += parseInt(this.mdOffsetY, 10);
       left += parseInt(this.mdOffsetX, 10);
+      right += parseInt(this.mdOffsetX, 10);
+      bottom += parseInt(this.mdOffsetY, 10);
 
       if (this.mdAlignTrigger) {
-        if (vertical === 'top') {
-          top -= menuTriggerRect.height + 11;
+        if (vertical !== 'top') {
+          top += menuTriggerRect.height;
         } else {
-          top += menuTriggerRect.height + 11;
+          bottom += menuTriggerRect.height;
         }
       }
 
-      return { top: top, left: left };
+      return {
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+        width: menuTriggerRect.width + this.margin * 2,
+        height: menuTriggerRect.height
+      };
     },
     calculateMenuContentPos: function calculateMenuContentPos() {
-      var position = void 0;
+      var directions = this.mdDirection.trim().split(' ');
+      var position = this.getPosition.apply(this, directions);
 
-      if (!this.mdDirection) {
-        position = this.getPosition('bottom', 'right');
-      } else {
-        position = this.getPosition.apply(this, this.mdDirection.trim().split(' '));
-      }
-
-      position = (0, _getInViewPosition2.default)(this.menuContent, position);
+      position = (0, _getInViewPosition2.default)(this.menuContent, position, directions);
 
       if (this.mdFullWidth) {
-        this.menuContent.style.width = this.$el.offsetWidth + 'px';
+        this.menuContent.style.width = position.width + 'px';
+      } else {
+        this.menuContent.style.minWidth = position.width + 'px';
       }
 
       this.menuContent.style.top = position.top + window.pageYOffset + 'px';
       this.menuContent.style.left = position.left + window.pageXOffset + 'px';
+      this.menuContent.style.right = position.right + window.pageXOffset + 'px';
+      this.menuContent.style.bottom = position.bottom + window.pageYOffset + 'px';
     },
     recalculateOnResize: function recalculateOnResize() {
       window.requestAnimationFrame(this.calculateMenuContentPos);
@@ -6562,25 +6585,16 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _mixin = __webpack_require__(1);
+
+var _mixin2 = _interopRequireDefault(_mixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'md-menu-content',
+  mixins: [_mixin2.default],
   data: function data() {
     return {
       oldHighlight: false,
@@ -6626,7 +6640,23 @@ exports.default = {
       throw new Error('You must wrap the md-menu-content in a md-menu');
     }
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 module.exports = exports['default'];
 
 /***/ }),
@@ -10345,7 +10375,7 @@ module.exports = ".THEME_NAME.md-list .md-list-item .router-link-active.md-list-
 /* 255 */
 /***/ (function(module, exports) {
 
-module.exports = ".THEME_NAME.md-menu-content .md-list {\n  background-color: BACKGROUND-COLOR-0.9;\n  color: BACKGROUND-CONTRAST; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item:hover .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item:focus .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item.md-highlighted .md-button:not([disabled]) {\n    background-color: BACKGROUND-CONTRAST-0.04; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item[disabled] {\n    color: BACKGROUND-CONTRAST-0.38; }\n"
+module.exports = ".THEME_NAME.md-menu-content {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item:hover .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item:focus .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item.md-highlighted .md-button:not([disabled]) {\n    background-color: BACKGROUND-CONTRAST-0.04; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item[disabled] {\n    color: BACKGROUND-CONTRAST-0.38; }\n"
 
 /***/ }),
 /* 256 */
@@ -13583,7 +13613,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "innerHTML": _vm._s(_vm.mdContentHtml)
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.mdContent) ? _c('md-dialog-content', [_vm._v(_vm._s(_vm.mdContent))]) : _vm._e(), _vm._v(" "), _c('md-dialog-content', [_c('md-input-container', [_c('md-input', {
+  }) : _vm._e(), _vm._v(" "), (_vm.mdContent) ? _c('md-dialog-content', [_vm._v(_vm._s(_vm.mdContent))]) : _vm._e(), _vm._v(" "), _c('md-dialog-content', [_c('md-input', {
     ref: "input",
     attrs: {
       "id": _vm.mdInputId,
@@ -13598,7 +13628,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.confirmValue($event)
       }
     }
-  })], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-button', {
+  })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-button', {
     staticClass: "md-primary",
     nativeOn: {
       "click": function($event) {
@@ -14650,7 +14680,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "md-menu-content",
+    class: [_vm.themeClass, 'md-menu-content'],
     attrs: {
       "tabindex": "-1"
     },

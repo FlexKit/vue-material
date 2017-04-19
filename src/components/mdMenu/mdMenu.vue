@@ -45,6 +45,7 @@
       }
     },
     data: () => ({
+      margin: 8,
       active: false
     }),
     watch: {
@@ -93,47 +94,52 @@
           this.menuContent.classList.add('md-align-trigger');
         }
       },
-      getPosition(vertical, horizontal) {
-        let menuTriggerRect = this.menuTrigger.getBoundingClientRect();
-
-        let top = vertical === 'top'
-          ? menuTriggerRect.top + menuTriggerRect.height - this.menuContent.offsetHeight
-          : menuTriggerRect.top;
-
-        let left = horizontal === 'left'
-          ? menuTriggerRect.left - this.menuContent.offsetWidth + menuTriggerRect.width
-          : menuTriggerRect.left;
+      getPosition(vertical) {
+        const menuTriggerRect = this.menuTrigger.getBoundingClientRect();
+  
+        let top = menuTriggerRect.top;
+        let left = menuTriggerRect.left;
+        let right = window.innerWidth - menuTriggerRect.right;
+        let bottom = window.innerHeight - menuTriggerRect.bottom;
 
         top += parseInt(this.mdOffsetY, 10);
         left += parseInt(this.mdOffsetX, 10);
+        right += parseInt(this.mdOffsetX, 10);
+        bottom += parseInt(this.mdOffsetY, 10);
 
         if (this.mdAlignTrigger) {
-          if (vertical === 'top') {
-            top -= menuTriggerRect.height + 11;
+          if (vertical !== 'top') {
+            top += menuTriggerRect.height;
           } else {
-            top += menuTriggerRect.height + 11;
+            bottom += menuTriggerRect.height;
           }
         }
 
-        return { top, left };
+        return {
+          top,
+          left,
+          right,
+          bottom,
+          width: menuTriggerRect.width + this.margin * 2,
+          height: menuTriggerRect.height
+        };
       },
       calculateMenuContentPos() {
-        let position;
+        const directions = this.mdDirection.trim().split(' ');
+        let position = this.getPosition.apply(this, directions);
 
-        if (!this.mdDirection) {
-          position = this.getPosition('bottom', 'right');
-        } else {
-          position = this.getPosition.apply(this, this.mdDirection.trim().split(' '));
-        }
-
-        position = getInViewPosition(this.menuContent, position);
+        position = getInViewPosition(this.menuContent, position, directions);
 
         if (this.mdFullWidth) {
-          this.menuContent.style.width = this.$el.offsetWidth + 'px';
+          this.menuContent.style.width = position.width + 'px';
+        } else {
+          this.menuContent.style.minWidth = position.width + 'px';
         }
 
         this.menuContent.style.top = position.top + window.pageYOffset + 'px';
         this.menuContent.style.left = position.left + window.pageXOffset + 'px';
+        this.menuContent.style.right = position.right + window.pageXOffset + 'px';
+        this.menuContent.style.bottom = position.bottom + window.pageYOffset + 'px';
       },
       recalculateOnResize() {
         window.requestAnimationFrame(this.calculateMenuContentPos);

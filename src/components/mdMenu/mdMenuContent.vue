@@ -1,6 +1,6 @@
 <template>
   <div
-    class="md-menu-content"
+    :class="[themeClass, 'md-menu-content']"
     @keydown.esc.prevent="close"
     @keydown.tab.prevent="close"
     @keydown.up.prevent="highlightItem('up')"
@@ -15,8 +15,11 @@
 </template>
 
 <script>
+  import theme from '../../core/components/mdTheme/mixin';
+
   export default {
     name: 'md-menu-content',
+    mixins: [theme],
     data() {
       return {
         oldHighlight: false,

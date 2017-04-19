@@ -179,8 +179,13 @@
       text-decoration: none;
     }
 
-    > .md-icon:first-child {
-      margin-right: 32px;
+    > .md-icon {
+      opacity: .54;
+
+      &:first-child {
+        margin-left: 0;
+        margin-right: 32px;
+      }
     }
 
     .md-avatar,

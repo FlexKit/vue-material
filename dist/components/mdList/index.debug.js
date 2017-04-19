@@ -1215,16 +1215,6 @@ exports.default = {
         return _mdListItemLink2.default;
       }
 
-      if (nativeOn) {
-        var counter = interactionEvents.length;
-
-        while (counter--) {
-          if (nativeOn[interactionEvents[counter]]) {
-            return _mdListItemButton2.default;
-          }
-        }
-      }
-
       while (childrenCount--) {
         var options = children[childrenCount].componentOptions;
 
@@ -1251,6 +1241,16 @@ exports.default = {
             children[childrenCount].data.staticClass = 'md-list-item-container md-button';
 
             return _mdListItemRouter2.default;
+          }
+        }
+      }
+
+      if (nativeOn) {
+        var counter = interactionEvents.length;
+
+        while (counter--) {
+          if (nativeOn[interactionEvents[counter]]) {
+            return _mdListItemButton2.default;
           }
         }
       }
