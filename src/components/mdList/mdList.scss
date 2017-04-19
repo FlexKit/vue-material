@@ -229,6 +229,24 @@
   .md-ink-ripple {
     border-radius: 0;
   }
+
+  .router-link-active {
+    &.md-list-item-container {
+      > .md-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.md-warn,
+  &.md-accent,
+  &.md-primary {
+    .md-list-item-container {
+      > .md-icon {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .md-list-item-expand {
