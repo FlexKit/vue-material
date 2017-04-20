@@ -3746,7 +3746,7 @@ var getInViewPosition = function getInViewPosition(element, position, directions
     position.top = position.top > topMargin && position.top > Math.abs(bottomSpace) ? newTopPos : topMargin;
   }
 
-  if (window.innerWidth >= position.width + leftMargin + rightMargin) {
+  if (window.innerWidth <= position.width + leftMargin + rightMargin) {
     position.width = 0;
   }
 
@@ -10369,7 +10369,7 @@ module.exports = ".THEME_NAME.md-input-container .md-field:after {\n  background
 /* 254 */
 /***/ (function(module, exports) {
 
-module.exports = ".THEME_NAME.md-list .md-list-item .router-link-active.md-list-item-container {\n  color: PRIMARY-COLOR; }\n  .THEME_NAME.md-list .md-list-item .router-link-active.md-list-item-container > .md-icon {\n    color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-primary .md-list-item-container {\n  color: PRIMARY-COLOR; }\n  .THEME_NAME.md-list .md-list-item.md-primary .md-list-item-container > .md-icon {\n    color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-accent .md-list-item-container {\n  color: ACCENT-COLOR; }\n  .THEME_NAME.md-list .md-list-item.md-accent .md-list-item-container > .md-icon {\n    color: ACCENT-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-warn .md-list-item-container {\n  color: WARN-COLOR; }\n  .THEME_NAME.md-list .md-list-item.md-warn .md-list-item-container > .md-icon {\n    color: WARN-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-disabled {\n  color: BACKGROUND-CONTRAST-0.38; }\n\n.THEME_NAME.md-list .md-list-item-expand .md-list-item-container:hover, .THEME_NAME.md-list .md-list-item-expand .md-list-item-container:focus {\n  background-color: rgba(153, 153, 153, 0.2); }\n\n.THEME_NAME.md-list .md-list-item-expand.md-active:before, .THEME_NAME.md-list .md-list-item-expand.md-active:after {\n  background-color: BACKGROUND-CONTRAST-900-0.12; }\n"
+module.exports = ".THEME_NAME.md-list .md-list-item .router-link-active.md-list-item-container {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-primary .md-list-item-container {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-accent .md-list-item-container {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-warn .md-list-item-container {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-list .md-list-item.md-disabled {\n  color: BACKGROUND-CONTRAST-0.38; }\n\n.THEME_NAME.md-list .md-list-item-expand .md-list-item-container:hover, .THEME_NAME.md-list .md-list-item-expand .md-list-item-container:focus {\n  background-color: rgba(153, 153, 153, 0.2); }\n\n.THEME_NAME.md-list .md-list-item-expand.md-active:before, .THEME_NAME.md-list .md-list-item-expand.md-active:after {\n  background-color: BACKGROUND-CONTRAST-900-0.12; }\n"
 
 /***/ }),
 /* 255 */

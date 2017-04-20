@@ -1,22 +1,25 @@
 @import '../../core/stylesheets/variables.scss';
 
-$button-width: 88px;
+$button-font-size: 14px;
+$button-icon-font-size: 24px;
+
+$button-width: 88px / $button-font-size * 1em;
 $button-height: 36px;
 $button-radius: 2px;
 
-$button-fab-size: 56px;
-$button-fab-size-mini: 40px;
-$button-fab-space: 24px;
-
 $button-dense-height: 32px;
 
-$button-icon-size: 40px;
+$button-icon-size: 40px / $button-icon-font-size * 1em;
+
+$button-fab-size: 56px / $button-icon-font-size * 1em;
+$button-fab-size-mini: $button-icon-size;
+$button-fab-space: 24px;
 
 .md-button {
   min-width: $button-width;
   min-height: $button-height;
   margin: 6px 8px;
-  padding: 0 16px;
+  padding: 0 (16px / $button-font-size * 1em);
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -29,12 +32,12 @@ $button-icon-size: 40px;
   transition: $swift-ease-out;
   color: currentColor;
   font-family: inherit;
-  font-size: 14px;
+  font-size: $button-font-size;
   font-style: inherit;
   font-variant: inherit;
   font-weight: 500;
   letter-spacing: inherit;
-  line-height: $button-height;
+  line-height: $button-height / $button-font-size;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
@@ -71,19 +74,17 @@ $button-icon-size: 40px;
   }
 
   &.md-dense {
-    min-height: $button-dense-height;
-    line-height: $button-dense-height;
+    min-height: $button-dense-height / $button-font-size * 1em;
+    line-height: $button-dense-height / $button-font-size;
     font-size: 13px;
   }
 
-  &.md-icon-button,
-  &.md-fab {
+  &.md-fab,
+  &.md-icon-button {
+    font-size: $button-icon-font-size;
+
     .md-icon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      font-size: inherit;
     }
   }
 

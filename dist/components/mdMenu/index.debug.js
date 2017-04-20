@@ -254,7 +254,7 @@ var getInViewPosition = function getInViewPosition(element, position, directions
     position.top = position.top > topMargin && position.top > Math.abs(bottomSpace) ? newTopPos : topMargin;
   }
 
-  if (window.innerWidth >= position.width + leftMargin + rightMargin) {
+  if (window.innerWidth <= position.width + leftMargin + rightMargin) {
     position.width = 0;
   }
 
