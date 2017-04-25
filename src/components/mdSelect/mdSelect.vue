@@ -22,12 +22,12 @@
             <slot
               name="selection"
               v-if="multiple"
-              v-for="(item, index) in value"
+              v-for="(item, index) in validValue"
               :item="item"
               :text="selectedText[index]"
             ></slot>
 
-            <slot v-if="!multiple" name="selection" :item="value" :text="selectedText"></slot>
+            <slot v-if="!multiple" name="selection" :item="validValue" :text="selectedText"></slot>
           </template>
 
           <div v-else class="value">{{textValue || placeholder}}</div>
@@ -98,12 +98,19 @@
       };
     },
     computed: {
-      hasValue() {
-        if (this.multiple) {
-          return !!(this.value && this.value.length);
+      validValue() {
+        if (this.multiple && !Array.isArray(this.value)) {
+          return [];
         }
 
-        return !!this.value;
+        return this.value;
+      },
+      hasValue() {
+        if (this.multiple) {
+          return !!(this.validValue && this.validValue.length);
+        }
+
+        return !!this.validValue;
       },
       classes() {
         return {
@@ -127,18 +134,18 @@
         const value = this.getValue(item);
 
         if (this.multiple) {
-          return this.value.includes(value);
+          return this.validValue.includes(value);
         }
 
-        return this.value === value;
+        return this.validValue === value;
       },
       changeValue(value, isSelected) {
         if (this.multiple && isSelected) {
-          value = this.value.filter((item) => item !== value);
+          value = this.validValue.filter((item) => item !== value);
         }
 
         if (this.multiple && !isSelected) {
-          value = [...this.value, value];
+          value = [...this.validValue, value];
         }
 
         this.$emit('change', value);
