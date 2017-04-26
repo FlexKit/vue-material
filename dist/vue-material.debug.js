@@ -3396,7 +3396,7 @@ exports.default = {
     A200: '#40c4ff',
     A400: '#00b0ff',
     A700: '#0091ea',
-    darkText: [50, 100, 200, 300, 400, 500, 'A100', 'A200', 'A300']
+    darkText: [50, 100, 200, 300, 400, 500, 'A100', 'A200', 'A400']
   },
   cyan: {
     50: '#e0f7fa',
@@ -3413,7 +3413,7 @@ exports.default = {
     A200: '#18ffff',
     A400: '#00e5ff',
     A700: '#00b8d4',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 'A100', 'A200', 'A400', 'A700']
   },
   teal: {
     50: '#e0f2f1',
@@ -3430,7 +3430,7 @@ exports.default = {
     A200: '#64ffda',
     A400: '#1de9b6',
     A700: '#00bfa5',
-    darkText: [50, 100, 200, 300, 400, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 'A100', 'A200', 'A400', 'A700']
   },
   green: {
     50: '#e8f5e9',
@@ -3447,7 +3447,7 @@ exports.default = {
     A200: '#69f0ae',
     A400: '#00e676',
     A700: '#00c853',
-    darkText: [50, 100, 200, 300, 400, 500, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 'A100', 'A200', 'A400', 'A700']
   },
   'light-green': {
     50: '#f1f8e9',
@@ -3464,7 +3464,7 @@ exports.default = {
     A200: '#b2ff59',
     A400: '#76ff03',
     A700: '#64dd17',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 'A100', 'A200', 'A400', 'A700']
   },
   lime: {
     50: '#f9fbe7',
@@ -3481,7 +3481,7 @@ exports.default = {
     A200: '#eeff41',
     A400: '#c6ff00',
     A700: '#aeea00',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 'A100', 'A200', 'A400', 'A700']
   },
   yellow: {
     50: '#fffde7',
@@ -3498,7 +3498,7 @@ exports.default = {
     A200: '#ffff00',
     A400: '#ffea00',
     A700: '#ffd600',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A400', 'A700']
   },
   amber: {
     50: '#fff8e1',
@@ -3515,7 +3515,7 @@ exports.default = {
     A200: '#ffd740',
     A400: '#ffc400',
     A700: '#ffab00',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A400', 'A700']
   },
   orange: {
     50: '#fff3e0',
@@ -3532,7 +3532,7 @@ exports.default = {
     A200: '#ffab40',
     A400: '#ff9100',
     A700: '#ff6d00',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 'A100', 'A200', 'A400', 'A700']
   },
   'deep-orange': {
     50: '#fbe9e7',
@@ -3566,7 +3566,7 @@ exports.default = {
     A200: '#bcaaa4',
     A400: '#8d6e63',
     A700: '#5d4037',
-    darkText: [50, 100, 200, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 'A100', 'A200']
   },
   grey: {
     50: '#fafafa',
@@ -3579,11 +3579,11 @@ exports.default = {
     700: '#616161',
     800: '#424242',
     900: '#212121',
-    A100: '#fff',
-    A200: '#000000',
-    A400: '#303030',
+    A100: '#f5f5f5',
+    A200: '#eeeeee',
+    A400: '#bdbdbd',
     A700: '#616161',
-    darkText: [50, 100, 200, 300, 400, 500, 'A100']
+    darkText: [50, 100, 200, 300, 400, 500, 'A100', 'A200', 'A400']
   },
   'blue-grey': {
     50: '#eceff1',
@@ -3600,7 +3600,7 @@ exports.default = {
     A200: '#b0bec5',
     A400: '#78909c',
     A700: '#455a64',
-    darkText: [50, 100, 200, 300, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 'A100', 'A200']
   },
   white: {
     50: '#fff',
@@ -3617,7 +3617,7 @@ exports.default = {
     A200: '#fff',
     A400: '#fff',
     A700: '#fff',
-    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A300', 'A400']
+    darkText: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A400', 'A700']
   },
   black: {
     50: '#000',
@@ -6539,7 +6539,11 @@ exports.default = {
       this.menuContent.classList.remove('md-active');
       this.$emit('close');
     },
-    toggle: function toggle() {
+    toggle: function toggle(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
       if (this.active) {
         this.close();
       } else {
@@ -7126,12 +7130,19 @@ exports.default = {
   },
 
   computed: {
-    hasValue: function hasValue() {
-      if (this.multiple) {
-        return !!(this.value && this.value.length);
+    validValue: function validValue() {
+      if (this.multiple && !Array.isArray(this.value)) {
+        return [];
       }
 
-      return !!this.value;
+      return this.value;
+    },
+    hasValue: function hasValue() {
+      if (this.multiple) {
+        return !!(this.validValue && this.validValue.length);
+      }
+
+      return !!this.validValue;
     },
     classes: function classes() {
       return {
@@ -7155,20 +7166,20 @@ exports.default = {
       var value = this.getValue(item);
 
       if (this.multiple) {
-        return this.value.includes(value);
+        return this.validValue.includes(value);
       }
 
-      return this.value === value;
+      return this.validValue === value;
     },
     changeValue: function changeValue(value, isSelected) {
       if (this.multiple && isSelected) {
-        value = this.value.filter((function (item) {
+        value = this.validValue.filter((function (item) {
           return item !== value;
         }));
       }
 
       if (this.multiple && !isSelected) {
-        value = [].concat((0, _toConsumableArray3.default)(this.value), [value]);
+        value = [].concat((0, _toConsumableArray3.default)(this.validValue), [value]);
       }
 
       this.$emit('change', value);
@@ -14819,13 +14830,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "md-menu-trigger": ""
     }
-  }, [(_vm.$scopedSlots.selection) ? [_vm._l((_vm.value), (function(item, index) {
+  }, [(_vm.$scopedSlots.selection) ? [_vm._l((_vm.validValue), (function(item, index) {
     return (_vm.multiple) ? _vm._t("selection", null, {
       item: item,
       text: _vm.selectedText[index]
     }) : _vm._e()
   })), _vm._v(" "), (!_vm.multiple) ? _vm._t("selection", null, {
-    item: _vm.value,
+    item: _vm.validValue,
     text: _vm.selectedText
   }) : _vm._e()] : _c('div', {
     staticClass: "value"

@@ -582,12 +582,19 @@ exports.default = {
   },
 
   computed: {
-    hasValue: function hasValue() {
-      if (this.multiple) {
-        return !!(this.value && this.value.length);
+    validValue: function validValue() {
+      if (this.multiple && !Array.isArray(this.value)) {
+        return [];
       }
 
-      return !!this.value;
+      return this.value;
+    },
+    hasValue: function hasValue() {
+      if (this.multiple) {
+        return !!(this.validValue && this.validValue.length);
+      }
+
+      return !!this.validValue;
     },
     classes: function classes() {
       return {
@@ -611,20 +618,20 @@ exports.default = {
       var value = this.getValue(item);
 
       if (this.multiple) {
-        return this.value.includes(value);
+        return this.validValue.includes(value);
       }
 
-      return this.value === value;
+      return this.validValue === value;
     },
     changeValue: function changeValue(value, isSelected) {
       if (this.multiple && isSelected) {
-        value = this.value.filter((function (item) {
+        value = this.validValue.filter((function (item) {
           return item !== value;
         }));
       }
 
       if (this.multiple && !isSelected) {
-        value = [].concat((0, _toConsumableArray3.default)(this.value), [value]);
+        value = [].concat((0, _toConsumableArray3.default)(this.validValue), [value]);
       }
 
       this.$emit('change', value);
@@ -1215,13 +1222,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "md-menu-trigger": ""
     }
-  }, [(_vm.$scopedSlots.selection) ? [_vm._l((_vm.value), (function(item, index) {
+  }, [(_vm.$scopedSlots.selection) ? [_vm._l((_vm.validValue), (function(item, index) {
     return (_vm.multiple) ? _vm._t("selection", null, {
       item: item,
       text: _vm.selectedText[index]
     }) : _vm._e()
   })), _vm._v(" "), (!_vm.multiple) ? _vm._t("selection", null, {
-    item: _vm.value,
+    item: _vm.validValue,
     text: _vm.selectedText
   }) : _vm._e()] : _c('div', {
     staticClass: "value"

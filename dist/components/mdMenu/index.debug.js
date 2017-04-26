@@ -473,7 +473,11 @@ exports.default = {
       this.menuContent.classList.remove('md-active');
       this.$emit('close');
     },
-    toggle: function toggle() {
+    toggle: function toggle(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
       if (this.active) {
         this.close();
       } else {

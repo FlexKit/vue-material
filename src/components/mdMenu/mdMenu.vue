@@ -184,7 +184,11 @@
         this.menuContent.classList.remove('md-active');
         this.$emit('close');
       },
-      toggle() {
+      toggle(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
         if (this.active) {
           this.close();
         } else {
