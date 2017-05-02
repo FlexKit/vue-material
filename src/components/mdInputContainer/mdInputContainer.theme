@@ -1,7 +1,7 @@
 .THEME_NAME {
   &.md-input-container {
     .md-field {
-      &:after {
+      &:before {
         background-color: #{'BACKGROUND-CONTRAST-0.12'};
       }
     }
@@ -11,21 +11,15 @@
       color: #{'BACKGROUND-CONTRAST-0.54'};
     }
 
-    input,
-    textarea {
-      &, &::-webkit-input-placeholder {
-        // color: #{'BACKGROUND-CONTRAST-0.54'};
-      }
-    }
-
     &.md-input-invalid {
-      .md-field:after {
-        background-color: #{'WARN-COLOR'};
+      .md-field {
+        &:before {
+          background-color: #{'WARN-COLOR'};
+        }
       }
 
       label,
-      input,
-      textarea,
+      .md-field,
       .md-error,
       .md-count,
       .md-icon {
@@ -40,15 +34,12 @@
         }
       }
 
-      .md-field:before {
-        background-color: #{'PRIMARY-COLOR'};
-      }
-
-      input,
-      textarea {
-        color: #{'PRIMARY-COLOR'};
+      .md-field {
         text-shadow: 0 0 0 #{'BACKGROUND-CONTRAST'};
-        -webkit-text-fill-color: transparent;
+
+        &:after {
+          background-color: #{'PRIMARY-COLOR'};
+        }
       }
 
       label,
@@ -58,22 +49,21 @@
     }
 
     &.md-has-value {
-      input,
-      textarea,
       .md-field {
         // color: #{'BACKGROUND-CONTRAST-0.87'};
       }
     }
 
     &.md-input-disabled {
-      .md-field:after {
-        background-color: transparent;
-        background-image: linear-gradient(to right, #{'BACKGROUND-CONTRAST-0.38'} 0%, #{'BACKGROUND-CONTRAST-0.38'} 33%, transparent 0%);
+      .md-field {
+        &:before {
+          background-color: transparent;
+          background-image: linear-gradient(to right, #{'BACKGROUND-CONTRAST-0.38'} 0%, #{'BACKGROUND-CONTRAST-0.38'} 33%, transparent 0%);
+        }
       }
 
       label,
-      input,
-      textarea,
+      .md-field,
       .md-error,
       .md-count,
       .md-icon,
@@ -114,7 +104,7 @@
       .md-select:not(.md-disabled) {
         color: #{'BACKGROUND-CONTRAST-0.54'};
 
-        .md-field:after {
+        .md-field:before {
           color: #{'BACKGROUND-CONTRAST-0.87'};
         }
       }

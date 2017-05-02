@@ -26,7 +26,7 @@ $input-size: 32px;
       position: absolute;
     }
 
-    &:before {
+    &:after {
       width: 0;
       height: 2px;
       transition: width cubic-bezier(.4,0,.2,1) .2s;
@@ -125,7 +125,7 @@ $input-size: 32px;
 
   &.md-input-focused {
     .md-field{
-      &:before {
+      &:after {
         width: 100%;
       }
     }
@@ -148,9 +148,11 @@ $input-size: 32px;
   }
 
   &.md-input-disabled {
-    .md-field:after {
-      background: bottom left repeat-x;
-      background-size: 4px 1px;
+    .md-field {
+      &:before {
+        background: bottom left repeat-x;
+        background-size: 4px 1px;
+      }
     }
   }
 
