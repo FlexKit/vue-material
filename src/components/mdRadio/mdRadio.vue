@@ -18,6 +18,10 @@
 
   export default {
     name: 'md-radio',
+    model: {
+      prop: 'value',
+      event: 'change'
+    },
     props: {
       name: String,
       id: String,
