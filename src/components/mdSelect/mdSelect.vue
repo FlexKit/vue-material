@@ -160,9 +160,7 @@
           return this.selectedText = [ ...this.selectedText, value];
         }
 
-        if (isSelected) {
-          return this.selectedText = value;
-        }
+        this.selectedText = isSelected ? value : null;
       }
     },
     mounted() {

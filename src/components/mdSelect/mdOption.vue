@@ -48,7 +48,9 @@
       }
     },
     mounted() {
-      this.updateSelectedText(this.$el.innerText, this.selected);
+      if (this.selected) {
+        this.updateSelectedText(this.$el.innerText, this.selected);
+      }
     }
   };
 </script>
