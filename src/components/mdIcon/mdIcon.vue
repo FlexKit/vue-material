@@ -11,6 +11,7 @@
 <style lang="scss" src="./mdIcon.scss"></style>
 
 <script>
+  import path from 'path';
   import theme from '../../core/components/mdTheme/mixin';
 
   let registeredIcons = {};
@@ -55,7 +56,7 @@
           const request = new XMLHttpRequest();
           const self = this;
 
-          request.open('GET', this.mdSrc, true);
+          request.open('GET', path.join(__dirname, this.mdSrc), true);
 
           request.onload = function() {
             const mimetype = this.getResponseHeader('content-type');
