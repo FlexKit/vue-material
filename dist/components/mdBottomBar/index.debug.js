@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 409);
+/******/ 	return __webpack_require__(__webpack_require__.s = 412);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -339,14 +339,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-bottom-bar.md-fixed {\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item {\n    color: BACKGROUND-CONTRAST-0.54; }\n    .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n      color: BACKGROUND-CONTRAST-0.87; }\n    .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item.md-active {\n      color: PRIMARY-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-accent .md-bottom-bar-item.md-active {\n    color: ACCENT-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-warn .md-bottom-bar-item.md-active {\n    color: WARN-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-transparent .md-bottom-bar-item.md-active {\n    color: BACKGROUND-CONTRAST; }\n\n.THEME_NAME.md-bottom-bar.md-shift {\n  background-color: PRIMARY-COLOR;\n  color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item {\n    color: PRIMARY-CONTRAST-0.54; }\n    .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n      color: PRIMARY-CONTRAST-0.87; }\n    .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item.md-active {\n      color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-accent {\n    background-color: ACCENT-COLOR; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item {\n      color: ACCENT-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: ACCENT-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item.md-active {\n        color: ACCENT-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-warn {\n    background-color: WARN-COLOR; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item {\n      color: WARN-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: WARN-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item.md-active {\n        color: WARN-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-transparent {\n    background-color: transparent; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item {\n      color: BACKGROUND-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: BACKGROUND-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item.md-active {\n        color: BACKGROUND-CONTRAST; }\n"
 
 /***/ }),
 
-/***/ 271:
+/***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -357,7 +357,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(118),
   /* template */
-  __webpack_require__(353),
+  __webpack_require__(356),
   /* scopeId */
   null,
   /* cssModules */
@@ -385,14 +385,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 272:
+/***/ 275:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(119),
   /* template */
-  __webpack_require__(355),
+  __webpack_require__(358),
   /* scopeId */
   null,
   /* cssModules */
@@ -420,7 +420,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 353:
+/***/ 356:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -439,7 +439,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 355:
+/***/ 358:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -497,7 +497,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 409:
+/***/ 412:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(77);
@@ -516,15 +516,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdBottomBar = __webpack_require__(271);
+var _mdBottomBar = __webpack_require__(274);
 
 var _mdBottomBar2 = _interopRequireDefault(_mdBottomBar);
 
-var _mdBottomBarItem = __webpack_require__(272);
+var _mdBottomBarItem = __webpack_require__(275);
 
 var _mdBottomBarItem2 = _interopRequireDefault(_mdBottomBarItem);
 
-var _mdBottomBar3 = __webpack_require__(243);
+var _mdBottomBar3 = __webpack_require__(245);
 
 var _mdBottomBar4 = _interopRequireDefault(_mdBottomBar3);
 

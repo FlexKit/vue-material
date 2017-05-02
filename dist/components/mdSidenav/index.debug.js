@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 427);
+/******/ 	return __webpack_require__(__webpack_require__.s = 430);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -350,14 +350,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 259:
+/***/ 262:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-sidenav .md-sidenav-content {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n"
 
 /***/ }),
 
-/***/ 318:
+/***/ 321:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -368,7 +368,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(165),
   /* template */
-  __webpack_require__(377),
+  __webpack_require__(380),
   /* scopeId */
   null,
   /* cssModules */
@@ -396,7 +396,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 377:
+/***/ 380:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -432,7 +432,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 427:
+/***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(95);
@@ -451,11 +451,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSidenav = __webpack_require__(318);
+var _mdSidenav = __webpack_require__(321);
 
 var _mdSidenav2 = _interopRequireDefault(_mdSidenav);
 
-var _mdSidenav3 = __webpack_require__(259);
+var _mdSidenav3 = __webpack_require__(262);
 
 var _mdSidenav4 = _interopRequireDefault(_mdSidenav3);
 

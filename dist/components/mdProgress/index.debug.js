@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 424);
+/******/ 	return __webpack_require__(__webpack_require__.s = 427);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -260,14 +260,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 256:
+/***/ 259:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-progress {\n  background-color: PRIMARY-COLOR-0.38; }\n  .THEME_NAME.md-progress:not(.md-indeterminate) .md-progress-track {\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-progress .md-progress-track:after, .THEME_NAME.md-progress .md-progress-track:before {\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-progress.md-accent {\n    background-color: ACCENT-COLOR-0.38; }\n    .THEME_NAME.md-progress.md-accent:not(.md-indeterminate) .md-progress-track {\n      background-color: ACCENT-COLOR; }\n    .THEME_NAME.md-progress.md-accent .md-progress-track:after, .THEME_NAME.md-progress.md-accent .md-progress-track:before {\n      background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-progress.md-warn {\n    background-color: WARN-COLOR-0.38; }\n    .THEME_NAME.md-progress.md-warn:not(.md-indeterminate) .md-progress-track {\n      background-color: WARN-COLOR; }\n    .THEME_NAME.md-progress.md-warn .md-progress-track:after, .THEME_NAME.md-progress.md-warn .md-progress-track:before {\n      background-color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 313:
+/***/ 316:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -278,7 +278,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(160),
   /* template */
-  __webpack_require__(360),
+  __webpack_require__(363),
   /* scopeId */
   null,
   /* cssModules */
@@ -306,7 +306,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 360:
+/***/ 363:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -333,7 +333,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 424:
+/***/ 427:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(92);
@@ -352,11 +352,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdProgress = __webpack_require__(313);
+var _mdProgress = __webpack_require__(316);
 
 var _mdProgress2 = _interopRequireDefault(_mdProgress);
 
-var _mdProgress3 = __webpack_require__(256);
+var _mdProgress3 = __webpack_require__(259);
 
 var _mdProgress4 = _interopRequireDefault(_mdProgress3);
 

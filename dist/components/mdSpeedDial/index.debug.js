@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 429);
+/******/ 	return __webpack_require__(__webpack_require__.s = 432);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -304,14 +304,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 261:
+/***/ 264:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 320:
+/***/ 323:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -322,7 +322,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(167),
   /* template */
-  __webpack_require__(375),
+  __webpack_require__(378),
   /* scopeId */
   null,
   /* cssModules */
@@ -350,7 +350,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 375:
+/***/ 378:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -369,7 +369,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 429:
+/***/ 432:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(97);
@@ -388,11 +388,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSpeedDial = __webpack_require__(320);
+var _mdSpeedDial = __webpack_require__(323);
 
 var _mdSpeedDial2 = _interopRequireDefault(_mdSpeedDial);
 
-var _mdSpeedDial3 = __webpack_require__(261);
+var _mdSpeedDial3 = __webpack_require__(264);
 
 var _mdSpeedDial4 = _interopRequireDefault(_mdSpeedDial3);
 

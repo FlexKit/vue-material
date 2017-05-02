@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 437);
+/******/ 	return __webpack_require__(__webpack_require__.s = 440);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -147,7 +147,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdWhiteframe = __webpack_require__(336);
+var _mdWhiteframe = __webpack_require__(339);
 
 var _mdWhiteframe2 = _interopRequireDefault(_mdWhiteframe);
 
@@ -217,7 +217,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 336:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -255,7 +255,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 437:
+/***/ 440:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(105);

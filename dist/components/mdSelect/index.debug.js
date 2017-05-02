@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 426);
+/******/ 	return __webpack_require__(__webpack_require__.s = 429);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -393,7 +393,9 @@ exports.default = {
     }
   },
   mounted: function mounted() {
-    this.updateSelectedText(this.$el.innerText, this.selected);
+    if (this.selected) {
+      this.updateSelectedText(this.$el.innerText, this.selected);
+    }
   }
 };
 module.exports = exports['default'];
@@ -478,7 +480,7 @@ var _mixin = __webpack_require__(1);
 
 var _mixin2 = _interopRequireDefault(_mixin);
 
-var _mdOptionList = __webpack_require__(316);
+var _mdOptionList = __webpack_require__(319);
 
 var _mdOptionList2 = _interopRequireDefault(_mdOptionList);
 
@@ -648,9 +650,7 @@ exports.default = {
         return this.selectedText = [].concat((0, _toConsumableArray3.default)(this.selectedText), [value]);
       }
 
-      if (isSelected) {
-        return this.selectedText = value;
-      }
+      this.selectedText = isSelected ? value : null;
     }
   },
   mounted: function mounted() {
@@ -779,13 +779,6 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 258:
-/***/ (function(module, exports) {
-
-module.exports = ".THEME_NAME > .md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
-
-/***/ }),
-
 /***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -809,6 +802,13 @@ module.exports = function(fn, that, length){
     return fn.apply(that, arguments);
   };
 };
+
+/***/ }),
+
+/***/ 261:
+/***/ (function(module, exports) {
+
+module.exports = ".THEME_NAME > .md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
 
 /***/ }),
 
@@ -879,14 +879,14 @@ module.exports = !__webpack_require__(4) && !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 315:
+/***/ 318:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(162),
   /* template */
-  __webpack_require__(384),
+  __webpack_require__(387),
   /* scopeId */
   null,
   /* cssModules */
@@ -914,7 +914,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 316:
+/***/ 319:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -948,7 +948,30 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 317:
+/***/ 32:
+/***/ (function(module, exports, __webpack_require__) {
+
+var has          = __webpack_require__(6)
+  , toIObject    = __webpack_require__(11)
+  , arrayIndexOf = __webpack_require__(35)(false)
+  , IE_PROTO     = __webpack_require__(18)('IE_PROTO');
+
+module.exports = function(object, names){
+  var O      = toIObject(object)
+    , i      = 0
+    , result = []
+    , key;
+  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while(names.length > i)if(has(O, key = names[i++])){
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+/***/ }),
+
+/***/ 320:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -959,7 +982,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(164),
   /* template */
-  __webpack_require__(397),
+  __webpack_require__(400),
   /* scopeId */
   null,
   /* cssModules */
@@ -984,29 +1007,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-
-/***/ }),
-
-/***/ 32:
-/***/ (function(module, exports, __webpack_require__) {
-
-var has          = __webpack_require__(6)
-  , toIObject    = __webpack_require__(11)
-  , arrayIndexOf = __webpack_require__(35)(false)
-  , IE_PROTO     = __webpack_require__(18)('IE_PROTO');
-
-module.exports = function(object, names){
-  var O      = toIObject(object)
-    , i      = 0
-    , result = []
-    , key;
-  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while(names.length > i)if(has(O, key = names[i++])){
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
 
 /***/ }),
 
@@ -1080,7 +1080,7 @@ module.exports = true;
 
 /***/ }),
 
-/***/ 384:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1189,7 +1189,65 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 
 /***/ }),
 
-/***/ 397:
+/***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(8)((function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+}));
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject    = __webpack_require__(12)
+  , dPs         = __webpack_require__(49)
+  , enumBugKeys = __webpack_require__(21)
+  , IE_PROTO    = __webpack_require__(18)('IE_PROTO')
+  , Empty       = function(){ /* empty */ }
+  , PROTOTYPE   = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function(){
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __webpack_require__(25)('iframe')
+    , i      = enumBugKeys.length
+    , lt     = '<'
+    , gt     = '>'
+    , iframeDocument;
+  iframe.style.display = 'none';
+  __webpack_require__(47).appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties){
+  var result;
+  if(O !== null){
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty;
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ 400:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1264,64 +1322,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(8)((function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-}));
-
-/***/ }),
-
-/***/ 40:
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject    = __webpack_require__(12)
-  , dPs         = __webpack_require__(49)
-  , enumBugKeys = __webpack_require__(21)
-  , IE_PROTO    = __webpack_require__(18)('IE_PROTO')
-  , Empty       = function(){ /* empty */ }
-  , PROTOTYPE   = 'prototype';
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function(){
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(25)('iframe')
-    , i      = enumBugKeys.length
-    , lt     = '<'
-    , gt     = '>'
-    , iframeDocument;
-  iframe.style.display = 'none';
-  __webpack_require__(47).appendChild(iframe);
-  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-  // createDict = iframe.contentWindow.Object;
-  // html.removeChild(iframe);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-  iframeDocument.close();
-  createDict = iframeDocument.F;
-  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
-  return createDict();
-};
-
-module.exports = Object.create || function create(O, Properties){
-  var result;
-  if(O !== null){
-    Empty[PROTOTYPE] = anObject(O);
-    result = new Empty;
-    Empty[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = createDict();
-  return Properties === undefined ? result : dPs(result, Properties);
-};
-
-
-/***/ }),
-
 /***/ 41:
 /***/ (function(module, exports) {
 
@@ -1336,7 +1336,7 @@ module.exports = __webpack_require__(9);
 
 /***/ }),
 
-/***/ 426:
+/***/ 429:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(94);
@@ -1842,15 +1842,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSelect = __webpack_require__(317);
+var _mdSelect = __webpack_require__(320);
 
 var _mdSelect2 = _interopRequireDefault(_mdSelect);
 
-var _mdOption = __webpack_require__(315);
+var _mdOption = __webpack_require__(318);
 
 var _mdOption2 = _interopRequireDefault(_mdOption);
 
-var _mdSelect3 = __webpack_require__(258);
+var _mdSelect3 = __webpack_require__(261);
 
 var _mdSelect4 = _interopRequireDefault(_mdSelect3);
 

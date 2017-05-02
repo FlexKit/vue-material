@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 407);
+/******/ 	return __webpack_require__(__webpack_require__.s = 410);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -237,14 +237,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-avatar.md-primary.md-avatar-icon {\n  background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-avatar.md-primary.md-avatar-icon .md-icon {\n    color: PRIMARY-CONTRAST-0.99999; }\n\n.THEME_NAME.md-avatar.md-accent.md-avatar-icon {\n  background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-avatar.md-accent.md-avatar-icon .md-icon {\n    color: ACCENT-CONTRAST-0.99999; }\n\n.THEME_NAME.md-avatar.md-warn.md-avatar-icon {\n  background-color: WARN-COLOR; }\n  .THEME_NAME.md-avatar.md-warn.md-avatar-icon .md-icon {\n    color: WARN-CONTRAST-0.99999; }\n"
 
 /***/ }),
 
-/***/ 269:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -255,7 +255,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(116),
   /* template */
-  __webpack_require__(374),
+  __webpack_require__(377),
   /* scopeId */
   null,
   /* cssModules */
@@ -283,7 +283,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 374:
+/***/ 377:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -302,7 +302,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 407:
+/***/ 410:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(75);
@@ -321,11 +321,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdAvatar = __webpack_require__(269);
+var _mdAvatar = __webpack_require__(272);
 
 var _mdAvatar2 = _interopRequireDefault(_mdAvatar);
 
-var _mdAvatar3 = __webpack_require__(242);
+var _mdAvatar3 = __webpack_require__(244);
 
 var _mdAvatar4 = _interopRequireDefault(_mdAvatar3);
 

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 431);
+/******/ 	return __webpack_require__(__webpack_require__.s = 434);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -241,14 +241,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 263:
+/***/ 266:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-subheader.md-primary {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-subheader.md-accent {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-subheader.md-warn {\n  color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 322:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -259,7 +259,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(169),
   /* template */
-  __webpack_require__(389),
+  __webpack_require__(392),
   /* scopeId */
   null,
   /* cssModules */
@@ -287,7 +287,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 389:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -309,7 +309,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 431:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(99);
@@ -328,11 +328,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSubheader = __webpack_require__(322);
+var _mdSubheader = __webpack_require__(325);
 
 var _mdSubheader2 = _interopRequireDefault(_mdSubheader);
 
-var _mdSubheader3 = __webpack_require__(263);
+var _mdSubheader3 = __webpack_require__(266);
 
 var _mdSubheader4 = _interopRequireDefault(_mdSubheader3);
 

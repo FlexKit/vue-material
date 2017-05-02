@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 430);
+/******/ 	return __webpack_require__(__webpack_require__.s = 433);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -306,14 +306,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 262:
+/***/ 265:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-spinner .md-spinner-path {\n  stroke: PRIMARY-COLOR; }\n\n.THEME_NAME.md-spinner.md-accent .md-spinner-path {\n  stroke: ACCENT-COLOR; }\n\n.THEME_NAME.md-spinner.md-warn .md-spinner-path {\n  stroke: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 321:
+/***/ 324:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -324,7 +324,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(168),
   /* template */
-  __webpack_require__(350),
+  __webpack_require__(353),
   /* scopeId */
   null,
   /* cssModules */
@@ -352,7 +352,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 350:
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -391,7 +391,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 430:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(98);
@@ -410,11 +410,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSpinner = __webpack_require__(321);
+var _mdSpinner = __webpack_require__(324);
 
 var _mdSpinner2 = _interopRequireDefault(_mdSpinner);
 
-var _mdSpinner3 = __webpack_require__(262);
+var _mdSpinner3 = __webpack_require__(265);
 
 var _mdSpinner4 = _interopRequireDefault(_mdSpinner3);
 

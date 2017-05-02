@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 414);
+/******/ 	return __webpack_require__(__webpack_require__.s = 417);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -408,21 +408,21 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 248:
+/***/ 250:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-chip {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n  .THEME_NAME.md-chip.md-deletable:hover, .THEME_NAME.md-chip.md-deletable:focus, .THEME_NAME.md-chip.md-editable:hover, .THEME_NAME.md-chip.md-editable:focus {\n    background-color: BACKGROUND-CONTRAST-0.54;\n    color: BACKGROUND-COLOR; }\n    .THEME_NAME.md-chip.md-deletable:hover .md-delete, .THEME_NAME.md-chip.md-deletable:focus .md-delete, .THEME_NAME.md-chip.md-editable:hover .md-delete, .THEME_NAME.md-chip.md-editable:focus .md-delete {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip .md-delete {\n    color: BACKGROUND-CONTRAST-0.38; }\n    .THEME_NAME.md-chip .md-delete .md-ripple {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip.md-primary {\n    color: PRIMARY-CONTRAST;\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-chip.md-accent {\n    color: ACCENT-CONTRAST;\n    background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-chip.md-warn {\n    color: WARN-CONTRAST;\n    background-color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(133),
   /* template */
-  __webpack_require__(362),
+  __webpack_require__(365),
   /* scopeId */
   null,
   /* cssModules */
@@ -450,7 +450,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 287:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -461,7 +461,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(134),
   /* template */
-  __webpack_require__(379),
+  __webpack_require__(382),
   /* scopeId */
   null,
   /* cssModules */
@@ -489,7 +489,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 362:
+/***/ 365:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -534,7 +534,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 379:
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -611,7 +611,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 414:
+/***/ 417:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(82);
@@ -648,15 +648,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdChips = __webpack_require__(287);
+var _mdChips = __webpack_require__(290);
 
 var _mdChips2 = _interopRequireDefault(_mdChips);
 
-var _mdChip = __webpack_require__(286);
+var _mdChip = __webpack_require__(289);
 
 var _mdChip2 = _interopRequireDefault(_mdChip);
 
-var _mdChips3 = __webpack_require__(248);
+var _mdChips3 = __webpack_require__(250);
 
 var _mdChips4 = _interopRequireDefault(_mdChips3);
 

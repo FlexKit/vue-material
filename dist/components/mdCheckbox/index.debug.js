@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 413);
+/******/ 	return __webpack_require__(__webpack_require__.s = 416);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -269,14 +269,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 247:
+/***/ 249:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-checkbox .md-checkbox-container {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n  .THEME_NAME.md-checkbox .md-checkbox-container:after {\n    border-color: ACCENT-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-checked .md-checkbox-container {\n  background-color: PRIMARY-COLOR;\n  border-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-checkbox.md-checked .md-checkbox-container:after {\n    border-color: PRIMARY-CONTRAST; }\n\n.THEME_NAME.md-checkbox .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-checkbox .md-ripple {\n  opacity: .26; }\n\n.THEME_NAME.md-checkbox.md-accent.md-checked .md-checkbox-container {\n  background-color: ACCENT-COLOR;\n  border-color: ACCENT-COLOR; }\n  .THEME_NAME.md-checkbox.md-accent.md-checked .md-checkbox-container:after {\n    border-color: ACCENT-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-accent .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-checkbox.md-warn.md-checked .md-checkbox-container {\n  background-color: WARN-COLOR;\n  border-color: WARN-COLOR; }\n  .THEME_NAME.md-checkbox.md-warn.md-checked .md-checkbox-container:after {\n    border-color: WARN-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-warn .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-checkbox.md-disabled.md-checked .md-checkbox-container {\n  background-color: rgba(0, 0, 0, 0.26);\n  border-color: transparent; }\n\n.THEME_NAME.md-checkbox.md-disabled:not(.md-checked) .md-checkbox-container {\n  border-color: rgba(0, 0, 0, 0.26); }\n"
 
 /***/ }),
 
-/***/ 285:
+/***/ 288:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -287,7 +287,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(132),
   /* template */
-  __webpack_require__(396),
+  __webpack_require__(399),
   /* scopeId */
   null,
   /* cssModules */
@@ -315,7 +315,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 396:
+/***/ 399:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -365,7 +365,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 413:
+/***/ 416:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(81);
@@ -384,11 +384,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdCheckbox = __webpack_require__(285);
+var _mdCheckbox = __webpack_require__(288);
 
 var _mdCheckbox2 = _interopRequireDefault(_mdCheckbox);
 
-var _mdCheckbox3 = __webpack_require__(247);
+var _mdCheckbox3 = __webpack_require__(249);
 
 var _mdCheckbox4 = _interopRequireDefault(_mdCheckbox3);
 

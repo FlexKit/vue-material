@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 416);
+/******/ 	return __webpack_require__(__webpack_require__.s = 419);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -136,6 +136,68 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  props: {
+    mdTheme: String
+  },
+  data: function data() {
+    return {
+      closestThemedParent: false
+    };
+  },
+  methods: {
+    getClosestThemedParent: function getClosestThemedParent($parent) {
+      if (!$parent || !$parent.$el || $parent._uid === 0) {
+        return false;
+      }
+
+      if ($parent.mdTheme || $parent.mdName) {
+        return $parent;
+      }
+
+      return this.getClosestThemedParent($parent.$parent);
+    }
+  },
+  computed: {
+    themeClass: function themeClass() {
+      if (this.mdTheme) {
+        return 'md-theme-' + this.mdTheme;
+      }
+
+      var theme = this.closestThemedParent.mdTheme;
+
+      if (!theme) {
+        if (this.closestThemedParent) {
+          theme = this.closestThemedParent.mdName;
+        } else {
+          theme = this.$material.currentTheme;
+        }
+      }
+
+      return 'md-theme-' + theme;
+    }
+  },
+  mounted: function mounted() {
+    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+
+    if (!this.$material.currentTheme) {
+      this.$material.setCurrentTheme('default');
+    }
+  }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
 /***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -145,16 +207,23 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
+
+var _mixin = __webpack_require__(1);
+
+var _mixin2 = _interopRequireDefault(_mixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'md-divider',
+  mixins: [_mixin2.default]
+}; //
 //
 //
 //
 //
 //
 
-exports.default = {
-  name: 'md-divider'
-};
 module.exports = exports['default'];
 
 /***/ }),
@@ -166,7 +235,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 295:
+/***/ 252:
+/***/ (function(module, exports) {
+
+module.exports = ".THEME_NAME.md-divider {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n"
+
+/***/ }),
+
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -177,7 +253,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(142),
   /* template */
-  __webpack_require__(381),
+  __webpack_require__(384),
   /* scopeId */
   null,
   /* cssModules */
@@ -205,12 +281,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 381:
+/***/ 384:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('hr', {
-    staticClass: "md-divider"
+    class: ['md-divider', _vm.themeClass]
   })
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -223,7 +299,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 416:
+/***/ 419:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(84);
@@ -242,14 +318,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdDivider = __webpack_require__(295);
+var _mdDivider = __webpack_require__(298);
 
 var _mdDivider2 = _interopRequireDefault(_mdDivider);
+
+var _mdDivider3 = __webpack_require__(252);
+
+var _mdDivider4 = _interopRequireDefault(_mdDivider3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function install(Vue) {
   Vue.component('md-divider', _mdDivider2.default);
+
+  Vue.material.styles.push(_mdDivider4.default);
 }
 module.exports = exports['default'];
 

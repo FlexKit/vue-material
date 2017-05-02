@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 432);
+/******/ 	return __webpack_require__(__webpack_require__.s = 435);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -209,11 +209,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSwitch = __webpack_require__(323);
+var _mdSwitch = __webpack_require__(326);
 
 var _mdSwitch2 = _interopRequireDefault(_mdSwitch);
 
-var _mdSwitch3 = __webpack_require__(264);
+var _mdSwitch3 = __webpack_require__(267);
 
 var _mdSwitch4 = _interopRequireDefault(_mdSwitch3);
 
@@ -343,14 +343,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 264:
+/***/ 267:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-switch.md-checked .md-switch-container {\n  background-color: ACCENT-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked .md-switch-thumb {\n  background-color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ripple {\n  opacity: .38; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-container {\n  background-color: PRIMARY-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-thumb {\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-container {\n  background-color: WARN-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-thumb {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-container, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-container {\n  background-color: rgba(0, 0, 0, 0.12); }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-thumb, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-thumb {\n  background-color: #bdbdbd; }\n"
 
 /***/ }),
 
-/***/ 323:
+/***/ 326:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -361,7 +361,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(170),
   /* template */
-  __webpack_require__(393),
+  __webpack_require__(396),
   /* scopeId */
   null,
   /* cssModules */
@@ -389,7 +389,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 393:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -442,7 +442,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 432:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(100);

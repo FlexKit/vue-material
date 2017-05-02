@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 438);
+/******/ 	return __webpack_require__(__webpack_require__.s = 441);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -164,7 +164,7 @@ var _mdInkRipple = __webpack_require__(110);
 
 var _mdInkRipple2 = _interopRequireDefault(_mdInkRipple);
 
-var _core = __webpack_require__(268);
+var _core = __webpack_require__(271);
 
 var _core2 = _interopRequireDefault(_core);
 
@@ -215,7 +215,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdInkRipple = __webpack_require__(337);
+var _mdInkRipple = __webpack_require__(340);
 
 var _mdInkRipple2 = _interopRequireDefault(_mdInkRipple);
 
@@ -252,7 +252,7 @@ var _rgba = __webpack_require__(113);
 
 var _rgba2 = _interopRequireDefault(_rgba);
 
-var _mdTheme = __webpack_require__(338);
+var _mdTheme = __webpack_require__(341);
 
 var _mdTheme2 = _interopRequireDefault(_mdTheme);
 
@@ -1416,13 +1416,6 @@ module.exports = function(fn, that, length){
 
 /***/ }),
 
-/***/ 268:
-/***/ (function(module, exports) {
-
-module.exports = ".THEME_NAME :not(input):not(textarea)::selection {\n  background: ACCENT-COLOR;\n  color: ACCENT-CONTRAST; }\n\n.THEME_NAME a:not(.md-button) {\n  color: ACCENT-COLOR; }\n  .THEME_NAME a:not(.md-button):hover {\n    color: ACCENT-COLOR-800; }\n\nbody.THEME_NAME {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST-0.87; }\n\n/* Typography */\n.THEME_NAME .md-caption,\n.THEME_NAME .md-display-1,\n.THEME_NAME .md-display-2,\n.THEME_NAME .md-display-3,\n.THEME_NAME .md-display-4 {\n  color: BACKGROUND-CONTRAST-0.57; }\n\n.THEME_NAME code:not(.hljs) {\n  background-color: ACCENT-COLOR-A100-0.2;\n  color: ACCENT-COLOR-800; }\n"
-
-/***/ }),
-
 /***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1432,6 +1425,13 @@ var toInteger = __webpack_require__(15)
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
+
+/***/ }),
+
+/***/ 271:
+/***/ (function(module, exports) {
+
+module.exports = ".THEME_NAME :not(input):not(textarea)::selection {\n  background: ACCENT-COLOR;\n  color: ACCENT-CONTRAST; }\n\n.THEME_NAME a:not(.md-button) {\n  color: ACCENT-COLOR; }\n  .THEME_NAME a:not(.md-button):hover {\n    color: ACCENT-COLOR-800; }\n\nbody.THEME_NAME {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST-0.87; }\n\n/* Typography */\n.THEME_NAME .md-caption,\n.THEME_NAME .md-display-1,\n.THEME_NAME .md-display-2,\n.THEME_NAME .md-display-3,\n.THEME_NAME .md-display-4 {\n  color: BACKGROUND-CONTRAST-0.57; }\n\n.THEME_NAME code:not(.hljs) {\n  background-color: ACCENT-COLOR-A100-0.2;\n  color: ACCENT-COLOR-800; }\n"
 
 /***/ }),
 
@@ -1496,7 +1496,17 @@ module.exports = function(object, names){
 
 /***/ }),
 
-/***/ 337:
+/***/ 34:
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+/***/ }),
+
+/***/ 340:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1507,7 +1517,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(184),
   /* template */
-  __webpack_require__(387),
+  __webpack_require__(390),
   /* scopeId */
   null,
   /* cssModules */
@@ -1535,7 +1545,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 338:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -1566,16 +1576,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
 
 /***/ }),
 
@@ -1619,7 +1619,7 @@ module.exports = function(index, length){
 
 /***/ }),
 
-/***/ 387:
+/***/ 390:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1652,7 +1652,7 @@ module.exports = !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 438:
+/***/ 441:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(106);

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 433);
+/******/ 	return __webpack_require__(__webpack_require__.s = 436);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -218,39 +218,39 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdTable = __webpack_require__(324);
+var _mdTable = __webpack_require__(327);
 
 var _mdTable2 = _interopRequireDefault(_mdTable);
 
-var _mdTableRow = __webpack_require__(331);
+var _mdTableRow = __webpack_require__(334);
 
 var _mdTableRow2 = _interopRequireDefault(_mdTableRow);
 
-var _mdTableHead = __webpack_require__(329);
+var _mdTableHead = __webpack_require__(332);
 
 var _mdTableHead2 = _interopRequireDefault(_mdTableHead);
 
-var _mdTableCell = __webpack_require__(327);
+var _mdTableCell = __webpack_require__(330);
 
 var _mdTableCell2 = _interopRequireDefault(_mdTableCell);
 
-var _mdTableEdit = __webpack_require__(328);
+var _mdTableEdit = __webpack_require__(331);
 
 var _mdTableEdit2 = _interopRequireDefault(_mdTableEdit);
 
-var _mdTableCard = __webpack_require__(326);
+var _mdTableCard = __webpack_require__(329);
 
 var _mdTableCard2 = _interopRequireDefault(_mdTableCard);
 
-var _mdTableAlternateHeader = __webpack_require__(325);
+var _mdTableAlternateHeader = __webpack_require__(328);
 
 var _mdTableAlternateHeader2 = _interopRequireDefault(_mdTableAlternateHeader);
 
-var _mdTablePagination = __webpack_require__(330);
+var _mdTablePagination = __webpack_require__(333);
 
 var _mdTablePagination2 = _interopRequireDefault(_mdTablePagination);
 
-var _mdTable3 = __webpack_require__(265);
+var _mdTable3 = __webpack_require__(268);
 
 var _mdTable4 = _interopRequireDefault(_mdTable3);
 
@@ -1292,7 +1292,7 @@ module.exports = function(fn, that, length){
 
 /***/ }),
 
-/***/ 265:
+/***/ 268:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-table-card .md-toolbar {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n\n.THEME_NAME.md-table-alternate-header {\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-table-alternate-header .md-toolbar {\n    background-color: ACCENT-COLOR-A100-0.2;\n    color: ACCENT-CONTRAST-A100; }\n  .THEME_NAME.md-table-alternate-header .md-counter {\n    color: ACCENT-COLOR; }\n"
@@ -1402,7 +1402,7 @@ module.exports = function(object, names){
 
 /***/ }),
 
-/***/ 324:
+/***/ 327:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1413,7 +1413,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(171),
   /* template */
-  __webpack_require__(346),
+  __webpack_require__(349),
   /* scopeId */
   null,
   /* cssModules */
@@ -1441,14 +1441,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 325:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(172),
   /* template */
-  __webpack_require__(385),
+  __webpack_require__(388),
   /* scopeId */
   null,
   /* cssModules */
@@ -1476,14 +1476,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 326:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(173),
   /* template */
-  __webpack_require__(341),
+  __webpack_require__(344),
   /* scopeId */
   null,
   /* cssModules */
@@ -1511,14 +1511,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 327:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(174),
   /* template */
-  __webpack_require__(382),
+  __webpack_require__(385),
   /* scopeId */
   null,
   /* cssModules */
@@ -1546,14 +1546,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 328:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(175),
   /* template */
-  __webpack_require__(388),
+  __webpack_require__(391),
   /* scopeId */
   null,
   /* cssModules */
@@ -1581,14 +1581,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 329:
+/***/ 332:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(176),
   /* template */
-  __webpack_require__(392),
+  __webpack_require__(395),
   /* scopeId */
   null,
   /* cssModules */
@@ -1616,14 +1616,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 330:
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(177),
   /* template */
-  __webpack_require__(343),
+  __webpack_require__(346),
   /* scopeId */
   null,
   /* cssModules */
@@ -1651,14 +1651,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 331:
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(178),
   /* template */
-  __webpack_require__(372),
+  __webpack_require__(375),
   /* scopeId */
   null,
   /* cssModules */
@@ -1696,7 +1696,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 341:
+/***/ 344:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1715,7 +1715,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 343:
+/***/ 346:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1776,7 +1776,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 346:
+/***/ 349:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1835,7 +1835,7 @@ module.exports = function(index, length){
 
 /***/ }),
 
-/***/ 372:
+/***/ 375:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1873,7 +1873,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 382:
+/***/ 385:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1894,7 +1894,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 385:
+/***/ 388:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1917,7 +1917,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 388:
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1969,7 +1969,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 392:
+/***/ 395:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2011,7 +2011,7 @@ module.exports = !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 433:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(101);
