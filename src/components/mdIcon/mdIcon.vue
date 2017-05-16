@@ -1,5 +1,5 @@
 <template>
-  <i class="md-icon" :class="[themeClass]" v-html="svgContent" v-if="svgContent"></i>
+  <i class="md-icon" :class="[themeClass]" v-html="mdSvgContent || svgContent" v-if="svgContent || mdSvgContent"></i>
 
   <md-image class="md-icon" :class="[themeClass]" :md-src="imageSrc" v-else-if="imageSrc"></md-image>
 
@@ -23,7 +23,8 @@
       mdIconset: {
         type: String,
         default: 'material-icons'
-      }
+      },
+      mdSvgContent: String
     },
     data: () => ({
       svgContent: null,

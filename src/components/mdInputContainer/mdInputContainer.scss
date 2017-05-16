@@ -12,9 +12,14 @@ $input-size: 32px;
   align-items: center;
   align-self: flex-end;
 
+  > * {
+    order: 1;
+  }
+
   .md-field {
     position: relative;
     flex: 1;
+    order: 2;
 
     &:before, &:after {
       content: " ";
@@ -34,6 +39,10 @@ $input-size: 32px;
 
     + .md-icon {
       margin-left: 12px;
+    }
+
+    ~ * {
+      order: 5;
     }
   }
 
@@ -156,21 +165,16 @@ $input-size: 32px;
     }
   }
 
+  &.md-clearable,
   &.md-has-password {
-    .md-toggle-password {
-      margin: 0;
-      position: absolute !important;
-      right: 0;
-      bottom: -2px;
+    input {
+      padding-right: 32px;
     }
-  }
 
-  &.md-clearable {
-    .md-clear-input {
-      margin: 0;
-      position: absolute;
-      right: 0;
-      top: 16px;
+    .md-icon-input {
+      order: 3;
+      margin: 0 0 0 -32px;
+      padding: 0;
     }
   }
 

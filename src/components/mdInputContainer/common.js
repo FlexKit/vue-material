@@ -61,6 +61,7 @@ export default {
       this.$nextTick(() => {
         this.onInput();
         this.onChange();
+        this.$emit('clear', null);
       });
     },
     focus() {

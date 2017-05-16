@@ -11,7 +11,7 @@
 
     <md-button
       v-if="mdClearable && hasValue"
-      class="md-icon-button md-clear-input md-dense"
+      class="md-icon-button md-icon-input md-dense"
       @click.native="$emit('clear')"
     >
       <md-icon>clear</md-icon>

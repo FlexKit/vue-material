@@ -84,6 +84,12 @@ $button-fab-space: 24px;
     font-size: $button-icon-font-size;
 
     .md-icon {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto !important;
       font-size: inherit;
     }
   }
@@ -131,6 +137,7 @@ $button-fab-space: 24px;
   &.md-fab {
     width: $button-fab-size;
     height: $button-fab-size;
+    margin: 0;
     padding: 0;
     min-width: 0;
     overflow: hidden;
@@ -182,13 +189,6 @@ $button-fab-space: 24px;
     border-radius: $button-radius;
     background-clip: padding-box;
     overflow: hidden;
-  }
-}
-
-.md-button.md-icon-button,
-.md-button.md-fab {
-  .md-icon {
-    display: block;
   }
 }
 

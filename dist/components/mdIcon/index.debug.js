@@ -240,7 +240,8 @@ exports.default = {
     mdIconset: {
       type: String,
       default: 'material-icons'
-    }
+    },
+    mdSvgContent: String
   },
   data: function data() {
     return {
@@ -797,11 +798,11 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.svgContent) ? _c('i', {
+  return (_vm.svgContent || _vm.mdSvgContent) ? _c('i', {
     staticClass: "md-icon",
     class: [_vm.themeClass],
     domProps: {
-      "innerHTML": _vm._s(_vm.svgContent)
+      "innerHTML": _vm._s(_vm.mdSvgContent || _vm.svgContent)
     }
   }) : (_vm.imageSrc) ? _c('md-image', {
     staticClass: "md-icon",

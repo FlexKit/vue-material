@@ -1409,6 +1409,7 @@ exports.default = {
       this.$nextTick((function () {
         _this.onInput();
         _this.onChange();
+        _this.$emit('clear', null);
       }));
     },
     focus: function focus() {
@@ -5433,7 +5434,8 @@ exports.default = {
     mdIconset: {
       type: String,
       default: 'material-icons'
-    }
+    },
+    mdSvgContent: String
   },
   data: function data() {
     return {
@@ -5622,7 +5624,9 @@ exports.default = {
     type: {
       type: String,
       default: 'text'
-    }
+    },
+    min: [String, Number],
+    max: [String, Number]
   },
   data: function data() {
     return {
@@ -5661,6 +5665,8 @@ exports.default = {
     }
   }
 }; //
+//
+//
 //
 //
 //
@@ -7232,7 +7238,13 @@ exports.default = {
         return this.selectedText = [].concat((0, _toConsumableArray3.default)(this.selectedText), [value]);
       }
 
-      this.selectedText = isSelected ? value : null;
+      if (this.hasValue && isSelected) {
+        this.selectedText = value;
+      }
+
+      if (!this.hasValue) {
+        this.selectedText = null;
+      }
     }
   },
   mounted: function mounted() {
@@ -13946,6 +13958,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     ref: "field",
     staticClass: "md-input",
     attrs: {
+      "min": _vm.min,
+      "max": _vm.max,
       "type": _vm.type,
       "disabled": _vm.disabled,
       "required": _vm.required,
@@ -13963,7 +13977,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.onChange
     }
   })]), _vm._v(" "), (_vm.isInputPassword) ? _c('md-button', {
-    staticClass: "md-icon-button md-toggle-password",
+    staticClass: "md-icon-button md-icon-input md-dense",
     nativeOn: {
       "click": function($event) {
         _vm.handleTogglePasswordType($event)
@@ -13984,11 +13998,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.svgContent) ? _c('i', {
+  return (_vm.svgContent || _vm.mdSvgContent) ? _c('i', {
     staticClass: "md-icon",
     class: [_vm.themeClass],
     domProps: {
-      "innerHTML": _vm._s(_vm.svgContent)
+      "innerHTML": _vm._s(_vm.mdSvgContent || _vm.svgContent)
     }
   }) : (_vm.imageSrc) ? _c('md-image', {
     staticClass: "md-icon",
@@ -14022,7 +14036,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._t("default"), _vm._v(" "), (_vm.counterLength > 0) ? _c('span', {
     staticClass: "md-count"
   }, [_vm._v("\n    " + _vm._s(_vm.inputLength) + " / " + _vm._s(_vm.counterLength) + "\n  ")]) : _vm._e(), _vm._v(" "), (_vm.mdClearable && _vm.hasValue) ? _c('md-button', {
-    staticClass: "md-icon-button md-clear-input md-dense",
+    staticClass: "md-icon-button md-icon-input md-dense",
     nativeOn: {
       "click": function($event) {
         _vm.$emit('clear')

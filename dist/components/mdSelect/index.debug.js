@@ -650,7 +650,13 @@ exports.default = {
         return this.selectedText = [].concat((0, _toConsumableArray3.default)(this.selectedText), [value]);
       }
 
-      this.selectedText = isSelected ? value : null;
+      if (this.hasValue && isSelected) {
+        this.selectedText = value;
+      }
+
+      if (!this.hasValue) {
+        this.selectedText = null;
+      }
     }
   },
   mounted: function mounted() {

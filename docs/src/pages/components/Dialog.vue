@@ -296,10 +296,7 @@
 
               <md-dialog-content>
                 <form>
-                  <md-input-container>
-                    <label>Note</label>
-                    <md-textarea></md-textarea>
-                  </md-input-container>
+                  <md-textarea label="Note"></md-textarea>
                 </form>
               </md-dialog-content>
 

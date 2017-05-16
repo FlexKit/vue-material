@@ -6,16 +6,15 @@
     <md-dialog-content v-if="mdContent">{{ mdContent }}</md-dialog-content>
 
     <md-dialog-content>
-      <md-input-container>
-        <md-input
-          ref="input"
-          :id="mdInputId"
-          :name="mdInputName"
-          :maxlength="mdInputMaxlength"
-          :placeholder="mdInputPlaceholder"
-          :value="value"
-          @keydown.enter.native="confirmValue"></md-input>
-      </md-input-container>
+      <md-input
+        ref="input"
+        :id="mdInputId"
+        :name="mdInputName"
+        :maxlength="mdInputMaxlength"
+        :placeholder="mdInputPlaceholder"
+        :value="value"
+        @keydown.enter.native="confirmValue"
+      />
     </md-dialog-content>
 
     <md-dialog-actions>

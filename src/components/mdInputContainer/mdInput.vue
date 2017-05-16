@@ -24,6 +24,8 @@
         ref="field"
         class="md-input"
 
+        :min="min"
+        :max="max"
         :type="type"
         :value="currentValue"
         :disabled="disabled"
@@ -41,13 +43,13 @@
 
     <md-button
       v-if="isInputPassword"
-      class="md-icon-button md-toggle-password"
+      class="md-icon-button md-icon-input md-dense"
       @click.native="handleTogglePasswordType"
     >
       <md-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</md-icon>
     </md-button>
 
-    <slot name="after"></slot>
+    <slot name="after" class="md-field-after"></slot>
   </md-input-container>
 </template>
 
@@ -61,7 +63,9 @@
       type: {
         type: String,
         default: 'text'
-      }
+      },
+      min: [String, Number],
+      max: [String, Number]
     },
     data() {
       return {

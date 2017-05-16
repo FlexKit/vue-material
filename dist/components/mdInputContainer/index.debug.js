@@ -520,7 +520,9 @@ exports.default = {
     type: {
       type: String,
       default: 'text'
-    }
+    },
+    min: [String, Number],
+    max: [String, Number]
   },
   data: function data() {
     return {
@@ -559,6 +561,8 @@ exports.default = {
     }
   }
 }; //
+//
+//
 //
 //
 //
@@ -923,6 +927,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     ref: "field",
     staticClass: "md-input",
     attrs: {
+      "min": _vm.min,
+      "max": _vm.max,
       "type": _vm.type,
       "disabled": _vm.disabled,
       "required": _vm.required,
@@ -940,7 +946,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.onChange
     }
   })]), _vm._v(" "), (_vm.isInputPassword) ? _c('md-button', {
-    staticClass: "md-icon-button md-toggle-password",
+    staticClass: "md-icon-button md-icon-input md-dense",
     nativeOn: {
       "click": function($event) {
         _vm.handleTogglePasswordType($event)
@@ -967,7 +973,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._t("default"), _vm._v(" "), (_vm.counterLength > 0) ? _c('span', {
     staticClass: "md-count"
   }, [_vm._v("\n    " + _vm._s(_vm.inputLength) + " / " + _vm._s(_vm.counterLength) + "\n  ")]) : _vm._e(), _vm._v(" "), (_vm.mdClearable && _vm.hasValue) ? _c('md-button', {
-    staticClass: "md-icon-button md-clear-input md-dense",
+    staticClass: "md-icon-button md-icon-input md-dense",
     nativeOn: {
       "click": function($event) {
         _vm.$emit('clear')
@@ -1125,6 +1131,7 @@ exports.default = {
       this.$nextTick((function () {
         _this.onInput();
         _this.onChange();
+        _this.$emit('clear', null);
       }));
     },
     focus: function focus() {
