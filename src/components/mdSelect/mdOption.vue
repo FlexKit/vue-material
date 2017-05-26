@@ -18,6 +18,7 @@
     name: 'md-option',
     props: {
       value: {
+        type: [String, Boolean, Number, Object],
         required: true
       },
       multiple: Boolean,
