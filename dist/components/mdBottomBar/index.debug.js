@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 412);
+/******/ 	return __webpack_require__(__webpack_require__.s = 413);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 118:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -249,7 +243,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 119:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -288,7 +282,7 @@ exports.default = {
     mdIconSrc: String,
     mdIconset: String,
     mdActive: Boolean,
-    disabled: String,
+    disabled: Boolean,
     href: String
   },
   data: function data() {
@@ -332,32 +326,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 214:
+/***/ 216:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-bottom-bar.md-fixed {\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item {\n    color: BACKGROUND-CONTRAST-0.54; }\n    .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n      color: BACKGROUND-CONTRAST-0.87; }\n    .THEME_NAME.md-bottom-bar.md-fixed .md-bottom-bar-item.md-active {\n      color: PRIMARY-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-accent .md-bottom-bar-item.md-active {\n    color: ACCENT-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-warn .md-bottom-bar-item.md-active {\n    color: WARN-COLOR; }\n  .THEME_NAME.md-bottom-bar.md-fixed.md-transparent .md-bottom-bar-item.md-active {\n    color: BACKGROUND-CONTRAST; }\n\n.THEME_NAME.md-bottom-bar.md-shift {\n  background-color: PRIMARY-COLOR;\n  color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item {\n    color: PRIMARY-CONTRAST-0.54; }\n    .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n      color: PRIMARY-CONTRAST-0.87; }\n    .THEME_NAME.md-bottom-bar.md-shift .md-bottom-bar-item.md-active {\n      color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-accent {\n    background-color: ACCENT-COLOR; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item {\n      color: ACCENT-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: ACCENT-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-accent .md-bottom-bar-item.md-active {\n        color: ACCENT-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-warn {\n    background-color: WARN-COLOR; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item {\n      color: WARN-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: WARN-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-warn .md-bottom-bar-item.md-active {\n        color: WARN-CONTRAST; }\n  .THEME_NAME.md-bottom-bar.md-shift.md-transparent {\n    background-color: transparent; }\n    .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item {\n      color: BACKGROUND-CONTRAST-0.54; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item:hover:not([disabled]):not(.md-active) {\n        color: BACKGROUND-CONTRAST-0.87; }\n      .THEME_NAME.md-bottom-bar.md-shift.md-transparent .md-bottom-bar-item.md-active {\n        color: BACKGROUND-CONTRAST; }\n"
 
 /***/ }),
 
-/***/ 274:
+/***/ 275:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(214)
+__webpack_require__(216)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(118),
+  __webpack_require__(120),
   /* template */
-  __webpack_require__(356),
+  __webpack_require__(357),
   /* scopeId */
   null,
   /* cssModules */
@@ -385,14 +379,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 275:
+/***/ 276:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(119),
+  __webpack_require__(121),
   /* template */
-  __webpack_require__(358),
+  __webpack_require__(359),
   /* scopeId */
   null,
   /* cssModules */
@@ -420,7 +414,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 356:
+/***/ 357:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -439,7 +433,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 358:
+/***/ 359:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -497,15 +491,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 412:
+/***/ 413:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(77);
+module.exports = __webpack_require__(78);
 
 
 /***/ }),
 
-/***/ 77:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -516,15 +510,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdBottomBar = __webpack_require__(274);
+var _mdBottomBar = __webpack_require__(275);
 
 var _mdBottomBar2 = _interopRequireDefault(_mdBottomBar);
 
-var _mdBottomBarItem = __webpack_require__(275);
+var _mdBottomBarItem = __webpack_require__(276);
 
 var _mdBottomBarItem2 = _interopRequireDefault(_mdBottomBarItem);
 
-var _mdBottomBar3 = __webpack_require__(245);
+var _mdBottomBar3 = __webpack_require__(246);
 
 var _mdBottomBar4 = _interopRequireDefault(_mdBottomBar3);
 

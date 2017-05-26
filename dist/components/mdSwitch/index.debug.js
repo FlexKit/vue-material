@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 435);
+/******/ 	return __webpack_require__(__webpack_require__.s = 436);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,11 +203,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSwitch = __webpack_require__(326);
+var _mdSwitch = __webpack_require__(327);
 
 var _mdSwitch2 = _interopRequireDefault(_mdSwitch);
 
-var _mdSwitch3 = __webpack_require__(267);
+var _mdSwitch3 = __webpack_require__(268);
 
 var _mdSwitch4 = _interopRequireDefault(_mdSwitch3);
 
@@ -228,7 +222,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 170:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -281,14 +275,14 @@ exports.default = {
   data: function data() {
     return {
       leftPos: initialPosition,
-      checked: this.value
+      checked: Boolean(this.value)
     };
   },
 
   computed: {
     classes: function classes() {
       return {
-        'md-checked': Boolean(this.value),
+        'md-checked': this.checked,
         'md-disabled': this.disabled
       };
     },
@@ -336,32 +330,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 233:
+/***/ 235:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 267:
+/***/ 268:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-switch.md-checked .md-switch-container {\n  background-color: ACCENT-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked .md-switch-thumb {\n  background-color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ripple {\n  opacity: .38; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-container {\n  background-color: PRIMARY-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-thumb {\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-container {\n  background-color: WARN-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-thumb {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-container, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-container {\n  background-color: rgba(0, 0, 0, 0.12); }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-thumb, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-thumb {\n  background-color: #bdbdbd; }\n"
 
 /***/ }),
 
-/***/ 326:
+/***/ 327:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(233)
+__webpack_require__(235)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(170),
+  __webpack_require__(172),
   /* template */
-  __webpack_require__(396),
+  __webpack_require__(397),
   /* scopeId */
   null,
   /* cssModules */
@@ -389,7 +383,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 396:
+/***/ 397:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -442,10 +436,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(100);
+module.exports = __webpack_require__(101);
 
 
 /***/ })

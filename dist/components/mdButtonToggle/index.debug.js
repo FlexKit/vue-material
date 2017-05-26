@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 414);
+/******/ 	return __webpack_require__(__webpack_require__.s = 415);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 121:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -267,32 +261,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 211:
+/***/ 213:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-button-toggle .md-button:after {\n  width: 1px;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  content: \" \"; }\n\n.THEME_NAME.md-button-toggle .md-toggle {\n  color: BACKGROUND-CONTRAST-0.54;\n  background-color: BACKGROUND-CONTRAST-0.26; }\n  .THEME_NAME.md-button-toggle .md-toggle:hover:not([disabled]) {\n    background-color: BACKGROUND-CONTRAST-0.38; }\n  .THEME_NAME.md-button-toggle .md-toggle + .md-toggle:after {\n    background-color: BACKGROUND-CONTRAST-0.12; }\n\n.THEME_NAME.md-button-toggle.md-primary .md-toggle {\n  color: PRIMARY-CONTRAST;\n  background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-button-toggle.md-primary .md-toggle:hover:not([disabled]) {\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-button-toggle.md-primary .md-toggle + .md-toggle:after {\n    background-color: PRIMARY-COLOR-600; }\n\n.THEME_NAME.md-button-toggle.md-accent .md-toggle {\n  color: ACCENT-CONTRAST;\n  background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-button-toggle.md-accent .md-toggle:hover:not([disabled]) {\n    background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-button-toggle.md-accent .md-toggle + .md-toggle:after {\n    background-color: ACCENT-COLOR-600; }\n\n.THEME_NAME.md-button-toggle.md-warn .md-toggle {\n  color: WARN-CONTRAST;\n  background-color: WARN-COLOR; }\n  .THEME_NAME.md-button-toggle.md-warn .md-toggle:hover:not([disabled]) {\n    background-color: WARN-COLOR; }\n  .THEME_NAME.md-button-toggle.md-warn .md-toggle + .md-toggle:after {\n    background-color: WARN-COLOR-600; }\n\n.THEME_NAME.md-button-toggle [disabled] {\n  color: rgba(0, 0, 0, 0.26); }\n  .THEME_NAME.md-button-toggle [disabled].md-toggle {\n    color: BACKGROUND-CONTRAST-0.2;\n    background-color: rgba(0, 0, 0, 0.26); }\n"
 
 /***/ }),
 
-/***/ 277:
+/***/ 278:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(211)
+__webpack_require__(213)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(121),
+  __webpack_require__(123),
   /* template */
-  __webpack_require__(348),
+  __webpack_require__(349),
   /* scopeId */
   null,
   /* cssModules */
@@ -320,7 +314,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 348:
+/***/ 349:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -339,15 +333,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 414:
+/***/ 415:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(79);
+module.exports = __webpack_require__(80);
 
 
 /***/ }),
 
-/***/ 79:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -358,11 +352,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdButtonToggle = __webpack_require__(277);
+var _mdButtonToggle = __webpack_require__(278);
 
 var _mdButtonToggle2 = _interopRequireDefault(_mdButtonToggle);
 
-var _mdButtonToggle3 = __webpack_require__(247);
+var _mdButtonToggle3 = __webpack_require__(248);
 
 var _mdButtonToggle4 = _interopRequireDefault(_mdButtonToggle3);
 

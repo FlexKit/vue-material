@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 417);
+/******/ 	return __webpack_require__(__webpack_require__.s = 418);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 133:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -253,7 +247,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 134:
+/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -401,28 +395,28 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 228:
+/***/ 230:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-chip {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n  .THEME_NAME.md-chip.md-deletable:hover, .THEME_NAME.md-chip.md-deletable:focus, .THEME_NAME.md-chip.md-editable:hover, .THEME_NAME.md-chip.md-editable:focus {\n    background-color: BACKGROUND-CONTRAST-0.54;\n    color: BACKGROUND-COLOR; }\n    .THEME_NAME.md-chip.md-deletable:hover .md-delete, .THEME_NAME.md-chip.md-deletable:focus .md-delete, .THEME_NAME.md-chip.md-editable:hover .md-delete, .THEME_NAME.md-chip.md-editable:focus .md-delete {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip .md-delete {\n    color: BACKGROUND-CONTRAST-0.38; }\n    .THEME_NAME.md-chip .md-delete .md-ripple {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip.md-primary {\n    color: PRIMARY-CONTRAST;\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-chip.md-accent {\n    color: ACCENT-CONTRAST;\n    background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-chip.md-warn {\n    color: WARN-CONTRAST;\n    background-color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 289:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(133),
+  __webpack_require__(135),
   /* template */
-  __webpack_require__(365),
+  __webpack_require__(366),
   /* scopeId */
   null,
   /* cssModules */
@@ -450,18 +444,18 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 290:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(228)
+__webpack_require__(230)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(134),
+  __webpack_require__(136),
   /* template */
-  __webpack_require__(382),
+  __webpack_require__(383),
   /* scopeId */
   null,
   /* cssModules */
@@ -489,7 +483,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -534,7 +528,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 382:
+/***/ 383:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -611,10 +605,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 417:
+/***/ 418:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(82);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
@@ -637,7 +631,7 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 82:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -648,15 +642,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdChips = __webpack_require__(290);
+var _mdChips = __webpack_require__(291);
 
 var _mdChips2 = _interopRequireDefault(_mdChips);
 
-var _mdChip = __webpack_require__(289);
+var _mdChip = __webpack_require__(290);
 
 var _mdChip2 = _interopRequireDefault(_mdChip);
 
-var _mdChips3 = __webpack_require__(250);
+var _mdChips3 = __webpack_require__(251);
 
 var _mdChips4 = _interopRequireDefault(_mdChips3);
 

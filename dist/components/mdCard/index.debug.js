@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 415);
+/******/ 	return __webpack_require__(__webpack_require__.s = 416);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 122:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -240,7 +234,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -263,7 +257,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 124:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -296,7 +290,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -319,7 +313,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -374,7 +368,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 127:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -397,7 +391,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 128:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,7 +425,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 129:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -477,7 +471,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 130:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -500,7 +494,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 131:
+/***/ 133:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -594,32 +588,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 215:
+/***/ 217:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-card {\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-card.md-primary {\n    background-color: PRIMARY-COLOR;\n    color: PRIMARY-CONTRAST; }\n    .THEME_NAME.md-card.md-primary .md-card-header .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon,\n    .THEME_NAME.md-card.md-primary .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {\n      color: PRIMARY-CONTRAST-0.87; }\n    .THEME_NAME.md-card.md-primary .md-input-container.md-input-focused input,\n    .THEME_NAME.md-card.md-primary .md-input-container.md-input-focused textarea {\n      color: PRIMARY-CONTRAST;\n      text-shadow: 0 0 0 PRIMARY-CONTRAST; }\n    .THEME_NAME.md-card.md-primary .md-input-container.md-input-focused label,\n    .THEME_NAME.md-card.md-primary .md-input-container.md-input-focused .md-icon:not(.md-icon-delete) {\n      color: PRIMARY-CONTRAST; }\n    .THEME_NAME.md-card.md-primary .md-input-container:after {\n      background-color: PRIMARY-CONTRAST; }\n    .THEME_NAME.md-card.md-primary .md-input-container input,\n    .THEME_NAME.md-card.md-primary .md-input-container textarea {\n      color: PRIMARY-CONTRAST;\n      text-shadow: 0 0 0 PRIMARY-CONTRAST; }\n      .THEME_NAME.md-card.md-primary .md-input-container input::-webkit-input-placeholder,\n      .THEME_NAME.md-card.md-primary .md-input-container textarea::-webkit-input-placeholder {\n        color: PRIMARY-CONTRAST-0.54; }\n    .THEME_NAME.md-card.md-primary .md-input-container label,\n    .THEME_NAME.md-card.md-primary .md-input-container .md-icon:not(.md-icon-delete) {\n      color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-card.md-accent {\n    background-color: ACCENT-COLOR;\n    color: ACCENT-CONTRAST; }\n    .THEME_NAME.md-card.md-accent .md-card-header .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon,\n    .THEME_NAME.md-card.md-accent .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {\n      color: ACCENT-CONTRAST-0.87; }\n    .THEME_NAME.md-card.md-accent .md-input-container.md-input-focused input,\n    .THEME_NAME.md-card.md-accent .md-input-container.md-input-focused textarea {\n      color: ACCENT-CONTRAST;\n      text-shadow: 0 0 0 ACCENT-CONTRAST; }\n    .THEME_NAME.md-card.md-accent .md-input-container.md-input-focused label,\n    .THEME_NAME.md-card.md-accent .md-input-container.md-input-focused .md-icon:not(.md-icon-delete) {\n      color: ACCENT-CONTRAST; }\n    .THEME_NAME.md-card.md-accent .md-input-container:after {\n      background-color: ACCENT-CONTRAST; }\n    .THEME_NAME.md-card.md-accent .md-input-container input,\n    .THEME_NAME.md-card.md-accent .md-input-container textarea {\n      color: ACCENT-CONTRAST;\n      text-shadow: 0 0 0 ACCENT-CONTRAST; }\n      .THEME_NAME.md-card.md-accent .md-input-container input::-webkit-input-placeholder,\n      .THEME_NAME.md-card.md-accent .md-input-container textarea::-webkit-input-placeholder {\n        color: ACCENT-CONTRAST-0.54; }\n    .THEME_NAME.md-card.md-accent .md-input-container label,\n    .THEME_NAME.md-card.md-accent .md-input-container .md-icon:not(.md-icon-delete) {\n      color: ACCENT-CONTRAST; }\n  .THEME_NAME.md-card.md-warn {\n    background-color: WARN-COLOR;\n    color: WARN-CONTRAST; }\n    .THEME_NAME.md-card.md-warn .md-card-header .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon,\n    .THEME_NAME.md-card.md-warn .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {\n      color: WARN-CONTRAST-0.87; }\n    .THEME_NAME.md-card.md-warn .md-input-container.md-input-focused input,\n    .THEME_NAME.md-card.md-warn .md-input-container.md-input-focused textarea {\n      color: WARN-CONTRAST;\n      text-shadow: 0 0 0 WARN-CONTRAST; }\n    .THEME_NAME.md-card.md-warn .md-input-container.md-input-focused label,\n    .THEME_NAME.md-card.md-warn .md-input-container.md-input-focused .md-icon:not(.md-icon-delete) {\n      color: WARN-CONTRAST; }\n    .THEME_NAME.md-card.md-warn .md-input-container:after {\n      background-color: WARN-CONTRAST; }\n    .THEME_NAME.md-card.md-warn .md-input-container input,\n    .THEME_NAME.md-card.md-warn .md-input-container textarea {\n      color: WARN-CONTRAST;\n      text-shadow: 0 0 0 WARN-CONTRAST; }\n      .THEME_NAME.md-card.md-warn .md-input-container input::-webkit-input-placeholder,\n      .THEME_NAME.md-card.md-warn .md-input-container textarea::-webkit-input-placeholder {\n        color: WARN-CONTRAST-0.54; }\n    .THEME_NAME.md-card.md-warn .md-input-container label,\n    .THEME_NAME.md-card.md-warn .md-input-container .md-icon:not(.md-icon-delete) {\n      color: WARN-CONTRAST; }\n  .THEME_NAME.md-card .md-card-header .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon,\n  .THEME_NAME.md-card .md-card-actions .md-icon-button:not(.md-primary):not(.md-warn):not(.md-accent) .md-icon {\n    color: BACKGROUND-CONTRAST-0.54; }\n  .THEME_NAME.md-card > .md-card-area:after {\n    background-color: BACKGROUND-CONTRAST-0.12; }\n  .THEME_NAME.md-card .md-card-media-cover.md-text-scrim .md-backdrop {\n    background: linear-gradient(to bottom, BACKGROUND-CONTRAST-0.0 20%, BACKGROUND-CONTRAST-0.275 66%, BACKGROUND-CONTRAST-0.55 100%); }\n  .THEME_NAME.md-card .md-card-media-cover.md-solid .md-card-area {\n    background-color: BACKGROUND-CONTRAST-0.4; }\n  .THEME_NAME.md-card .md-card-expand .md-card-actions {\n    background-color: BACKGROUND-COLOR; }\n"
 
 /***/ }),
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(215)
+__webpack_require__(217)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(122),
+  __webpack_require__(124),
   /* template */
-  __webpack_require__(359),
+  __webpack_require__(360),
   /* scopeId */
   null,
   /* cssModules */
@@ -647,14 +641,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 279:
+/***/ 280:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(123),
+  __webpack_require__(125),
   /* template */
-  __webpack_require__(369),
+  __webpack_require__(370),
   /* scopeId */
   null,
   /* cssModules */
@@ -682,14 +676,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(124),
+  __webpack_require__(126),
   /* template */
-  __webpack_require__(354),
+  __webpack_require__(355),
   /* scopeId */
   null,
   /* cssModules */
@@ -717,14 +711,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(125),
+  __webpack_require__(127),
   /* template */
-  __webpack_require__(393),
+  __webpack_require__(394),
   /* scopeId */
   null,
   /* cssModules */
@@ -752,14 +746,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 282:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(126),
+  __webpack_require__(128),
   /* template */
-  __webpack_require__(347),
+  __webpack_require__(348),
   /* scopeId */
   null,
   /* cssModules */
@@ -787,14 +781,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 283:
+/***/ 284:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(127),
+  __webpack_require__(129),
   /* template */
-  __webpack_require__(386),
+  __webpack_require__(387),
   /* scopeId */
   null,
   /* cssModules */
@@ -822,14 +816,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 284:
+/***/ 285:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(128),
+  __webpack_require__(130),
   /* template */
-  __webpack_require__(381),
+  __webpack_require__(382),
   /* scopeId */
   null,
   /* cssModules */
@@ -857,14 +851,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 285:
+/***/ 286:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(129),
+  __webpack_require__(131),
   /* template */
-  __webpack_require__(352),
+  __webpack_require__(353),
   /* scopeId */
   null,
   /* cssModules */
@@ -892,14 +886,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 286:
+/***/ 287:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(130),
+  __webpack_require__(132),
   /* template */
-  __webpack_require__(343),
+  __webpack_require__(344),
   /* scopeId */
   null,
   /* cssModules */
@@ -927,14 +921,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 287:
+/***/ 288:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(131),
+  __webpack_require__(133),
   /* template */
-  __webpack_require__(350),
+  __webpack_require__(351),
   /* scopeId */
   null,
   /* cssModules */
@@ -962,7 +956,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 343:
+/***/ 344:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -980,7 +974,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 347:
+/***/ 348:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -999,7 +993,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 350:
+/***/ 351:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1022,7 +1016,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 352:
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1041,7 +1035,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1060,7 +1054,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1079,7 +1073,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1097,7 +1091,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 381:
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1115,7 +1109,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 386:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1133,7 +1127,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1151,10 +1145,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 415:
+/***/ 416:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(80);
+module.exports = __webpack_require__(81);
 
 
 /***/ }),
@@ -1212,7 +1206,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 80:
+/***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1223,47 +1217,47 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdCard = __webpack_require__(278);
+var _mdCard = __webpack_require__(279);
 
 var _mdCard2 = _interopRequireDefault(_mdCard);
 
-var _mdCardMedia = __webpack_require__(285);
+var _mdCardMedia = __webpack_require__(286);
 
 var _mdCardMedia2 = _interopRequireDefault(_mdCardMedia);
 
-var _mdCardMediaCover = __webpack_require__(287);
+var _mdCardMediaCover = __webpack_require__(288);
 
 var _mdCardMediaCover2 = _interopRequireDefault(_mdCardMediaCover);
 
-var _mdCardMediaActions = __webpack_require__(286);
+var _mdCardMediaActions = __webpack_require__(287);
 
 var _mdCardMediaActions2 = _interopRequireDefault(_mdCardMediaActions);
 
-var _mdCardHeader = __webpack_require__(283);
+var _mdCardHeader = __webpack_require__(284);
 
 var _mdCardHeader2 = _interopRequireDefault(_mdCardHeader);
 
-var _mdCardHeaderText = __webpack_require__(284);
+var _mdCardHeaderText = __webpack_require__(285);
 
 var _mdCardHeaderText2 = _interopRequireDefault(_mdCardHeaderText);
 
-var _mdCardContent = __webpack_require__(281);
+var _mdCardContent = __webpack_require__(282);
 
 var _mdCardContent2 = _interopRequireDefault(_mdCardContent);
 
-var _mdCardActions = __webpack_require__(279);
+var _mdCardActions = __webpack_require__(280);
 
 var _mdCardActions2 = _interopRequireDefault(_mdCardActions);
 
-var _mdCardArea = __webpack_require__(280);
+var _mdCardArea = __webpack_require__(281);
 
 var _mdCardArea2 = _interopRequireDefault(_mdCardArea);
 
-var _mdCardExpand = __webpack_require__(282);
+var _mdCardExpand = __webpack_require__(283);
 
 var _mdCardExpand2 = _interopRequireDefault(_mdCardExpand);
 
-var _mdCard3 = __webpack_require__(248);
+var _mdCard3 = __webpack_require__(249);
 
 var _mdCard4 = _interopRequireDefault(_mdCard3);
 

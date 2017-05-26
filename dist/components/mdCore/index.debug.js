@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 441);
+/******/ 	return __webpack_require__(__webpack_require__.s = 442);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,7 +145,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 106:
+/***/ 107:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -156,19 +156,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdTheme = __webpack_require__(111);
+var _mdTheme = __webpack_require__(113);
 
 var _mdTheme2 = _interopRequireDefault(_mdTheme);
 
-var _mdInkRipple = __webpack_require__(110);
+var _mdInkRipple = __webpack_require__(111);
 
 var _mdInkRipple2 = _interopRequireDefault(_mdInkRipple);
 
-var _core = __webpack_require__(271);
+var _core = __webpack_require__(272);
 
 var _core2 = _interopRequireDefault(_core);
 
-__webpack_require__(209);
+__webpack_require__(211);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -204,7 +204,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 110:
+/***/ 111:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,7 +215,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdInkRipple = __webpack_require__(340);
+var _mdInkRipple = __webpack_require__(341);
 
 var _mdInkRipple2 = _interopRequireDefault(_mdInkRipple);
 
@@ -228,7 +228,58 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 111:
+/***/ 112:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var changeHtmlMetaColor = exports.changeHtmlMetaColor = undefined;
+var createNewStyleElement = exports.createNewStyleElement = undefined;
+
+if (process.env.VUE_ENV !== 'server') {
+  exports.changeHtmlMetaColor = changeHtmlMetaColor = function changeHtmlMetaColor(color, themeClass, previousClass) {
+    var elem = document.querySelector('meta[name="theme-color"]');
+
+    if (elem) {
+      elem.setAttribute('content', color);
+    } else {
+      elem = document.createElement('meta');
+      elem.setAttribute('name', 'theme-color');
+      elem.setAttribute('content', color);
+
+      document.head.appendChild(elem);
+    }
+
+    document.body.classList.remove(previousClass);
+    document.body.classList.add(themeClass);
+  };
+
+  exports.createNewStyleElement = createNewStyleElement = function createNewStyleElement(style, styleId) {
+    var head = document.head;
+    var styleElement = head.querySelector('#' + styleId);
+
+    if (!styleElement) {
+      var newTag = document.createElement('style');
+
+      newTag.type = 'text/css';
+      newTag.id = styleId;
+      newTag.textContent = style;
+
+      head.appendChild(newTag);
+    } else {
+      styleElement.textContent = style;
+    }
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(69)))
+
+/***/ }),
+
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -244,21 +295,24 @@ var _keys2 = _interopRequireDefault(_keys);
 
 exports.default = install;
 
-var _palette = __webpack_require__(112);
+var _palette = __webpack_require__(114);
 
 var _palette2 = _interopRequireDefault(_palette);
 
-var _rgba = __webpack_require__(113);
+var _rgba = __webpack_require__(115);
 
 var _rgba2 = _interopRequireDefault(_rgba);
 
-var _mdTheme = __webpack_require__(341);
+var _mdTheme = __webpack_require__(342);
 
 var _mdTheme2 = _interopRequireDefault(_mdTheme);
+
+var _dom = __webpack_require__(112);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VALID_THEME_TYPE = ['primary', 'accent', 'background', 'warn', 'hue-1', 'hue-2', 'hue-3'];
+var TYPE_REGEX = new RegExp('(' + VALID_THEME_TYPE.join('|').toUpperCase() + ')-(COLOR|CONTRAST)-?(A?\\d*)-?(\\d*\\.?\\d+)?', 'g');
 var DEFAULT_THEME_COLORS = {
   primary: 'indigo',
   accent: 'pink',
@@ -278,166 +332,159 @@ var DEFAULT_THEME_COLORS = {
   }
 };*/
 
-var createNewStyleElement = function createNewStyleElement(style, name) {
-  var head = document.head;
-  var styleId = 'md-theme-' + name;
-  var styleElement = head.querySelector('#' + styleId);
-
-  if (!styleElement) {
-    var newTag = document.createElement('style');
-
-    // if (name === 'default') {
-    //   style = style.replace(/.THEME_NAME/g, '');
-    // } else {
-    style = style.replace(/THEME_NAME/g, styleId);
-    // }
-
-    newTag.type = 'text/css';
-    newTag.id = styleId;
-    newTag.textContent = style;
-
-    head.appendChild(newTag);
-  } else {
-    styleElement.textContent = style;
-  }
-};
-
-var registeredThemes = [];
 var registeredPrimaryColor = {};
+var injectedStyles = {};
 
 var parseStyle = function parseStyle(style, theme, name) {
-  VALID_THEME_TYPE.forEach((function (type) {
-    style = style.replace(RegExp('(' + type.toUpperCase() + ')-(COLOR|CONTRAST)-?(A?\\d*)-?(\\d*\\.?\\d+)?', 'g'), (function (match, paletteType, colorType, hue, opacity) {
-      var color = void 0;
-      var colorVariant = +hue === 0 ? 500 : hue;
+  return style.replace(TYPE_REGEX, (function (match, type, colorType, hue, opacity) {
+    var color = void 0;
+    var colorVariant = +hue === 0 ? 500 : hue;
 
-      if (theme[type]) {
-        if (typeof theme[type] === 'string') {
-          color = _palette2.default[theme[type]];
-        } else {
-          color = _palette2.default[theme[type].color] || _palette2.default[DEFAULT_THEME_COLORS[type]];
-          colorVariant = +hue === 0 ? theme[type].hue : hue;
-        }
+    type = type.toLowerCase();
+
+    if (theme[type]) {
+      if (typeof theme[type] === 'string') {
+        color = _palette2.default[theme[type]];
       } else {
-        color = _palette2.default[DEFAULT_THEME_COLORS[type]];
+        color = _palette2.default[theme[type].color] || _palette2.default[DEFAULT_THEME_COLORS[type]];
+        colorVariant = +hue === 0 ? theme[type].hue : hue;
       }
+    } else {
+      color = _palette2.default[DEFAULT_THEME_COLORS[type]];
+    }
 
-      if (colorType === 'COLOR') {
-        if (type === 'primary') {
-          registeredPrimaryColor[name] = color[colorVariant];
-        }
+    if (colorType === 'COLOR') {
+      var isDefault = _palette2.default[theme[type]];
 
-        if (opacity) {
-          return (0, _rgba2.default)(color[colorVariant], opacity);
-        }
-
-        return color[colorVariant];
-      }
-
-      var isDarkText = color.darkText.indexOf(colorVariant) >= 0;
-
-      if (theme[type] && typeof theme[type] !== 'string' && theme[type].textColor) {
-        if (theme[type].textColor === 'black') {
-          isDarkText = true;
-        } else if (theme[type].textColor === 'white') {
-          isDarkText = false;
+      if (!colorVariant && !isDefault) {
+        if (type === 'accent') {
+          colorVariant = 'A200';
+        } else if (type === 'background') {
+          colorVariant = 50;
         }
       }
 
-      if (isDarkText) {
-        if (opacity) {
-          return (0, _rgba2.default)('#000', opacity);
-        }
-
-        return 'rgba(0, 0, 0, .87)';
+      if (type === 'primary') {
+        registeredPrimaryColor[name] = color[colorVariant];
       }
 
       if (opacity) {
-        return (0, _rgba2.default)('#fff', opacity);
+        return (0, _rgba2.default)(color[colorVariant], opacity);
       }
 
-      return 'rgba(255, 255, 255, .87)';
-    }));
-  }));
+      return color[colorVariant];
+    }
 
-  return style;
+    var isDarkText = color.darkText.indexOf(colorVariant) >= 0;
+
+    if (theme[type] && typeof theme[type] !== 'string' && theme[type].textColor) {
+      if (theme[type].textColor === 'black') {
+        isDarkText = true;
+      } else if (theme[type].textColor === 'white') {
+        isDarkText = false;
+      }
+    }
+
+    if (isDarkText) {
+      if (opacity) {
+        return (0, _rgba2.default)('#000', opacity);
+      }
+
+      return 'rgba(0, 0, 0, .87)';
+    }
+
+    if (opacity) {
+      return (0, _rgba2.default)('#fff', opacity);
+    }
+
+    return 'rgba(255, 255, 255, .87)';
+  }));
 };
 
-var registerTheme = function registerTheme(theme, name, themeStyles) {
-  var parsedStyle = [];
+function warnNotFound(themeName) {
+  console.warn('The theme \'' + themeName + '\' doesn\'t exists. You need to register' + ' it first in order to use.');
+}
 
-  themeStyles.forEach((function (style) {
-    parsedStyle.push(parseStyle(style, theme, name));
-  }));
+function injectStyle(style, spec, name, styleId) {
+  if (_dom.createNewStyleElement) {
+    style = parseStyle(style, spec, name);
+    style = style.replace(/THEME_NAME/g, styleId);
 
-  createNewStyleElement(parsedStyle.join('\n'), name);
-};
-
-var registerAllThemes = function registerAllThemes(themes, themeStyles) {
-  var themeNames = themes ? (0, _keys2.default)(themes) : [];
-
-  themeNames.forEach((function (name) {
-    registerTheme(themes[name], name, themeStyles);
-    registeredThemes.push(name);
-  }));
-};
-
-var changeHtmlMetaColor = function changeHtmlMetaColor(color) {
-  var themeColorElement = document.querySelector('meta[name="theme-color"]');
-
-  if (themeColorElement) {
-    themeColorElement.setAttribute('content', color);
-  } else {
-    themeColorElement = document.createElement('meta');
-    themeColorElement.setAttribute('name', 'theme-color');
-    themeColorElement.setAttribute('content', color);
-
-    document.head.appendChild(themeColorElement);
+    (0, _dom.createNewStyleElement)(style, styleId);
   }
-};
+}
 
 function install(Vue) {
   Vue.material = new Vue({
-    data: function data() {
-      return {
-        styles: [],
-        currentTheme: null,
-        inkRipple: true
-      };
+    data: {
+      currentTheme: 'default',
+      inkRipple: true,
+      prefix: 'md-theme-',
+      styles: [],
+      themes: {
+        default: DEFAULT_THEME_COLORS
+      }
+    },
+    watch: {
+      styles: function styles() {
+        this.refreshInjectedStyles();
+      }
     },
     methods: {
       registerPalette: function registerPalette(name, spec) {
         _palette2.default[name] = spec;
       },
+      useTheme: function useTheme(name) {
+        if (name in injectedStyles) {
+          return;
+        }
+        var spec = this.themes[name];
+
+        if (!spec) {
+          return warnNotFound(name);
+        }
+
+        injectStyle(this.styles.join('\n'), spec, name, this.prefix + name);
+
+        return injectedStyles[name] = true;
+      },
+      refreshInjectedStyles: function refreshInjectedStyles() {
+        var _this = this;
+
+        var styles = this.styles.join('\n');
+        var prefix = this.prefix;
+
+        (0, _keys2.default)(injectedStyles).forEach((function (name) {
+          var spec = _this.themes[name];
+
+          injectStyle(styles, spec, name, prefix + name);
+        }));
+      },
       registerTheme: function registerTheme(name, spec) {
-        var theme = {};
+        var _this2 = this;
 
         if (typeof name === 'string') {
-          theme[name] = spec;
+          this.themes[name] = spec;
         } else {
-          theme = name;
+          (0, _keys2.default)(name).forEach((function (k) {
+            return _this2.themes[k] = name[k];
+          }));
+        }
+      },
+      setCurrentTheme: function setCurrentTheme(name) {
+        if (name === this.currentTheme) {
+          return;
         }
 
-        registerAllThemes(theme, this.styles);
-      },
-      applyCurrentTheme: function applyCurrentTheme(themeName) {
-        changeHtmlMetaColor(registeredPrimaryColor[themeName]);
-        document.body.classList.remove('md-theme-' + this.currentTheme);
-        document.body.classList.add('md-theme-' + themeName);
-        this.currentTheme = themeName;
-      },
-      setCurrentTheme: function setCurrentTheme(themeName) {
-        if (registeredThemes.indexOf(themeName) >= 0) {
-          this.applyCurrentTheme(themeName);
-        } else {
-          if (registeredThemes.indexOf('default') === -1) {
-            this.registerTheme('default', DEFAULT_THEME_COLORS);
-          } else {
-            console.warn('The theme \'' + themeName + '\' doesn\'t exists. You need to register it first in order to use.');
-          }
+        var prefix = this.prefix;
 
-          this.applyCurrentTheme('default');
+        this.useTheme(name);
+
+        if (_dom.changeHtmlMetaColor) {
+          (0, _dom.changeHtmlMetaColor)(registeredPrimaryColor[name], prefix + this.currentTheme, prefix + name);
         }
+
+        this.currentTheme = name;
       }
     }
   });
@@ -450,7 +497,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 112:
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -822,7 +869,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 113:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1012,7 +1059,7 @@ module.exports = function(key){
 
 /***/ }),
 
-/***/ 184:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1261,7 +1308,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 185:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1279,19 +1326,27 @@ exports.default = {
       default: 'default'
     }
   },
-  data: function data() {
-    return {
-      name: 'md-theme'
-    };
-  },
-  render: function render(_render) {
+  render: function render(createElement) {
     if (this.mdTag || this.$slots.default.length > 1) {
-      return _render(this.mdTag || 'div', {
-        staticClass: 'md-theme'
+      return createElement(this.mdTag || 'div', {
+        staticClass: this.$material.prefix + this.mdName
       }, this.$slots.default);
     }
 
     return this.$slots.default[0];
+  },
+
+  watch: {
+    mdName: function mdName(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdName;
+
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
+    }
   }
 };
 module.exports = exports['default'];
@@ -1330,13 +1385,6 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 209:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 21:
 /***/ (function(module, exports) {
 
@@ -1344,6 +1392,13 @@ module.exports = function(it){
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
+
+/***/ }),
+
+/***/ 211:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1370,7 +1425,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 230:
+/***/ 232:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1428,7 +1483,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 271:
+/***/ 272:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME :not(input):not(textarea)::selection {\n  background: ACCENT-COLOR;\n  color: ACCENT-CONTRAST; }\n\n.THEME_NAME a:not(.md-button) {\n  color: ACCENT-COLOR; }\n  .THEME_NAME a:not(.md-button):hover {\n    color: ACCENT-COLOR-800; }\n\nbody.THEME_NAME {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST-0.87; }\n\n/* Typography */\n.THEME_NAME .md-caption,\n.THEME_NAME .md-display-1,\n.THEME_NAME .md-display-2,\n.THEME_NAME .md-display-3,\n.THEME_NAME .md-display-4 {\n  color: BACKGROUND-CONTRAST-0.57; }\n\n.THEME_NAME code:not(.hljs) {\n  background-color: ACCENT-COLOR-A100-0.2;\n  color: ACCENT-COLOR-800; }\n"
@@ -1506,18 +1561,18 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 340:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(230)
+__webpack_require__(232)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(184),
+  __webpack_require__(186),
   /* template */
-  __webpack_require__(390),
+  __webpack_require__(391),
   /* scopeId */
   null,
   /* cssModules */
@@ -1545,12 +1600,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 341:
+/***/ 342:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(185),
+  __webpack_require__(187),
   /* template */
   null,
   /* scopeId */
@@ -1619,7 +1674,7 @@ module.exports = function(index, length){
 
 /***/ }),
 
-/***/ 390:
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1652,10 +1707,10 @@ module.exports = !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 441:
+/***/ 442:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(106);
+module.exports = __webpack_require__(107);
 
 
 /***/ }),
@@ -1721,6 +1776,193 @@ __webpack_require__(61)('keys', (function(){
     return $keys(toObject(it));
   };
 }));
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
 
 /***/ }),
 

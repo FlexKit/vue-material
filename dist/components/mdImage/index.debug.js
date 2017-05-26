@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 422);
+/******/ 	return __webpack_require__(__webpack_require__.s = 423);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -136,7 +136,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 145:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -223,32 +223,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 238:
+/***/ 240:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 255:
+/***/ 256:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 301:
+/***/ 302:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(238)
+__webpack_require__(240)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(145),
+  __webpack_require__(147),
   /* template */
-  __webpack_require__(402),
+  __webpack_require__(403),
   /* scopeId */
   null,
   /* cssModules */
@@ -276,7 +276,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 402:
+/***/ 403:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -298,10 +298,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 422:
+/***/ 423:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(87);
+module.exports = __webpack_require__(88);
 
 
 /***/ }),
@@ -359,7 +359,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 87:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -370,11 +370,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdImage = __webpack_require__(301);
+var _mdImage = __webpack_require__(302);
 
 var _mdImage2 = _interopRequireDefault(_mdImage);
 
-var _mdImage3 = __webpack_require__(255);
+var _mdImage3 = __webpack_require__(256);
 
 var _mdImage4 = _interopRequireDefault(_mdImage3);
 

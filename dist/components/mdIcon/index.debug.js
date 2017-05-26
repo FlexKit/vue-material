@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 421);
+/******/ 	return __webpack_require__(__webpack_require__.s = 422);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 144:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -208,7 +202,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _path = __webpack_require__(242);
+var _path = __webpack_require__(244);
 
 var _path2 = _interopRequireDefault(_path);
 
@@ -322,14 +316,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 216:
+/***/ 218:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -557,11 +551,99 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(243)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(69)))
 
 /***/ }),
 
-/***/ 243:
+/***/ 255:
+/***/ (function(module, exports) {
+
+module.exports = ".THEME_NAME.md-icon.md-primary {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-icon.md-accent {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-icon.md-warn {\n  color: WARN-COLOR; }\n"
+
+/***/ }),
+
+/***/ 301:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(218)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(146),
+  /* template */
+  __webpack_require__(362),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdIcon/mdIcon.vue"
+if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdIcon.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2423dfc4", Component.options)
+  } else {
+    hotAPI.reload("data-v-2423dfc4", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 362:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return (_vm.svgContent || _vm.mdSvgContent) ? _c('i', {
+    staticClass: "md-icon",
+    class: [_vm.themeClass],
+    domProps: {
+      "innerHTML": _vm._s(_vm.mdSvgContent || _vm.svgContent)
+    }
+  }) : (_vm.imageSrc) ? _c('md-image', {
+    staticClass: "md-icon",
+    class: [_vm.themeClass],
+    attrs: {
+      "md-src": _vm.imageSrc
+    }
+  }) : _c('i', {
+    staticClass: "md-icon",
+    class: [_vm.themeClass, _vm.mdIconset],
+    attrs: {
+      "aria-hidden": !!_vm.mdIconset
+    }
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2423dfc4", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 422:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(87);
+
+
+/***/ }),
+
+/***/ 69:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -748,95 +830,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 254:
-/***/ (function(module, exports) {
-
-module.exports = ".THEME_NAME.md-icon.md-primary {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-icon.md-accent {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-icon.md-warn {\n  color: WARN-COLOR; }\n"
-
-/***/ }),
-
-/***/ 300:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(216)
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(144),
-  /* template */
-  __webpack_require__(361),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdIcon/mdIcon.vue"
-if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] mdIcon.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2423dfc4", Component.options)
-  } else {
-    hotAPI.reload("data-v-2423dfc4", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 361:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.svgContent || _vm.mdSvgContent) ? _c('i', {
-    staticClass: "md-icon",
-    class: [_vm.themeClass],
-    domProps: {
-      "innerHTML": _vm._s(_vm.mdSvgContent || _vm.svgContent)
-    }
-  }) : (_vm.imageSrc) ? _c('md-image', {
-    staticClass: "md-icon",
-    class: [_vm.themeClass],
-    attrs: {
-      "md-src": _vm.imageSrc
-    }
-  }) : _c('i', {
-    staticClass: "md-icon",
-    class: [_vm.themeClass, _vm.mdIconset],
-    attrs: {
-      "aria-hidden": !!_vm.mdIconset
-    }
-  }, [_vm._t("default")], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2423dfc4", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 421:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(86);
-
-
-/***/ }),
-
-/***/ 86:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -847,11 +841,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdIcon = __webpack_require__(300);
+var _mdIcon = __webpack_require__(301);
 
 var _mdIcon2 = _interopRequireDefault(_mdIcon);
 
-var _mdIcon3 = __webpack_require__(254);
+var _mdIcon3 = __webpack_require__(255);
 
 var _mdIcon4 = _interopRequireDefault(_mdIcon3);
 

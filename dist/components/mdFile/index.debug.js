@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 420);
+/******/ 	return __webpack_require__(__webpack_require__.s = 421);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -255,7 +249,7 @@ module.exports = function(bitmap, value){
 
 /***/ }),
 
-/***/ 143:
+/***/ 145:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,7 +538,7 @@ module.exports = function(key){
 
 /***/ }),
 
-/***/ 226:
+/***/ 228:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -582,7 +576,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, exports) {
 
 module.exports = ""
@@ -645,45 +639,6 @@ module.exports = function(it, S){
 
 /***/ }),
 
-/***/ 299:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(226)
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(143),
-  /* template */
-  __webpack_require__(379),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdFile/mdFile.vue"
-if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] mdFile.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5120f664", Component.options)
-  } else {
-    hotAPI.reload("data-v-5120f664", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -709,6 +664,45 @@ var cof = __webpack_require__(23);
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
+
+/***/ }),
+
+/***/ 300:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(228)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(145),
+  /* template */
+  __webpack_require__(380),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdFile/mdFile.vue"
+if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdFile.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5120f664", Component.options)
+  } else {
+    hotAPI.reload("data-v-5120f664", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
@@ -814,7 +808,7 @@ module.exports = true;
 
 /***/ }),
 
-/***/ 379:
+/***/ 380:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1020,10 +1014,10 @@ module.exports = __webpack_require__(9);
 
 /***/ }),
 
-/***/ 420:
+/***/ 421:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(85);
+module.exports = __webpack_require__(86);
 
 
 /***/ }),
@@ -1399,7 +1393,7 @@ module.exports = function(exec){
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1410,11 +1404,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdFile = __webpack_require__(299);
+var _mdFile = __webpack_require__(300);
 
 var _mdFile2 = _interopRequireDefault(_mdFile);
 
-var _mdFile3 = __webpack_require__(253);
+var _mdFile3 = __webpack_require__(254);
 
 var _mdFile4 = _interopRequireDefault(_mdFile3);
 

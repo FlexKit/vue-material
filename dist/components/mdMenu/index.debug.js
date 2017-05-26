@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 426);
+/******/ 	return __webpack_require__(__webpack_require__.s = 427);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -198,7 +192,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 114:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -266,7 +260,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 157:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -280,7 +274,7 @@ var _transitionEndEventName = __webpack_require__(38);
 
 var _transitionEndEventName2 = _interopRequireDefault(_transitionEndEventName);
 
-var _getInViewPosition = __webpack_require__(114);
+var _getInViewPosition = __webpack_require__(116);
 
 var _getInViewPosition2 = _interopRequireDefault(_getInViewPosition);
 
@@ -515,7 +509,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 158:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -568,8 +562,13 @@ exports.default = {
     },
     fireClick: function fireClick() {
       if (this.highlighted > 0) {
-        this.$children[0].$children[this.highlighted - 1].$el.click();
+        this.getOptions()[this.highlighted - 1].$el.click();
       }
+    },
+    getOptions: function getOptions() {
+      return this.$children[0].$children.filter((function (child) {
+        return child.$el.classList.contains('md-option');
+      }));
     }
   },
   mounted: function mounted() {
@@ -600,7 +599,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 159:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -614,7 +613,7 @@ var _getClosestVueParent = __webpack_require__(29);
 
 var _getClosestVueParent2 = _interopRequireDefault(_getClosestVueParent);
 
-__webpack_require__(208);
+__webpack_require__(210);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -703,7 +702,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 208:
+/***/ 210:
 /***/ (function(module, exports) {
 
 if (!Element.prototype.scrollIntoViewIfNeeded) {
@@ -736,14 +735,14 @@ if (!Element.prototype.scrollIntoViewIfNeeded) {
 
 /***/ }),
 
-/***/ 240:
+/***/ 242:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 258:
+/***/ 259:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-menu-content {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item:hover .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item:focus .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item.md-highlighted .md-button:not([disabled]) {\n    background-color: BACKGROUND-CONTRAST-0.04; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item[disabled] {\n    color: BACKGROUND-CONTRAST-0.38; }\n"
@@ -780,18 +779,18 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 313:
+/***/ 314:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(240)
+__webpack_require__(242)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(157),
+  __webpack_require__(159),
   /* template */
-  __webpack_require__(404),
+  __webpack_require__(405),
   /* scopeId */
   null,
   /* cssModules */
@@ -819,14 +818,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 314:
+/***/ 315:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(158),
+  __webpack_require__(160),
   /* template */
-  __webpack_require__(397),
+  __webpack_require__(398),
   /* scopeId */
   null,
   /* cssModules */
@@ -854,14 +853,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 315:
+/***/ 316:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(159),
+  __webpack_require__(161),
   /* template */
-  __webpack_require__(355),
+  __webpack_require__(356),
   /* scopeId */
   null,
   /* cssModules */
@@ -889,7 +888,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 355:
+/***/ 356:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -948,7 +947,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 397:
+/***/ 398:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -994,7 +993,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 404:
+/***/ 405:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1018,15 +1017,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 426:
+/***/ 427:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(91);
+module.exports = __webpack_require__(92);
 
 
 /***/ }),
 
-/***/ 91:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1037,19 +1036,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdMenu = __webpack_require__(313);
+var _mdMenu = __webpack_require__(314);
 
 var _mdMenu2 = _interopRequireDefault(_mdMenu);
 
-var _mdMenuItem = __webpack_require__(315);
+var _mdMenuItem = __webpack_require__(316);
 
 var _mdMenuItem2 = _interopRequireDefault(_mdMenuItem);
 
-var _mdMenuContent = __webpack_require__(314);
+var _mdMenuContent = __webpack_require__(315);
 
 var _mdMenuContent2 = _interopRequireDefault(_mdMenuContent);
 
-var _mdMenu3 = __webpack_require__(258);
+var _mdMenu3 = __webpack_require__(259);
 
 var _mdMenu4 = _interopRequireDefault(_mdMenu3);
 

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 429);
+/******/ 	return __webpack_require__(__webpack_require__.s = 430);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -334,7 +328,7 @@ module.exports = $export;
 
 /***/ }),
 
-/***/ 162:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -363,6 +357,7 @@ exports.default = {
   name: 'md-option',
   props: {
     value: {
+      type: [String, Boolean, Number, Object],
       required: true
     },
     multiple: Boolean,
@@ -402,7 +397,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 163:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -462,7 +457,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 164:
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -480,7 +475,7 @@ var _mixin = __webpack_require__(1);
 
 var _mixin2 = _interopRequireDefault(_mixin);
 
-var _mdOptionList = __webpack_require__(319);
+var _mdOptionList = __webpack_require__(320);
 
 var _mdOptionList2 = _interopRequireDefault(_mdOptionList);
 
@@ -758,7 +753,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 235:
+/***/ 237:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -811,7 +806,7 @@ module.exports = function(fn, that, length){
 
 /***/ }),
 
-/***/ 261:
+/***/ 262:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME > .md-select:after {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n\n.THEME_NAME.md-select-content .md-menu-item.md-selected, .THEME_NAME.md-select-content .md-menu-item.md-checked {\n  color: PRIMARY-COLOR; }\n"
@@ -885,14 +880,14 @@ module.exports = !__webpack_require__(4) && !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 318:
+/***/ 319:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(162),
+  __webpack_require__(164),
   /* template */
-  __webpack_require__(387),
+  __webpack_require__(388),
   /* scopeId */
   null,
   /* cssModules */
@@ -912,40 +907,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-6189afdd", Component.options)
   } else {
     hotAPI.reload("data-v-6189afdd", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 319:
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(163),
-  /* template */
-  null,
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdSelect/mdOptionList.vue"
-if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c511c9ca", Component.options)
-  } else {
-    hotAPI.reload("data-v-c511c9ca", Component.options)
   }
 })()}
 
@@ -980,15 +941,49 @@ module.exports = function(object, names){
 /***/ 320:
 /***/ (function(module, exports, __webpack_require__) {
 
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(165),
+  /* template */
+  null,
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/PavelCSS/Projects/VueJS/vue-material/src/components/mdSelect/mdOptionList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some((function (key) {return key !== "default" && key !== "__esModule"}))) {console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c511c9ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-c511c9ca", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 321:
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /* styles */
-__webpack_require__(235)
+__webpack_require__(237)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(164),
+  __webpack_require__(166),
   /* template */
-  __webpack_require__(400),
+  __webpack_require__(401),
   /* scopeId */
   null,
   /* cssModules */
@@ -1086,7 +1081,7 @@ module.exports = true;
 
 /***/ }),
 
-/***/ 387:
+/***/ 388:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1253,7 +1248,7 @@ module.exports = Object.create || function create(O, Properties){
 
 /***/ }),
 
-/***/ 400:
+/***/ 401:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1342,14 +1337,6 @@ module.exports = __webpack_require__(9);
 
 /***/ }),
 
-/***/ 429:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(94);
-
-
-/***/ }),
-
 /***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1371,6 +1358,14 @@ __webpack_require__(39)(String, 'String', (function(iterated){
   this._i += point.length;
   return {value: point, done: false};
 }));
+
+/***/ }),
+
+/***/ 430:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(95);
+
 
 /***/ }),
 
@@ -1701,7 +1696,7 @@ $export($export.S + $export.F * !__webpack_require__(60)((function(iter){ Array.
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(70);
+var _assign = __webpack_require__(71);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -1745,22 +1740,22 @@ exports.f = __webpack_require__(4) ? Object.defineProperty : function defineProp
 
 /***/ }),
 
-/***/ 70:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(71), __esModule: true };
-
-/***/ }),
-
 /***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(74);
-module.exports = __webpack_require__(5).Object.assign;
+module.exports = { "default": __webpack_require__(72), __esModule: true };
 
 /***/ }),
 
 /***/ 72:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(75);
+module.exports = __webpack_require__(5).Object.assign;
+
+/***/ }),
+
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1800,13 +1795,13 @@ module.exports = !$assign || __webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 74:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(16);
 
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(72)});
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(73)});
 
 /***/ }),
 
@@ -1837,7 +1832,7 @@ module.exports = __webpack_require__(4) ? function(object, key, value){
 
 /***/ }),
 
-/***/ 94:
+/***/ 95:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1848,15 +1843,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSelect = __webpack_require__(320);
+var _mdSelect = __webpack_require__(321);
 
 var _mdSelect2 = _interopRequireDefault(_mdSelect);
 
-var _mdOption = __webpack_require__(318);
+var _mdOption = __webpack_require__(319);
 
 var _mdOption2 = _interopRequireDefault(_mdOption);
 
-var _mdSelect3 = __webpack_require__(261);
+var _mdSelect3 = __webpack_require__(262);
 
 var _mdSelect4 = _interopRequireDefault(_mdSelect3);
 

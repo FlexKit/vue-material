@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 436);
+/******/ 	return __webpack_require__(__webpack_require__.s = 437);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -145,52 +145,46 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// Theme mixin
+
+// Grab the closest ancestor component's `md-theme` attribute OR grab the
+// `md-name` attribute from an `<md-theme>` component.
+function getAncestorThemeName(component) {
+  if (!component) {
+    return null;
+  }
+
+  var name = component.mdTheme;
+
+  if (!name && component.$options._componentTag === 'md-theme') {
+    name = component.mdName;
+  }
+
+  return name || getAncestorThemeName(component.$parent);
+}
+
 exports.default = {
   props: {
     mdTheme: String
   },
-  data: function data() {
-    return {
-      closestThemedParent: false
-    };
-  },
-  methods: {
-    getClosestThemedParent: function getClosestThemedParent($parent) {
-      if (!$parent || !$parent.$el || $parent._uid === 0) {
-        return false;
-      }
-
-      if ($parent.mdTheme || $parent.mdName) {
-        return $parent;
-      }
-
-      return this.getClosestThemedParent($parent.$parent);
-    }
-  },
   computed: {
+    mdEffectiveTheme: function mdEffectiveTheme() {
+      return getAncestorThemeName(this) || this.$material.currentTheme;
+    },
     themeClass: function themeClass() {
-      if (this.mdTheme) {
-        return 'md-theme-' + this.mdTheme;
-      }
-
-      var theme = this.closestThemedParent.mdTheme;
-
-      if (!theme) {
-        if (this.closestThemedParent) {
-          theme = this.closestThemedParent.mdName;
-        } else {
-          theme = this.$material.currentTheme;
-        }
-      }
-
-      return 'md-theme-' + theme;
+      return this.$material.prefix + this.mdEffectiveTheme;
     }
   },
-  mounted: function mounted() {
-    this.closestThemedParent = this.getClosestThemedParent(this.$parent);
+  watch: {
+    mdTheme: function mdTheme(value) {
+      this.$material.useTheme(value);
+    }
+  },
+  beforeMount: function beforeMount() {
+    var localTheme = this.mdTheme;
 
-    if (!this.$material.currentTheme) {
-      this.$material.setCurrentTheme('default');
+    if (localTheme) {
+      this.$material.useTheme(localTheme);
     }
   }
 };
@@ -207,7 +201,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 101:
+/***/ 102:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -218,39 +212,39 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdTable = __webpack_require__(327);
+var _mdTable = __webpack_require__(328);
 
 var _mdTable2 = _interopRequireDefault(_mdTable);
 
-var _mdTableRow = __webpack_require__(334);
+var _mdTableRow = __webpack_require__(335);
 
 var _mdTableRow2 = _interopRequireDefault(_mdTableRow);
 
-var _mdTableHead = __webpack_require__(332);
+var _mdTableHead = __webpack_require__(333);
 
 var _mdTableHead2 = _interopRequireDefault(_mdTableHead);
 
-var _mdTableCell = __webpack_require__(330);
+var _mdTableCell = __webpack_require__(331);
 
 var _mdTableCell2 = _interopRequireDefault(_mdTableCell);
 
-var _mdTableEdit = __webpack_require__(331);
+var _mdTableEdit = __webpack_require__(332);
 
 var _mdTableEdit2 = _interopRequireDefault(_mdTableEdit);
 
-var _mdTableCard = __webpack_require__(329);
+var _mdTableCard = __webpack_require__(330);
 
 var _mdTableCard2 = _interopRequireDefault(_mdTableCard);
 
-var _mdTableAlternateHeader = __webpack_require__(328);
+var _mdTableAlternateHeader = __webpack_require__(329);
 
 var _mdTableAlternateHeader2 = _interopRequireDefault(_mdTableAlternateHeader);
 
-var _mdTablePagination = __webpack_require__(333);
+var _mdTablePagination = __webpack_require__(334);
 
 var _mdTablePagination2 = _interopRequireDefault(_mdTablePagination);
 
-var _mdTable3 = __webpack_require__(268);
+var _mdTable3 = __webpack_require__(269);
 
 var _mdTable4 = _interopRequireDefault(_mdTable3);
 
@@ -428,7 +422,7 @@ module.exports = Object.keys || function keys(O){
 
 /***/ }),
 
-/***/ 171:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -522,7 +516,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 172:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -592,7 +586,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 173:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -622,7 +616,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 174:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -668,7 +662,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 175:
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -762,7 +756,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 176:
+/***/ 178:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -864,7 +858,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 177:
+/***/ 179:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -874,7 +868,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _maxSafeInteger = __webpack_require__(186);
+var _maxSafeInteger = __webpack_require__(188);
 
 var _maxSafeInteger2 = _interopRequireDefault(_maxSafeInteger);
 
@@ -931,12 +925,15 @@ exports.default = {
       subTotal: 0,
       totalItems: 0,
       currentPage: 1,
-      currentSize: 0
+      currentSize: parseInt(this.mdSize, 10)
     };
   },
 
   watch: {
     mdTotal: function mdTotal(val) {
+      var sub = this.currentPage * this.currentSize;
+
+      this.subTotal = sub > val ? val : sub;
       this.totalItems = isNaN(val) ? _maxSafeInteger2.default : parseInt(val, 10);
     },
     mdSize: function mdSize(val) {
@@ -993,7 +990,7 @@ exports.default = {
     this.$nextTick((function () {
       _this.subTotal = _this.currentPage * _this.currentSize;
       _this.mdPageOptions = _this.mdPageOptions || [10, 25, 50, 100];
-      _this.currentSize = _this.mdPageOptions[0];
+      _this.currentSize = _this.mdPageOptions.includes(_this.currentSize) ? _this.currentSize : _this.mdPageOptions[0];
       _this.canFireEvents = true;
     }));
   }
@@ -1002,7 +999,18 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 178:
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__(22)('keys')
+  , uid    = __webpack_require__(19);
+module.exports = function(key){
+  return shared[key] || (shared[key] = uid(key));
+};
+
+/***/ }),
+
+/***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1145,21 +1153,10 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 18:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(22)('keys')
-  , uid    = __webpack_require__(19);
-module.exports = function(key){
-  return shared[key] || (shared[key] = uid(key));
-};
-
-/***/ }),
-
-/***/ 186:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(190), __esModule: true };
+module.exports = { "default": __webpack_require__(192), __esModule: true };
 
 /***/ }),
 
@@ -1174,10 +1171,10 @@ module.exports = function(key){
 
 /***/ }),
 
-/***/ 190:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(202);
+__webpack_require__(204);
 module.exports = 0x1fffffffffffff;
 
 /***/ }),
@@ -1203,7 +1200,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 202:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -1223,7 +1220,7 @@ module.exports = (
 
 /***/ }),
 
-/***/ 212:
+/***/ 214:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1292,7 +1289,7 @@ module.exports = function(fn, that, length){
 
 /***/ }),
 
-/***/ 268:
+/***/ 269:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-table-card .md-toolbar {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n\n.THEME_NAME.md-table-alternate-header {\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-table-alternate-header .md-toolbar {\n    background-color: ACCENT-COLOR-A100-0.2;\n    color: ACCENT-CONTRAST-A100; }\n  .THEME_NAME.md-table-alternate-header .md-counter {\n    color: ACCENT-COLOR; }\n"
@@ -1402,18 +1399,18 @@ module.exports = function(object, names){
 
 /***/ }),
 
-/***/ 327:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(212)
+__webpack_require__(214)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(171),
+  __webpack_require__(173),
   /* template */
-  __webpack_require__(349),
+  __webpack_require__(350),
   /* scopeId */
   null,
   /* cssModules */
@@ -1441,14 +1438,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 328:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(172),
+  __webpack_require__(174),
   /* template */
-  __webpack_require__(388),
+  __webpack_require__(389),
   /* scopeId */
   null,
   /* cssModules */
@@ -1476,14 +1473,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 329:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(173),
+  __webpack_require__(175),
   /* template */
-  __webpack_require__(344),
+  __webpack_require__(345),
   /* scopeId */
   null,
   /* cssModules */
@@ -1511,14 +1508,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 330:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(174),
+  __webpack_require__(176),
   /* template */
-  __webpack_require__(385),
+  __webpack_require__(386),
   /* scopeId */
   null,
   /* cssModules */
@@ -1546,14 +1543,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 331:
+/***/ 332:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(175),
+  __webpack_require__(177),
   /* template */
-  __webpack_require__(391),
+  __webpack_require__(392),
   /* scopeId */
   null,
   /* cssModules */
@@ -1581,14 +1578,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 332:
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(176),
+  __webpack_require__(178),
   /* template */
-  __webpack_require__(395),
+  __webpack_require__(396),
   /* scopeId */
   null,
   /* cssModules */
@@ -1616,14 +1613,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 333:
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(177),
+  __webpack_require__(179),
   /* template */
-  __webpack_require__(346),
+  __webpack_require__(347),
   /* scopeId */
   null,
   /* cssModules */
@@ -1651,14 +1648,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 334:
+/***/ 335:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(178),
+  __webpack_require__(180),
   /* template */
-  __webpack_require__(375),
+  __webpack_require__(376),
   /* scopeId */
   null,
   /* cssModules */
@@ -1696,7 +1693,7 @@ module.exports = function(it){
 
 /***/ }),
 
-/***/ 344:
+/***/ 345:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1715,7 +1712,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 346:
+/***/ 347:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1776,25 +1773,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 349:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "md-table",
-    class: [_vm.themeClass]
-  }, [_c('table', [_vm._t("default")], 2)])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0cf99074", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1822,6 +1800,25 @@ module.exports = function(IS_INCLUDES){
 
 /***/ }),
 
+/***/ 350:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "md-table",
+    class: [_vm.themeClass]
+  }, [_c('table', [_vm._t("default")], 2)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0cf99074", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1835,7 +1832,7 @@ module.exports = function(index, length){
 
 /***/ }),
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1873,7 +1870,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1894,7 +1891,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 388:
+/***/ 389:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1917,7 +1914,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 391:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1969,7 +1966,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 395:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2011,10 +2008,10 @@ module.exports = !__webpack_require__(8)((function(){
 
 /***/ }),
 
-/***/ 436:
+/***/ 437:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(101);
+module.exports = __webpack_require__(102);
 
 
 /***/ }),
