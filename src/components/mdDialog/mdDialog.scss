@@ -101,6 +101,15 @@
   justify-content: flex-end;
   position: relative;
 
+  &:before {
+    height: 1px;
+    position: absolute;
+    top: -1px;
+    right: 0;
+    left: 0;
+    content: " ";
+  }
+
   .md-button {
     min-width: 64px;
     margin: 0;

@@ -7,7 +7,7 @@
 		exports["VueMaterial"] = factory(require("vue"));
 	else
 		root["VueMaterial"] = factory(root["Vue"]);
-})(this, (function(__WEBPACK_EXTERNAL_MODULE_409__) {
+})(this, (function(__WEBPACK_EXTERNAL_MODULE_439__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 432);
+/******/ 	return __webpack_require__(__webpack_require__.s = 464);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 110:
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -202,7 +200,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(409);
+var _vue = __webpack_require__(439);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -221,7 +219,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 168:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -231,11 +229,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _uniqueId = __webpack_require__(44);
+var _uniqueId = __webpack_require__(36);
 
 var _uniqueId2 = _interopRequireDefault(_uniqueId);
 
-var _transitionEndEventName = __webpack_require__(38);
+var _transitionEndEventName = __webpack_require__(41);
 
 var _transitionEndEventName2 = _interopRequireDefault(_transitionEndEventName);
 
@@ -243,7 +241,7 @@ var _mixin = __webpack_require__(1);
 
 var _mixin2 = _interopRequireDefault(_mixin);
 
-var _manager = __webpack_require__(110);
+var _manager = __webpack_require__(113);
 
 var _manager2 = _interopRequireDefault(_manager);
 
@@ -386,32 +384,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 241:
+/***/ 257:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 264:
+/***/ 281:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME .md-snackbar .md-ink-ripple, .THEME_NAME.md-snackbar .md-ink-ripple {\n  color: #fff; }\n"
 
 /***/ }),
 
-/***/ 323:
+/***/ 344:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(241)
+__webpack_require__(257)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(168),
+  __webpack_require__(175),
   /* template */
-  __webpack_require__(404),
+  __webpack_require__(434),
   /* scopeId */
   null,
   /* cssModules */
@@ -439,7 +437,25 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 38:
+/***/ 36:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var uniqueId = function uniqueId() {
+  return Math.random().toString(36).slice(4);
+};
+
+exports.default = uniqueId;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -469,7 +485,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 404:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -500,40 +516,22 @@ if (false) {
 
 /***/ }),
 
-/***/ 409:
+/***/ 439:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_409__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_439__;
 
 /***/ }),
 
-/***/ 432:
+/***/ 464:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(97);
+module.exports = __webpack_require__(99);
 
 
 /***/ }),
 
-/***/ 44:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var uniqueId = function uniqueId() {
-  return Math.random().toString(36).slice(4);
-};
-
-exports.default = uniqueId;
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 97:
+/***/ 99:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,11 +542,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSnackbar = __webpack_require__(323);
+var _mdSnackbar = __webpack_require__(344);
 
 var _mdSnackbar2 = _interopRequireDefault(_mdSnackbar);
 
-var _mdSnackbar3 = __webpack_require__(264);
+var _mdSnackbar3 = __webpack_require__(281);
 
 var _mdSnackbar4 = _interopRequireDefault(_mdSnackbar3);
 

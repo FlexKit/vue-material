@@ -16,6 +16,7 @@ import MdInputContainer from './components/mdInputContainer';
 import MdLayout from './components/mdLayout';
 import MdList from './components/mdList';
 import MdMenu from './components/mdMenu';
+import MdOnboarding from './components/mdOnboarding';
 import MdProgress from './components/mdProgress';
 import MdRadio from './components/mdRadio';
 import MdSelect from './components/mdSelect';
@@ -23,6 +24,7 @@ import MdSidenav from './components/mdSidenav';
 import MdSnackbar from './components/mdSnackbar';
 import MdSpeedDial from './components/mdSpeedDial';
 import MdSpinner from './components/mdSpinner';
+import MdStepper from './components/mdStepper';
 import MdSubheader from './components/mdSubheader';
 import MdSwitch from './components/mdSwitch';
 import MdTable from './components/mdTable';
@@ -50,6 +52,7 @@ const options = {
   MdLayout,
   MdList,
   MdMenu,
+  MdOnboarding,
   MdProgress,
   MdRadio,
   MdSelect,
@@ -57,6 +60,7 @@ const options = {
   MdSnackbar,
   MdSpeedDial,
   MdSpinner,
+  MdStepper,
   MdSubheader,
   MdSwitch,
   MdTable,

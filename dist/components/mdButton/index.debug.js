@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 414);
+/******/ 	return __webpack_require__(__webpack_require__.s = 444);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 122:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -249,32 +247,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 234:
+/***/ 249:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 247:
+/***/ 263:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-button:not([disabled]).md-raised:not(.md-icon-button) {\n  color: BACKGROUND-CONTRAST;\n  background-color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-button:not([disabled]).md-raised:not(.md-icon-button):hover {\n    background-color: BACKGROUND-COLOR-200; }\n\n.THEME_NAME.md-button:not([disabled]).md-raised.md-icon-button:not(.md-raised) {\n  color: BACKGROUND-CONTRAST; }\n\n.THEME_NAME.md-button:not([disabled]).md-fab {\n  color: ACCENT-CONTRAST;\n  background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-button:not([disabled]).md-fab:hover {\n    background-color: ACCENT-COLOR-600; }\n  .THEME_NAME.md-button:not([disabled]).md-fab.md-clean {\n    color: BACKGROUND-CONTRAST;\n    background-color: BACKGROUND-COLOR; }\n    .THEME_NAME.md-button:not([disabled]).md-fab.md-clean:hover {\n      background-color: BACKGROUND-COLOR-200; }\n\n.THEME_NAME.md-button:not([disabled]).md-primary:not(.md-icon-button) {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-button:not([disabled]).md-primary.md-raised, .THEME_NAME.md-button:not([disabled]).md-primary.md-fab {\n  background-color: PRIMARY-COLOR;\n  color: PRIMARY-CONTRAST; }\n  .THEME_NAME.md-button:not([disabled]).md-primary.md-raised:hover, .THEME_NAME.md-button:not([disabled]).md-primary.md-fab:hover {\n    background-color: PRIMARY-COLOR-600; }\n\n.THEME_NAME.md-button:not([disabled]).md-primary.md-icon-button:not(.md-raised) {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-button:not([disabled]).md-accent:not(.md-icon-button) {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-button:not([disabled]).md-accent.md-raised {\n  background-color: ACCENT-COLOR;\n  color: ACCENT-CONTRAST; }\n  .THEME_NAME.md-button:not([disabled]).md-accent.md-raised:hover {\n    background-color: ACCENT-COLOR-600; }\n\n.THEME_NAME.md-button:not([disabled]).md-accent.md-icon-button:not(.md-raised) {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-button:not([disabled]).md-warn:not(.md-icon-button) {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-button:not([disabled]).md-warn.md-raised, .THEME_NAME.md-button:not([disabled]).md-warn.md-fab {\n  background-color: WARN-COLOR;\n  color: WARN-CONTRAST; }\n  .THEME_NAME.md-button:not([disabled]).md-warn.md-raised:hover, .THEME_NAME.md-button:not([disabled]).md-warn.md-fab:hover {\n    background-color: WARN-COLOR-600; }\n\n.THEME_NAME.md-button:not([disabled]).md-warn.md-icon-button:not(.md-raised) {\n  color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 277:
+/***/ 295:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(234)
+__webpack_require__(249)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(122),
+  __webpack_require__(126),
   /* template */
-  __webpack_require__(395),
+  __webpack_require__(424),
   /* scopeId */
   null,
   /* cssModules */
@@ -302,7 +300,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 395:
+/***/ 424:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -352,15 +350,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 414:
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(79);
+module.exports = __webpack_require__(80);
 
 
 /***/ }),
 
-/***/ 79:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -371,11 +369,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdButton = __webpack_require__(277);
+var _mdButton = __webpack_require__(295);
 
 var _mdButton2 = _interopRequireDefault(_mdButton);
 
-var _mdButton3 = __webpack_require__(247);
+var _mdButton3 = __webpack_require__(263);
 
 var _mdButton4 = _interopRequireDefault(_mdButton3);
 

@@ -11,6 +11,7 @@ const DEFAULT_THEME_COLORS = {
   background: 'white',
   warn: 'deep-orange'
 };
+const DEFAULT_THEME_NAME = 'default';
 /*const DEFAULT_HUES = {
   accent: {
     'hue-1': 'A100',
@@ -46,15 +47,15 @@ const parseStyle = (style, theme, name) => {
     }
 
     if (colorType === 'COLOR') {
-      let isDefault = palette[theme[type]];
-
-      if (!colorVariant && !isDefault) {
-        if (type === 'accent') {
-          colorVariant = 'A200';
-        } else if (type === 'background') {
-          colorVariant = 50;
-        }
-      }
+      // let isDefault = palette[theme[type]];
+      //
+      // if (!colorVariant && !isDefault) {
+      //   if (type === 'accent') {
+      //     colorVariant = 'A200';
+      //   } else if (type === 'background') {
+      //     colorVariant = 50;
+      //   }
+      // }
 
       if (type === 'primary') {
         registeredPrimaryColor[name] = color[colorVariant];
@@ -99,18 +100,25 @@ function warnNotFound(themeName) {
 }
 
 function injectStyle(style, spec, name, styleId) {
-  if (createNewStyleElement) {
-    style = parseStyle(style, spec, name);
-    style = style.replace(/THEME_NAME/g, styleId);
-
-    createNewStyleElement(style, styleId);
+  if (!createNewStyleElement) {
+    return false;
   }
+
+  style = parseStyle(style, spec, name);
+
+  if (DEFAULT_THEME_NAME === name) {
+    style = style.replace(/\.THEME_NAME/g, '');
+  } else {
+    style = style.replace(/THEME_NAME/g, styleId);
+  }
+
+  createNewStyleElement(style, styleId);
 }
 
 export default function install(Vue) {
   Vue.material = new Vue({
     data: {
-      currentTheme: 'default',
+      currentTheme: DEFAULT_THEME_NAME,
       inkRipple: true,
       prefix: 'md-theme-',
       styles: [],

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 434);
+/******/ 	return __webpack_require__(__webpack_require__.s = 466);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,44 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 170:
+/***/ 101:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = install;
+
+var _mdSpinner = __webpack_require__(346);
+
+var _mdSpinner2 = _interopRequireDefault(_mdSpinner);
+
+var _mdSpinner3 = __webpack_require__(283);
+
+var _mdSpinner4 = _interopRequireDefault(_mdSpinner3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function install(Vue) {
+  Vue.component('md-spinner', _mdSpinner2.default);
+
+  Vue.material.styles.push(_mdSpinner4.default);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -293,32 +321,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 215:
+/***/ 229:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 266:
+/***/ 283:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-spinner .md-spinner-path {\n  stroke: PRIMARY-COLOR; }\n\n.THEME_NAME.md-spinner.md-accent .md-spinner-path {\n  stroke: ACCENT-COLOR; }\n\n.THEME_NAME.md-spinner.md-warn .md-spinner-path {\n  stroke: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 325:
+/***/ 346:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(215)
+__webpack_require__(229)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(170),
+  __webpack_require__(177),
   /* template */
-  __webpack_require__(354),
+  __webpack_require__(378),
   /* scopeId */
   null,
   /* cssModules */
@@ -346,7 +374,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 354:
+/***/ 378:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -385,41 +413,11 @@ if (false) {
 
 /***/ }),
 
-/***/ 434:
+/***/ 466:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(99);
+module.exports = __webpack_require__(101);
 
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = install;
-
-var _mdSpinner = __webpack_require__(325);
-
-var _mdSpinner2 = _interopRequireDefault(_mdSpinner);
-
-var _mdSpinner3 = __webpack_require__(266);
-
-var _mdSpinner4 = _interopRequireDefault(_mdSpinner3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function install(Vue) {
-  Vue.component('md-spinner', _mdSpinner2.default);
-
-  Vue.material.styles.push(_mdSpinner4.default);
-}
-module.exports = exports['default'];
 
 /***/ })
 

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 431);
+/******/ 	return __webpack_require__(__webpack_require__.s = 463);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 167:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -337,32 +335,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 229:
+/***/ 244:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 263:
+/***/ 280:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-sidenav .md-sidenav-content {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n"
 
 /***/ }),
 
-/***/ 322:
+/***/ 343:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(229)
+__webpack_require__(244)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(167),
+  __webpack_require__(174),
   /* template */
-  __webpack_require__(381),
+  __webpack_require__(409),
   /* scopeId */
   null,
   /* cssModules */
@@ -390,7 +388,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 381:
+/***/ 409:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -426,15 +424,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 431:
+/***/ 463:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(96);
+module.exports = __webpack_require__(98);
 
 
 /***/ }),
 
-/***/ 96:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -445,11 +443,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSidenav = __webpack_require__(322);
+var _mdSidenav = __webpack_require__(343);
 
 var _mdSidenav2 = _interopRequireDefault(_mdSidenav);
 
-var _mdSidenav3 = __webpack_require__(263);
+var _mdSidenav3 = __webpack_require__(280);
 
 var _mdSidenav4 = _interopRequireDefault(_mdSidenav3);
 

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 435);
+/******/ 	return __webpack_require__(__webpack_require__.s = 468);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 100:
+/***/ 103:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -203,11 +201,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSubheader = __webpack_require__(326);
+var _mdSubheader = __webpack_require__(350);
 
 var _mdSubheader2 = _interopRequireDefault(_mdSubheader);
 
-var _mdSubheader3 = __webpack_require__(267);
+var _mdSubheader3 = __webpack_require__(285);
 
 var _mdSubheader4 = _interopRequireDefault(_mdSubheader3);
 
@@ -222,7 +220,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 171:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -258,32 +256,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 233:
+/***/ 248:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 267:
+/***/ 285:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-subheader.md-primary {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-subheader.md-accent {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-subheader.md-warn {\n  color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 326:
+/***/ 350:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(233)
+__webpack_require__(248)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(171),
+  __webpack_require__(181),
   /* template */
-  __webpack_require__(393),
+  __webpack_require__(422),
   /* scopeId */
   null,
   /* cssModules */
@@ -311,7 +309,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 393:
+/***/ 422:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -333,10 +331,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 468:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(100);
+module.exports = __webpack_require__(103);
 
 
 /***/ })

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 423);
+/******/ 	return __webpack_require__(__webpack_require__.s = 453);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -136,7 +136,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 147:
+/***/ 151:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,7 +146,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getImageLightness = __webpack_require__(67);
+var _getImageLightness = __webpack_require__(73);
 
 var _getImageLightness2 = _interopRequireDefault(_getImageLightness);
 
@@ -223,32 +223,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 240:
+/***/ 256:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 256:
+/***/ 272:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 302:
+/***/ 320:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(240)
+__webpack_require__(256)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(147),
+  __webpack_require__(151),
   /* template */
-  __webpack_require__(403),
+  __webpack_require__(433),
   /* scopeId */
   null,
   /* cssModules */
@@ -276,7 +276,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 403:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -298,15 +298,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 423:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(88);
+module.exports = __webpack_require__(89);
 
 
 /***/ }),
 
-/***/ 67:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -359,7 +359,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 88:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -370,11 +370,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdImage = __webpack_require__(302);
+var _mdImage = __webpack_require__(320);
 
 var _mdImage2 = _interopRequireDefault(_mdImage);
 
-var _mdImage3 = __webpack_require__(256);
+var _mdImage3 = __webpack_require__(272);
 
 var _mdImage4 = _interopRequireDefault(_mdImage3);
 

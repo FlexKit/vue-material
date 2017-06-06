@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 436);
+/******/ 	return __webpack_require__(__webpack_require__.s = 469);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 101:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -203,11 +201,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdSwitch = __webpack_require__(327);
+var _mdSwitch = __webpack_require__(351);
 
 var _mdSwitch2 = _interopRequireDefault(_mdSwitch);
 
-var _mdSwitch3 = __webpack_require__(268);
+var _mdSwitch3 = __webpack_require__(286);
 
 var _mdSwitch4 = _interopRequireDefault(_mdSwitch3);
 
@@ -222,7 +220,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 172:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -330,32 +328,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 235:
+/***/ 250:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 268:
+/***/ 286:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-switch.md-checked .md-switch-container {\n  background-color: ACCENT-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked .md-switch-thumb {\n  background-color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-switch.md-checked .md-ripple {\n  opacity: .38; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-container {\n  background-color: PRIMARY-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-switch-thumb {\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-primary .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-container {\n  background-color: WARN-COLOR-500-0.5; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-switch-thumb {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-checked.md-warn .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-container, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-container {\n  background-color: rgba(0, 0, 0, 0.12); }\n\n.THEME_NAME.md-switch.md-disabled .md-switch-thumb, .THEME_NAME.md-switch.md-disabled.md-checked .md-switch-thumb {\n  background-color: #bdbdbd; }\n"
 
 /***/ }),
 
-/***/ 327:
+/***/ 351:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(235)
+__webpack_require__(250)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(172),
+  __webpack_require__(182),
   /* template */
-  __webpack_require__(397),
+  __webpack_require__(426),
   /* scopeId */
   null,
   /* cssModules */
@@ -383,7 +381,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 397:
+/***/ 426:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -405,7 +403,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "checkbox",
       "name": _vm.name,
       "id": _vm.id,
-      "disabled": _vm.disabled
+      "disabled": _vm.disabled,
+      "tabindex": "-1"
     },
     domProps: {
       "value": _vm.value
@@ -436,10 +435,10 @@ if (false) {
 
 /***/ }),
 
-/***/ 436:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(101);
+module.exports = __webpack_require__(104);
 
 
 /***/ })

@@ -7,6 +7,7 @@
     :isDisabled="disabled"
     :isRequired="required"
 
+    :readonly="readonly"
     :inputLength="inputLength"
     :counterLength="counterLength"
 

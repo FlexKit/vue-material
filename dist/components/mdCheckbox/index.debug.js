@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 417);
+/******/ 	return __webpack_require__(__webpack_require__.s = 447);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 134:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -256,32 +254,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 236:
+/***/ 252:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 250:
+/***/ 266:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-checkbox .md-checkbox-container {\n  border-color: BACKGROUND-CONTRAST-0.54; }\n  .THEME_NAME.md-checkbox .md-checkbox-container:after {\n    border-color: ACCENT-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-checked .md-checkbox-container {\n  background-color: PRIMARY-COLOR;\n  border-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-checkbox.md-checked .md-checkbox-container:after {\n    border-color: PRIMARY-CONTRAST; }\n\n.THEME_NAME.md-checkbox .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-checkbox .md-ripple {\n  opacity: .26; }\n\n.THEME_NAME.md-checkbox.md-accent.md-checked .md-checkbox-container {\n  background-color: ACCENT-COLOR;\n  border-color: ACCENT-COLOR; }\n  .THEME_NAME.md-checkbox.md-accent.md-checked .md-checkbox-container:after {\n    border-color: ACCENT-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-accent .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-checkbox.md-warn.md-checked .md-checkbox-container {\n  background-color: WARN-COLOR;\n  border-color: WARN-COLOR; }\n  .THEME_NAME.md-checkbox.md-warn.md-checked .md-checkbox-container:after {\n    border-color: WARN-CONTRAST; }\n\n.THEME_NAME.md-checkbox.md-warn .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-checkbox.md-disabled.md-checked .md-checkbox-container {\n  background-color: rgba(0, 0, 0, 0.26);\n  border-color: transparent; }\n\n.THEME_NAME.md-checkbox.md-disabled:not(.md-checked) .md-checkbox-container {\n  border-color: rgba(0, 0, 0, 0.26); }\n"
 
 /***/ }),
 
-/***/ 289:
+/***/ 307:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(236)
+__webpack_require__(252)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(134),
+  __webpack_require__(138),
   /* template */
-  __webpack_require__(400),
+  __webpack_require__(430),
   /* scopeId */
   null,
   /* cssModules */
@@ -309,7 +307,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 400:
+/***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -346,6 +344,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-checkbox-label",
     attrs: {
       "for": _vm.id || _vm.name
+    },
+    on: {
+      "click": _vm.toggleCheck
     }
   }, [_vm._t("default")], 2) : _vm._e()])
 },staticRenderFns: []}
@@ -359,15 +360,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 417:
+/***/ 447:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(82);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
 
-/***/ 82:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -378,11 +379,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdCheckbox = __webpack_require__(289);
+var _mdCheckbox = __webpack_require__(307);
 
 var _mdCheckbox2 = _interopRequireDefault(_mdCheckbox);
 
-var _mdCheckbox3 = __webpack_require__(250);
+var _mdCheckbox3 = __webpack_require__(266);
 
 var _mdCheckbox4 = _interopRequireDefault(_mdCheckbox3);
 

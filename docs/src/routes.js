@@ -21,6 +21,7 @@ const InkRipple = (r) => require.ensure([], () => r(require('./pages/components/
 const Input = (r) => require.ensure([], () => r(require('./pages/components/Input')), 'input');
 const List = (r) => require.ensure([], () => r(require('./pages/components/List')), 'list');
 const Menu = (r) => require.ensure([], () => r(require('./pages/components/Menu')), 'menu');
+const Onboarding = (r) => require.ensure([], () => r(require('./pages/components/Onboarding')), 'onboarding');
 const Progress = (r) => require.ensure([], () => r(require('./pages/components/Progress')), 'progress');
 const Radio = (r) => require.ensure([], () => r(require('./pages/components/Radio')), 'radio');
 const Select = (r) => require.ensure([], () => r(require('./pages/components/Select')), 'select');
@@ -28,6 +29,7 @@ const Sidenav = (r) => require.ensure([], () => r(require('./pages/components/Si
 const Snackbar = (r) => require.ensure([], () => r(require('./pages/components/Snackbar')), 'snackbar');
 const SpeedDial = (r) => require.ensure([], () => r(require('./pages/components/SpeedDial')), 'speed-dial');
 const Spinner = (r) => require.ensure([], () => r(require('./pages/components/Spinner')), 'spinner');
+const Stepper = (r) => require.ensure([], () => r(require('./pages/components/Stepper')), 'stepper');
 const Subheader = (r) => require.ensure([], () => r(require('./pages/components/Subheader')), 'subheader');
 const Switch = (r) => require.ensure([], () => r(require('./pages/components/Switch')), 'switch');
 const Table = (r) => require.ensure([], () => r(require('./pages/components/Table')), 'table');
@@ -149,6 +151,11 @@ const components = [
     component: Menu
   },
   {
+    path: '/components/onboarding',
+    name: 'components:onboarding',
+    component: Onboarding
+  },
+  {
     path: '/components/progress',
     name: 'components:progress',
     component: Progress
@@ -182,6 +189,11 @@ const components = [
     path: '/components/spinner',
     name: 'components:spinner',
     component: Spinner
+  },
+  {
+    path: '/components/stepper',
+    name: 'components:stepper',
+    component: Stepper
   },
   {
     path: '/components/subheader',

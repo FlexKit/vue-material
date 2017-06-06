@@ -197,4 +197,14 @@ $input-size: 32px;
       vertical-align: top;
     }
   }
+
+  .md-autocomplete,
+  .md-autocomplete .md-menu,
+  .md-autocomplete .md-menu .md-input {
+    width: 100%;
+  }
+
+  .md-autocomplete .md-icon:not(.md-icon-search):after {
+    height: 0;
+  }
 }

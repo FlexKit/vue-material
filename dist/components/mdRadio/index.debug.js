@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 429);
+/******/ 	return __webpack_require__(__webpack_require__.s = 460);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 163:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -261,32 +259,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 212:
+/***/ 226:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 261:
+/***/ 278:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-radio .md-radio-container:after {\n  background-color: ACCENT-COLOR; }\n\n.THEME_NAME.md-radio.md-checked .md-radio-container {\n  border-color: ACCENT-COLOR; }\n\n.THEME_NAME.md-radio.md-checked .md-ink-ripple {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-radio.md-checked .md-ripple {\n  opacity: .38; }\n\n.THEME_NAME.md-radio.md-primary .md-radio-container:after {\n  background-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-radio.md-primary.md-checked .md-radio-container {\n  border-color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-radio.md-primary.md-checked .md-ink-ripple {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-radio.md-warn .md-radio-container:after {\n  background-color: WARN-COLOR; }\n\n.THEME_NAME.md-radio.md-warn.md-checked .md-radio-container {\n  border-color: WARN-COLOR; }\n\n.THEME_NAME.md-radio.md-warn.md-checked .md-ink-ripple {\n  color: WARN-COLOR; }\n\n.THEME_NAME.md-radio.md-disabled .md-radio-container {\n  border-color: rgba(0, 0, 0, 0.26); }\n  .THEME_NAME.md-radio.md-disabled .md-radio-container:after {\n    background-color: rgba(0, 0, 0, 0.26); }\n\n.THEME_NAME.md-radio.md-disabled.md-checked .md-radio-container {\n  border-color: rgba(0, 0, 0, 0.26); }\n"
 
 /***/ }),
 
-/***/ 318:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(212)
+__webpack_require__(226)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(163),
+  __webpack_require__(170),
   /* template */
-  __webpack_require__(346),
+  __webpack_require__(370),
   /* scopeId */
   null,
   /* cssModules */
@@ -314,7 +312,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 346:
+/***/ 370:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -360,15 +358,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 429:
+/***/ 460:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(94);
+module.exports = __webpack_require__(96);
 
 
 /***/ }),
 
-/***/ 94:
+/***/ 96:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -379,11 +377,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdRadio = __webpack_require__(318);
+var _mdRadio = __webpack_require__(339);
 
 var _mdRadio2 = _interopRequireDefault(_mdRadio);
 
-var _mdRadio3 = __webpack_require__(261);
+var _mdRadio3 = __webpack_require__(278);
 
 var _mdRadio4 = _interopRequireDefault(_mdRadio3);
 

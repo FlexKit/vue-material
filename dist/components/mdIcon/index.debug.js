@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 422);
+/******/ 	return __webpack_require__(__webpack_require__.s = 452);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 146:
+/***/ 150:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -202,7 +200,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _path = __webpack_require__(244);
+var _path = __webpack_require__(260);
 
 var _path2 = _interopRequireDefault(_path);
 
@@ -316,14 +314,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 218:
+/***/ 232:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 244:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -551,29 +549,29 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(69)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(75)))
 
 /***/ }),
 
-/***/ 255:
+/***/ 271:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-icon.md-primary {\n  color: PRIMARY-COLOR; }\n\n.THEME_NAME.md-icon.md-accent {\n  color: ACCENT-COLOR; }\n\n.THEME_NAME.md-icon.md-warn {\n  color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 301:
+/***/ 319:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(218)
+__webpack_require__(232)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(146),
+  __webpack_require__(150),
   /* template */
-  __webpack_require__(362),
+  __webpack_require__(386),
   /* scopeId */
   null,
   /* cssModules */
@@ -601,7 +599,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 362:
+/***/ 386:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -635,15 +633,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 422:
+/***/ 452:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(87);
+module.exports = __webpack_require__(88);
 
 
 /***/ }),
 
-/***/ 69:
+/***/ 75:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -830,7 +828,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 87:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -841,11 +839,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdIcon = __webpack_require__(301);
+var _mdIcon = __webpack_require__(319);
 
 var _mdIcon2 = _interopRequireDefault(_mdIcon);
 
-var _mdIcon3 = __webpack_require__(255);
+var _mdIcon3 = __webpack_require__(271);
 
 var _mdIcon4 = _interopRequireDefault(_mdIcon3);
 

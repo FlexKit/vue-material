@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 411);
+/******/ 	return __webpack_require__(__webpack_require__.s = 441);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 118:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -224,32 +222,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 226:
+/***/ 241:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 245:
+/***/ 261:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-avatar.md-primary.md-avatar-icon {\n  background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-avatar.md-primary.md-avatar-icon .md-icon {\n    color: PRIMARY-CONTRAST-0.99999; }\n\n.THEME_NAME.md-avatar.md-accent.md-avatar-icon {\n  background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-avatar.md-accent.md-avatar-icon .md-icon {\n    color: ACCENT-CONTRAST-0.99999; }\n\n.THEME_NAME.md-avatar.md-warn.md-avatar-icon {\n  background-color: WARN-COLOR; }\n  .THEME_NAME.md-avatar.md-warn.md-avatar-icon .md-icon {\n    color: WARN-CONTRAST-0.99999; }\n"
 
 /***/ }),
 
-/***/ 273:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(226)
+__webpack_require__(241)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(118),
+  __webpack_require__(122),
   /* template */
-  __webpack_require__(378),
+  __webpack_require__(406),
   /* scopeId */
   null,
   /* cssModules */
@@ -277,7 +275,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 378:
+/***/ 406:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -296,15 +294,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 411:
+/***/ 441:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(76);
+module.exports = __webpack_require__(77);
 
 
 /***/ }),
 
-/***/ 76:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,11 +313,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdAvatar = __webpack_require__(273);
+var _mdAvatar = __webpack_require__(291);
 
 var _mdAvatar2 = _interopRequireDefault(_mdAvatar);
 
-var _mdAvatar3 = __webpack_require__(245);
+var _mdAvatar3 = __webpack_require__(261);
 
 var _mdAvatar4 = _interopRequireDefault(_mdAvatar3);
 

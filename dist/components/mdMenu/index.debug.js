@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 427);
+/******/ 	return __webpack_require__(__webpack_require__.s = 457);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 116:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -260,7 +258,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 159:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -270,11 +268,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _transitionEndEventName = __webpack_require__(38);
+var _transitionEndEventName = __webpack_require__(41);
 
 var _transitionEndEventName2 = _interopRequireDefault(_transitionEndEventName);
 
-var _getInViewPosition = __webpack_require__(116);
+var _getInViewPosition = __webpack_require__(121);
 
 var _getInViewPosition2 = _interopRequireDefault(_getInViewPosition);
 
@@ -509,7 +507,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 160:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -599,7 +597,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 161:
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -609,11 +607,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getClosestVueParent = __webpack_require__(29);
+var _getClosestVueParent = __webpack_require__(20);
 
 var _getClosestVueParent2 = _interopRequireDefault(_getClosestVueParent);
 
-__webpack_require__(210);
+__webpack_require__(224);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -702,7 +700,37 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 210:
+/***/ 20:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getClosestVueParent = function getClosestVueParent($parent, cssClass) {
+  if (!$parent || !$parent.$el) {
+    return false;
+  }
+
+  if ($parent._uid === 0) {
+    return false;
+  }
+
+  if ($parent.$el.classList.contains(cssClass)) {
+    return $parent;
+  }
+
+  return getClosestVueParent($parent.$parent, cssClass);
+};
+
+exports.default = getClosestVueParent;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ 224:
 /***/ (function(module, exports) {
 
 if (!Element.prototype.scrollIntoViewIfNeeded) {
@@ -735,62 +763,32 @@ if (!Element.prototype.scrollIntoViewIfNeeded) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 258:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 259:
+/***/ 275:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-menu-content {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item:hover .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item:focus .md-button:not([disabled]), .THEME_NAME.md-menu-content .md-list .md-menu-item.md-highlighted .md-button:not([disabled]) {\n    background-color: BACKGROUND-CONTRAST-0.04; }\n  .THEME_NAME.md-menu-content .md-list .md-menu-item[disabled] {\n    color: BACKGROUND-CONTRAST-0.38; }\n"
 
 /***/ }),
 
-/***/ 29:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var getClosestVueParent = function getClosestVueParent($parent, cssClass) {
-  if (!$parent || !$parent.$el) {
-    return false;
-  }
-
-  if ($parent._uid === 0) {
-    return false;
-  }
-
-  if ($parent.$el.classList.contains(cssClass)) {
-    return $parent;
-  }
-
-  return getClosestVueParent($parent.$parent, cssClass);
-};
-
-exports.default = getClosestVueParent;
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 314:
+/***/ 333:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(242)
+__webpack_require__(258)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(159),
+  __webpack_require__(164),
   /* template */
-  __webpack_require__(405),
+  __webpack_require__(435),
   /* scopeId */
   null,
   /* cssModules */
@@ -818,14 +816,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 315:
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(160),
+  __webpack_require__(165),
   /* template */
-  __webpack_require__(398),
+  __webpack_require__(427),
   /* scopeId */
   null,
   /* cssModules */
@@ -853,14 +851,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 316:
+/***/ 335:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(161),
+  __webpack_require__(166),
   /* template */
-  __webpack_require__(356),
+  __webpack_require__(380),
   /* scopeId */
   null,
   /* cssModules */
@@ -888,7 +886,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 356:
+/***/ 380:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -917,7 +915,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -947,7 +945,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 398:
+/***/ 427:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -993,7 +991,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 405:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1017,15 +1015,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 427:
+/***/ 457:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(92);
+module.exports = __webpack_require__(93);
 
 
 /***/ }),
 
-/***/ 92:
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1036,19 +1034,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdMenu = __webpack_require__(314);
+var _mdMenu = __webpack_require__(333);
 
 var _mdMenu2 = _interopRequireDefault(_mdMenu);
 
-var _mdMenuItem = __webpack_require__(316);
+var _mdMenuItem = __webpack_require__(335);
 
 var _mdMenuItem2 = _interopRequireDefault(_mdMenuItem);
 
-var _mdMenuContent = __webpack_require__(315);
+var _mdMenuContent = __webpack_require__(334);
 
 var _mdMenuContent2 = _interopRequireDefault(_mdMenuContent);
 
-var _mdMenu3 = __webpack_require__(259);
+var _mdMenu3 = __webpack_require__(275);
 
 var _mdMenu4 = _interopRequireDefault(_mdMenu3);
 

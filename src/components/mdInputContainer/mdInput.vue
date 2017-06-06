@@ -28,6 +28,7 @@
         :max="max"
         :type="type"
         :value="currentValue"
+        :readonly="readonly"
         :disabled="disabled"
         :required="required"
         :autofocus="autofocus"

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 420);
+/******/ 	return __webpack_require__(__webpack_require__.s = 450);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 144:
+/***/ 148:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -222,32 +220,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 231:
+/***/ 246:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 253:
+/***/ 269:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-divider {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n"
 
 /***/ }),
 
-/***/ 299:
+/***/ 317:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(231)
+__webpack_require__(246)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(144),
+  __webpack_require__(148),
   /* template */
-  __webpack_require__(385),
+  __webpack_require__(414),
   /* scopeId */
   null,
   /* cssModules */
@@ -275,7 +273,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 385:
+/***/ 414:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -293,15 +291,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 420:
+/***/ 450:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(85);
+module.exports = __webpack_require__(86);
 
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,11 +310,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdDivider = __webpack_require__(299);
+var _mdDivider = __webpack_require__(317);
 
 var _mdDivider2 = _interopRequireDefault(_mdDivider);
 
-var _mdDivider3 = __webpack_require__(253);
+var _mdDivider3 = __webpack_require__(269);
 
 var _mdDivider4 = _interopRequireDefault(_mdDivider3);
 

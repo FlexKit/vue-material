@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 418);
+/******/ 	return __webpack_require__(__webpack_require__.s = 448);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 135:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -247,7 +245,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 136:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -261,12 +259,13 @@ var _mixin = __webpack_require__(1);
 
 var _mixin2 = _interopRequireDefault(_mixin);
 
-var _uniqueId = __webpack_require__(44);
+var _uniqueId = __webpack_require__(36);
 
 var _uniqueId2 = _interopRequireDefault(_uniqueId);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -336,7 +335,8 @@ exports.default = {
     classes: function classes() {
       return {
         'md-static': this.mdStatic,
-        'md-disabled': this.disabled
+        'md-disabled': this.disabled,
+        'md-chips': true
       };
     }
   },
@@ -395,28 +395,28 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 230:
+/***/ 245:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 251:
+/***/ 267:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-chip {\n  background-color: BACKGROUND-CONTRAST-0.12; }\n  .THEME_NAME.md-chip.md-deletable:hover, .THEME_NAME.md-chip.md-deletable:focus, .THEME_NAME.md-chip.md-editable:hover, .THEME_NAME.md-chip.md-editable:focus {\n    background-color: BACKGROUND-CONTRAST-0.54;\n    color: BACKGROUND-COLOR; }\n    .THEME_NAME.md-chip.md-deletable:hover .md-delete, .THEME_NAME.md-chip.md-deletable:focus .md-delete, .THEME_NAME.md-chip.md-editable:hover .md-delete, .THEME_NAME.md-chip.md-editable:focus .md-delete {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip .md-delete {\n    color: BACKGROUND-CONTRAST-0.38; }\n    .THEME_NAME.md-chip .md-delete .md-ripple {\n      color: BACKGROUND-COLOR; }\n  .THEME_NAME.md-chip.md-primary {\n    color: PRIMARY-CONTRAST;\n    background-color: PRIMARY-COLOR; }\n  .THEME_NAME.md-chip.md-accent {\n    color: ACCENT-CONTRAST;\n    background-color: ACCENT-COLOR; }\n  .THEME_NAME.md-chip.md-warn {\n    color: WARN-CONTRAST;\n    background-color: WARN-COLOR; }\n"
 
 /***/ }),
 
-/***/ 290:
+/***/ 308:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(135),
+  __webpack_require__(139),
   /* template */
-  __webpack_require__(366),
+  __webpack_require__(391),
   /* scopeId */
   null,
   /* cssModules */
@@ -444,18 +444,18 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 291:
+/***/ 309:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(230)
+__webpack_require__(245)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(136),
+  __webpack_require__(140),
   /* template */
-  __webpack_require__(383),
+  __webpack_require__(412),
   /* scopeId */
   null,
   /* cssModules */
@@ -483,7 +483,25 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 366:
+/***/ 36:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var uniqueId = function uniqueId() {
+  return Math.random().toString(36).slice(4);
+};
+
+exports.default = uniqueId;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -528,14 +546,13 @@ if (false) {
 
 /***/ }),
 
-/***/ 383:
+/***/ 412:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('md-input-container', {
     staticClass: "md-chips",
-    class: [_vm.themeClass, _vm.classes]
-  }, [_c('md-input-container', {
+    class: [_vm.themeClass, _vm.classes],
     nativeOn: {
       "click": function($event) {
         _vm.applyInputFocus($event)
@@ -545,19 +562,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('md-chip', {
       key: chip,
       attrs: {
-        "md-deletable": !_vm.mdStatic,
         "md-editable": !_vm.mdStatic,
+        "md-deletable": !_vm.mdStatic,
         "disabled": _vm.disabled
       },
       on: {
-        "delete": function($event) {
-          _vm.deleteChip(chip)
-        },
         "edit": function($event) {
           _vm.editChip(chip)
+        },
+        "delete": function($event) {
+          _vm.deleteChip(chip)
         }
       }
-    }, [_vm._t("default", null, {
+    }, [_vm._t("chip", [_vm._v(_vm._s(chip))], {
       value: chip
     })], 2)
   })), _vm._v(" "), _c('md-input', {
@@ -584,6 +601,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
         $event.preventDefault();
         _vm.addChip($event)
+      }, function($event) {
+        if (!('button' in $event) && $event.keyCode !== 186) { return null; }
+        $event.preventDefault();
+        _vm.addChip($event)
       }]
     },
     model: {
@@ -593,7 +614,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "currentChip"
     }
-  })], 2)], 1)
+  }), _vm._v(" "), _vm._t("default")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -605,33 +626,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 418:
+/***/ 448:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(83);
+module.exports = __webpack_require__(84);
 
 
 /***/ }),
 
-/***/ 44:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var uniqueId = function uniqueId() {
-  return Math.random().toString(36).slice(4);
-};
-
-exports.default = uniqueId;
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 83:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -642,15 +645,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdChips = __webpack_require__(291);
+var _mdChips = __webpack_require__(309);
 
 var _mdChips2 = _interopRequireDefault(_mdChips);
 
-var _mdChip = __webpack_require__(290);
+var _mdChip = __webpack_require__(308);
 
 var _mdChip2 = _interopRequireDefault(_mdChip);
 
-var _mdChips3 = __webpack_require__(251);
+var _mdChips3 = __webpack_require__(267);
 
 var _mdChips4 = _interopRequireDefault(_mdChips3);
 

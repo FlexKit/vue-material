@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 419);
+/******/ 	return __webpack_require__(__webpack_require__.s = 449);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,16 +183,14 @@ exports.default = {
   beforeMount: function beforeMount() {
     var localTheme = this.mdTheme;
 
-    if (localTheme) {
-      this.$material.useTheme(localTheme);
-    }
+    this.$material.useTheme(localTheme ? localTheme : 'default');
   }
 };
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 137:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -206,7 +204,7 @@ var _mixin = __webpack_require__(1);
 
 var _mixin2 = _interopRequireDefault(_mixin);
 
-var _transitionEndEventName = __webpack_require__(38);
+var _transitionEndEventName = __webpack_require__(41);
 
 var _transitionEndEventName2 = _interopRequireDefault(_transitionEndEventName);
 
@@ -373,7 +371,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 138:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -396,7 +394,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 139:
+/***/ 143:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -419,7 +417,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 140:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -442,7 +440,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 141:
+/***/ 145:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -508,7 +506,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 142:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -579,7 +577,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 143:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,32 +673,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 221:
+/***/ 235:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 252:
+/***/ 268:
 /***/ (function(module, exports) {
 
 module.exports = ".THEME_NAME.md-dialog-container .md-dialog {\n  background-color: BACKGROUND-COLOR;\n  color: BACKGROUND-CONTRAST; }\n"
 
 /***/ }),
 
-/***/ 292:
+/***/ 310:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(221)
+__webpack_require__(235)
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(137),
+  __webpack_require__(141),
   /* template */
-  __webpack_require__(369),
+  __webpack_require__(394),
   /* scopeId */
   null,
   /* cssModules */
@@ -728,14 +726,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 293:
+/***/ 311:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(138),
+  __webpack_require__(142),
   /* template */
-  __webpack_require__(399),
+  __webpack_require__(428),
   /* scopeId */
   null,
   /* cssModules */
@@ -763,14 +761,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 294:
+/***/ 312:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(139),
+  __webpack_require__(143),
   /* template */
-  __webpack_require__(373),
+  __webpack_require__(399),
   /* scopeId */
   null,
   /* cssModules */
@@ -798,14 +796,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 295:
+/***/ 313:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(140),
+  __webpack_require__(144),
   /* template */
-  __webpack_require__(367),
+  __webpack_require__(392),
   /* scopeId */
   null,
   /* cssModules */
@@ -833,14 +831,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 296:
+/***/ 314:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(141),
+  __webpack_require__(145),
   /* template */
-  __webpack_require__(384),
+  __webpack_require__(413),
   /* scopeId */
   null,
   /* cssModules */
@@ -868,14 +866,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 297:
+/***/ 315:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(142),
+  __webpack_require__(146),
   /* template */
-  __webpack_require__(406),
+  __webpack_require__(436),
   /* scopeId */
   null,
   /* cssModules */
@@ -903,14 +901,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 298:
+/***/ 316:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(143),
+  __webpack_require__(147),
   /* template */
-  __webpack_require__(365),
+  __webpack_require__(390),
   /* scopeId */
   null,
   /* cssModules */
@@ -938,7 +936,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 365:
+/***/ 390:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -995,7 +993,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 367:
+/***/ 392:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1013,7 +1011,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 369:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1056,7 +1054,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 373:
+/***/ 399:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1074,7 +1072,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1104,7 +1102,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 384:
+/***/ 413:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1139,7 +1137,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 399:
+/***/ 428:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1157,7 +1155,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 406:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1199,15 +1197,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 419:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(84);
+module.exports = __webpack_require__(85);
 
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1218,35 +1216,35 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = install;
 
-var _mdDialog = __webpack_require__(292);
+var _mdDialog = __webpack_require__(310);
 
 var _mdDialog2 = _interopRequireDefault(_mdDialog);
 
-var _mdDialogTitle = __webpack_require__(295);
+var _mdDialogTitle = __webpack_require__(313);
 
 var _mdDialogTitle2 = _interopRequireDefault(_mdDialogTitle);
 
-var _mdDialogContent = __webpack_require__(294);
+var _mdDialogContent = __webpack_require__(312);
 
 var _mdDialogContent2 = _interopRequireDefault(_mdDialogContent);
 
-var _mdDialogActions = __webpack_require__(293);
+var _mdDialogActions = __webpack_require__(311);
 
 var _mdDialogActions2 = _interopRequireDefault(_mdDialogActions);
 
-var _mdDialogAlert = __webpack_require__(296);
+var _mdDialogAlert = __webpack_require__(314);
 
 var _mdDialogAlert2 = _interopRequireDefault(_mdDialogAlert);
 
-var _mdDialogConfirm = __webpack_require__(297);
+var _mdDialogConfirm = __webpack_require__(315);
 
 var _mdDialogConfirm2 = _interopRequireDefault(_mdDialogConfirm);
 
-var _mdDialogPrompt = __webpack_require__(298);
+var _mdDialogPrompt = __webpack_require__(316);
 
 var _mdDialogPrompt2 = _interopRequireDefault(_mdDialogPrompt);
 
-var _mdDialog3 = __webpack_require__(252);
+var _mdDialog3 = __webpack_require__(268);
 
 var _mdDialog4 = _interopRequireDefault(_mdDialog3);
 

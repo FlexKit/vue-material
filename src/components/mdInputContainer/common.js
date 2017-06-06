@@ -20,6 +20,7 @@ export default {
     maxlength: [Number, String],
     required: Boolean,
     disabled: Boolean,
+    readonly: Boolean,
     autofocus: Boolean
   },
   computed: {
