@@ -167,14 +167,8 @@ $button-fab-space: 24px;
   }
 
   &[disabled] {
-    color: rgba(#000, .26);
     cursor: default;
     pointer-events: none;
-
-    &.md-raised,
-    &.md-fab {
-      background-color: rgba(#000, .12);
-    }
 
     &.md-fab {
       box-shadow: none;

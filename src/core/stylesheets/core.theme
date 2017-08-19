@@ -11,16 +11,14 @@
       color: #{'ACCENT-COLOR-800'};
     }
   }
-}
 
-body.THEME_NAME {
-  background-color: #{'BACKGROUND-COLOR'};
-  color: #{'BACKGROUND-CONTRAST-0.87'};
-}
+  body#{&} {
+    background-color: #{'BACKGROUND-COLOR'};
+    color: #{'BACKGROUND-CONTRAST-0.87'};
+  }
 
-/* Typography */
+  /* Typography */
 
-.THEME_NAME {
   .md-caption,
   .md-display-1,
   .md-display-2,
